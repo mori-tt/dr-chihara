@@ -13,7 +13,7 @@ export function dialogueMetadata(locale: Locale, article?: Dialogue): Metadata {
       ? copy.sampleNote
       : article.translations[locale].introduction
     : copy.intro;
-  const image = `${siteUrl}${article?.cover || "/images/consultation.webp"}`;
+  const image = `${siteUrl}${article?.cover || "/images/stock/laboratory.webp"}`;
   return {
     ...pageMetadata(locale),
     title,

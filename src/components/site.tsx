@@ -4,6 +4,7 @@ import { DialogueTeaser } from "./dialogues";
 import { Journey } from "./journey";
 import { asset, clinicUrl, content, type Locale } from "@/lib/content";
 import { personSchema } from "@/lib/metadata";
+import { stockPhotos, stockLabel } from "@/lib/stock-photos";
 function Arrow() {
   return (
     <span aria-hidden="true" className="arrow">
@@ -30,6 +31,11 @@ function Label({
 }
 export function Site({ locale }: { locale: Locale }) {
   const c = content[locale];
+  const practicePhotos = [
+    stockPhotos.stethoscope,
+    stockPhotos.laboratory,
+    stockPhotos.microscope,
+  ];
   return (
     <div className={`site locale-${locale}`} id="top">
       <script
@@ -230,29 +236,17 @@ export function Site({ locale }: { locale: Locale }) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <div className={`practice-art art-${i}`} aria-hidden="true">
-                  {i === 0 ? (
-                    <>
-                      <span />
-                      <span />
-                      <span />
-                    </>
-                  ) : i === 1 ? (
-                    <>
-                      <i />
-                      <i />
-                      <i />
-                      <i />
-                      <i />
-                    </>
-                  ) : (
-                    <>
-                      <b />
-                      <b />
-                      <b />
-                    </>
-                  )}
-                  <span className="art-index">0{i + 1}</span>
+                <div className="practice-stock">
+                  <img
+                    src={asset(practicePhotos[i].src)}
+                    alt={practicePhotos[i].alt[locale]}
+                    width="1600"
+                    height="1067"
+                    loading="lazy"
+                  />
+                  <span className="stock-image-label">
+                    {stockLabel[locale]}
+                  </span>
                 </div>
                 <div className="practice-card-heading">
                   <h3>{p.title}</h3>

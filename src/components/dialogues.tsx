@@ -9,6 +9,7 @@ import {
   type Dialogue,
 } from "@/lib/dialogues";
 import { siteUrl } from "@/lib/metadata";
+import { stockPhotos, stockLabel } from "@/lib/stock-photos";
 
 export function DialogueTeaser({ locale }: { locale: Locale }) {
   const c = dialogueCopy[locale];
@@ -26,8 +27,8 @@ export function DialogueTeaser({ locale }: { locale: Locale }) {
           aria-label={c.explore}
         >
           <img
-            src={asset("/images/consultation.webp")}
-            alt={content[locale].consultAlt}
+            src={asset(stockPhotos.laboratory.src)}
+            alt={stockPhotos.laboratory.alt[locale]}
             width="767"
             height="511"
             loading="lazy"
@@ -49,6 +50,9 @@ export function DialogueTeaser({ locale }: { locale: Locale }) {
             ))}
           </h2>
           <p>{c.homeIntro}</p>
+          <small className="stock-credit">
+            {stockLabel[locale]} · {stockPhotos.laboratory.credit}
+          </small>
           <a className="text-link" href={dialoguePath(locale)}>
             {c.explore}
             <span className="arrow" aria-hidden="true">
@@ -147,7 +151,7 @@ export function DialogueIndex({ locale }: { locale: Locale }) {
             </p>
             <div className="dialogue-masthead">
               <span>
-                DIALOGUES<span className="accent">.</span>
+                CROSSROADS<span className="accent">.</span>
               </span>
               <h1>{c.label}</h1>
             </div>
@@ -325,8 +329,8 @@ export function DialogueArticle({
                       className="dialogue-guest-placeholder"
                       aria-hidden="true"
                     >
-                      <span>PORTRAIT</span>
-                      <span>＋</span>
+                      <span>{t.guest.monogram ? "FICTION" : "PORTRAIT"}</span>
+                      <span>{t.guest.monogram || "＋"}</span>
                     </div>
                   )}
                   <div>
@@ -407,6 +411,40 @@ export function DialogueArticle({
                   <h2>{c.credits}</h2>
                   <p>{t.credits}</p>
                 </div>
+                {sample && (
+                  <section className="dialogue-references">
+                    <h2>{c.references}</h2>
+                    <ul>
+                      <li>
+                        <a
+                          href="https://www.fda.gov/science-research/focus-areas-regulatory-science-report/focus-area-regenerative-medicine"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          FDA — Focus Area: Regenerative Medicine ↗
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="https://www.isscr.org/patients"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          ISSCR — Patient Resources ↗
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="https://www.isscr.org/resources/informed-consent-stemcell"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          ISSCR — Informed Consent Standard ↗
+                        </a>
+                      </li>
+                    </ul>
+                  </section>
+                )}
               </div>
             </div>
           </article>

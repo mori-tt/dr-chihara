@@ -63,7 +63,22 @@ try {
           await page.locator('.dialogue-toc a[href="#values"]').click();
           await page.waitForTimeout(300);
           assert.equal(new URL(page.url()).hash, "#values");
-          assert.equal(await page.locator(".dialogue-exchange").count(), 4);
+          assert.equal(await page.locator(".dialogue-exchange").count(), 6);
+          assert.equal(await page.locator(".dialogue-references a").count(), 3);
+          assert.ok(
+            (await page.locator(".dialogue-sample-notice").innerText()).match(
+              /フィクション|fiction|虚构/,
+            ),
+          );
+          assert.equal(
+            await page.locator('img[src*="/images/stock/"]').count(),
+            3,
+          );
+          assert.ok(
+            !(await page.locator("article").innerText()).match(
+              /［|\[Insert|placeholder|在此填写/,
+            ),
+          );
         } else {
           assert.equal(await page.locator(".dialogue-coming").count(), 1);
           assert.equal(await page.locator(".dialogue-card").count(), 1);
@@ -94,6 +109,12 @@ try {
         assert.equal(await page.locator('[role="dialog"]').count(), 0);
       }
       await page.goto(`${base}/${prefix}`, { waitUntil: "networkidle" });
+      assert.equal(await page.locator(".credentials li").count(), 8);
+      assert.ok(
+        !(await page.locator("body").innerText()).match(
+          /私の哲学|My Philosophy|我的哲学/,
+        ),
+      );
       await page.locator(".dialogue-teaser .text-link").click();
       await page.waitForLoadState("networkidle");
       await page.locator(".dialogue-card").click();

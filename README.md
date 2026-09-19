@@ -20,7 +20,7 @@ npm run dev
 
 翻訳とプロフィール: `src/lib/content.ts`。サイト構成: `src/components/site.tsx`。スタイル: `src/app/globals.css`。
 
-対談シリーズ「私の哲学」の一覧・詳細を `/dialogues/` に追加しています。3言語対応の記事サンプルと、今後の記事追加手順は [docs/dialogues.md](docs/dialogues.md) を参照してください。記事データは `src/lib/dialogues.ts`、対談用スタイルは `src/app/dialogues.css` にまとめています。
+対談シリーズ「人間交差点」の一覧・詳細を `/dialogues/` に追加しています。3言語対応の架空の医師との再生医療対談サンプルと、今後の記事追加手順は [docs/dialogues.md](docs/dialogues.md) を参照してください。記事データは `src/lib/dialogues.ts`、サンプル本文は `src/lib/sample-dialogue.ts`、対談用スタイルは `src/app/dialogues.css` にまとめています。
 
 ## GitHub Pages
 
@@ -84,5 +84,9 @@ TEST_URL=http://127.0.0.1:4173 npm run test:browser
 | `lounge.webp`       | `KAT_0890.jpg`                                         |
 
 英語・中国語の文章は本サイト用の翻訳です。公式サイト未掲載の受賞・実績・論文・ニュースは追加していません。氏名の英語表記は公式サイトの `yoshitomochihara` 画像名に基づきます。予約・お問い合わせは既存のクリニック窓口へ誘導し、本サイト自体では個人情報を収集しません。英語・中国語の診療対応を保証する表記はしていません。
+
+「専門医・資格・所属学会」の8項目は、2026-09-20に依頼者から提供された情報を原文どおり反映し、英語・中国語に翻訳しています。追加の専門医・指導医等を公式サイトの掲載情報と誤って扱わないよう、出典をここに区別しています。
+
+研究・医療のイメージ写真3点をPexelsからダウンロードし、WebP化してサイト内から配信しています。人物写真は架空のゲストの肖像として使用していません。ダウンロード元・配布者・ライセンス・配置場所は [画像出典一覧](docs/image-sources.md) を参照してください。
 
 `scripts/research.mjs` は参考サイトの調査用。`scripts/prepare-images.mjs` は制作時に取得した一時画像の変換用で、通常のビルドには不要です。使用フォントのライセンスは配布パッケージ内のOFLファイルを参照してください。
