@@ -30,6 +30,14 @@ export const content = {
     aboutBody2:
       "2022年、大阪・上本町にノリス美容クリニックを開院。患者様のご希望を丁寧に伺い、医師の視点を交えながら、納得できる選択を一緒に考えています。",
     qualifications: "専門医・資格・所属学会",
+    credentialGroups: ["学位", "専門医・資格", "所属学会"],
+    medicalContact: "診療のご相談・ご予約",
+    editorialContact: "取材・対談のご依頼",
+    editorialBody:
+      "取材や「人間交差点」への対談のご提案は、クリニックの既存お問い合わせ窓口へ。お問い合わせ内容に「千原良友への取材・対談依頼」と明記し、ご所属・企画概要・希望時期をお知らせください。",
+    editorialButton: "取材・対談について問い合わせる",
+    editorialNote:
+      "専用フォームではありません。クリニックの共通窓口（日本語）へ移動します。",
     credentials: [
       "奈良県立医科大学 博士",
       "日本泌尿器科学会指導医",
@@ -174,6 +182,18 @@ export const content = {
     aboutBody2:
       "In January 2022, he opened Norris Beauty Clinic in Uehommachi, Osaka. His consultations bring patients’ wishes and a physician’s perspective together to help them make informed choices.",
     qualifications: "Specialist credentials, qualifications & affiliation",
+    credentialGroups: [
+      "Academic degree",
+      "Specialist credentials & qualifications",
+      "Professional membership",
+    ],
+    medicalContact: "Appointments & medical inquiries",
+    editorialContact: "Press & conversation proposals",
+    editorialBody:
+      "For press inquiries or proposals for Human Crossroads, please use the clinic’s existing contact form. Specify that your inquiry concerns an interview with Yoshitomo Chihara, and include your organization, a short outline and preferred timing.",
+    editorialButton: "Send a press or conversation inquiry",
+    editorialNote:
+      "This is the clinic’s shared Japanese-language form, not a dedicated press form. Language support is not guaranteed.",
     credentials: [
       "PhD, Nara Medical University",
       "Certified instructor, Japanese Urological Association",
@@ -339,6 +359,14 @@ export const content = {
     aboutBody2:
       "2022年1月，千原医师在大阪上本町创立诺里斯美容诊所。通过充分了解患者的意愿，结合专业意见，一起探讨适合的选择。",
     qualifications: "专科资质、资格与所属学会",
+    credentialGroups: ["学位", "专科资质与资格", "所属学会"],
+    medicalContact: "诊疗咨询与预约",
+    editorialContact: "采访与对谈邀请",
+    editorialBody:
+      "如需采访千原良友医生，或为“人生交汇点”提出对谈邀请，请使用诊所现有的联系表单。请在内容中注明采访或对谈邀请，并提供所属机构、企划概要及期望时间。",
+    editorialButton: "咨询采访与对谈事宜",
+    editorialNote:
+      "此链接前往诊所共用的日语联系表单，并非采访专用表单。不保证提供中文服务。",
     credentials: [
       "奈良县立医科大学 博士",
       "日本泌尿器科学会指导医师",

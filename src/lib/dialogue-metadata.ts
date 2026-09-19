@@ -13,7 +13,10 @@ export function dialogueMetadata(locale: Locale, article?: Dialogue): Metadata {
       ? copy.sampleNote
       : article.translations[locale].introduction
     : copy.intro;
-  const image = `${siteUrl}${article?.cover || "/images/stock/laboratory.webp"}`;
+  const generated = !article || article.slug === "sample";
+  const image = generated
+    ? `${siteUrl}/images/og/${article ? "sample" : "crossroads"}-${locale}.png`
+    : `${siteUrl}${article.cover}`;
   return {
     ...pageMetadata(locale),
     title,
@@ -41,7 +44,10 @@ export function dialogueMetadata(locale: Locale, article?: Dialogue): Metadata {
       images: [
         {
           url: image,
-          alt: article?.translations[locale].coverAlt || copy.label,
+          alt: generated
+            ? title
+            : article?.translations[locale].coverAlt || copy.label,
+          ...(generated ? { width: 1200, height: 630 } : {}),
         },
       ],
     },

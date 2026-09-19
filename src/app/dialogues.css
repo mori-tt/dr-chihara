@@ -1021,3 +1021,52 @@
     font-size: 29px;
   }
 }
+.dialogue-editorial-link {
+  margin: 30px auto 50px;
+  max-width: 440px;
+}
+.dialogue-teaser-grid > div > p:not(.eyebrow),
+.dialogue-index-intro > p,
+.dialogue-coming p,
+.dialogue-guest p,
+.dialogue-answer p,
+.dialogue-afterword > p,
+.dialogue-next > div > p:not(.eyebrow) {
+  font-size: 16px;
+  line-height: 2;
+}
+.dialogue-question h3 {
+  font-size: 16px;
+  line-height: 1.9;
+}
+.dialogue-lead {
+  font-size: 17px;
+  line-height: 2;
+}
+.dialogue-sample-notice p,
+.dialogue-credits p,
+.dialogue-inline-photo figcaption {
+  font-size: 12px;
+  line-height: 1.9;
+}
+@media (max-width: 600px) {
+  .dialogue-question,
+  .dialogue-answer,
+  .locale-en .dialogue-question,
+  .locale-en .dialogue-answer {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .dialogue-question > span,
+  .dialogue-answer > span {
+    font-size: 12px;
+  }
+  .dialogue-lead {
+    font-size: 16px;
+  }
+  .dialogue-editorial-link {
+    font-size: 15px;
+    gap: 15px;
+    line-height: 1.8;
+  }
+}

@@ -1458,6 +1458,7 @@ a:hover .arrow {
   .header {
     height: 80px;
     padding: 0 6%;
+    gap: 12px;
   }
   .wordmark {
     gap: 10px;
@@ -1473,10 +1474,10 @@ a:hover .arrow {
     letter-spacing: 1.3px;
   }
   .header-actions {
-    gap: 18px;
+    gap: 12px;
   }
   .languages {
-    gap: 11px;
+    gap: 8px;
     font-size: 10px;
   }
   .menu-button {
@@ -1930,6 +1931,162 @@ a:hover .arrow {
   }
   .locale-zh .hero-bottom h2 {
     font-size: 21px;
+  }
+}
+/* Reading and editorial refinements shared across all three languages. */
+.credential-group + .credential-group {
+  margin-top: 24px;
+}
+.credential-group h4 {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent);
+  margin: 0 0 10px;
+}
+.credentials ul {
+  font-size: 14px;
+}
+.credentials li {
+  padding-left: 20px;
+  position: relative;
+  overflow-wrap: anywhere;
+}
+.credentials li:before {
+  position: absolute;
+  left: 0;
+  margin: 0;
+}
+.credentials h3 {
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+.about-copy > p,
+.philosophy-heading > p,
+.principle > p,
+.journey-intro > p,
+.practice-card > p,
+.clinic-copy > p,
+.contact-grid > div > p {
+  font-size: 15px;
+  line-height: 2;
+}
+.career-row p,
+.clinic-copy address,
+.clinic-copy > .clinic-details {
+  font-size: 14px;
+  line-height: 1.9;
+}
+.medical-note,
+.contact-actions > .external-note,
+.contact-actions > .contact-hours {
+  font-size: 12px;
+  line-height: 1.9;
+}
+.everyday-image {
+  margin: 48px 0 0;
+  position: relative;
+}
+.everyday-image img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  object-position: 50% 43%;
+}
+.everyday-image figcaption {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+.contact-kind {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 16px;
+}
+.editorial-contact {
+  border-top: 1px solid var(--line);
+  margin-top: 55px;
+  padding-top: 36px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13%;
+  align-items: center;
+}
+.editorial-contact h3 {
+  font-size: 24px;
+  margin: 12px 0 16px;
+  font-weight: 500;
+}
+.editorial-contact p:not(.eyebrow) {
+  font-size: 15px;
+  line-height: 2;
+  color: var(--muted);
+}
+.editorial-contact .text-link {
+  max-width: none;
+  font-size: 15px;
+  gap: 15px;
+  line-height: 1.7;
+}
+.editorial-contact .external-note {
+  margin-top: 15px;
+  font-size: 12px !important;
+}
+.editorial-contact > div,
+.contact-grid > div {
+  min-width: 0;
+}
+.languages a {
+  min-width: 28px;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 600px) {
+  .about-copy > p,
+  .philosophy-heading > p,
+  .principle > p,
+  .journey-intro > p,
+  .practice-card > p,
+  .clinic-copy > p,
+  .contact-grid > div > p {
+    font-size: 16px;
+    line-height: 1.95;
+  }
+  .philosophy-heading > p {
+    max-width: none;
+  }
+  .credentials ul {
+    font-size: 15px;
+  }
+  .career-year {
+    min-width: 64px;
+  }
+  .career-row {
+    gap: 16px;
+  }
+  .career-row h3 {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .contact-grid .external-note,
+  .contact-grid .contact-hours {
+    font-size: 12px;
+  }
+  .everyday-image img {
+    height: 240px;
+  }
+  .editorial-contact {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    margin-top: 40px;
+  }
+  .editorial-contact p:not(.eyebrow) {
+    font-size: 16px;
+  }
+  .editorial-contact .external-note {
+    font-size: 12px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

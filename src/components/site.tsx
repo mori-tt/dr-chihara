@@ -32,9 +32,16 @@ function Label({
 export function Site({ locale }: { locale: Locale }) {
   const c = content[locale];
   const practicePhotos = [
-    stockPhotos.stethoscope,
+    {
+      src: "/images/consultation.webp",
+      alt: {
+        ja: content.ja.consultAlt,
+        en: content.en.consultAlt,
+        zh: content.zh.consultAlt,
+      },
+    },
     stockPhotos.laboratory,
-    stockPhotos.microscope,
+    stockPhotos.stethoscope,
   ];
   return (
     <div className={`site locale-${locale}`} id="top">
@@ -149,11 +156,21 @@ export function Site({ locale }: { locale: Locale }) {
               </div>
               <div className="credentials">
                 <h3>{c.qualifications}</h3>
-                <ul>
-                  {c.credentials.map((x) => (
-                    <li key={x}>{x}</li>
-                  ))}
-                </ul>
+                {[[0], [1, 2, 3, 5, 6, 7], [4]].map((indices, group) => (
+                  <div
+                    className="credential-group"
+                    key={c.credentialGroups[group]}
+                  >
+                    <h4>{c.credentialGroups[group]}</h4>
+                    <ul>
+                      {indices.map((index) => (
+                        <li key={c.credentials[index]}>
+                          {c.credentials[index]}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
               <a
                 className="text-link"
@@ -190,6 +207,18 @@ export function Site({ locale }: { locale: Locale }) {
               </article>
             ))}
           </div>
+          <figure className="everyday-image">
+            <img
+              src={asset(stockPhotos.wellbeing.src)}
+              alt={stockPhotos.wellbeing.alt[locale]}
+              width="1600"
+              height="2400"
+              loading="lazy"
+            />
+            <figcaption>
+              {stockLabel[locale]} · {stockPhotos.wellbeing.credit}
+            </figcaption>
+          </figure>
           <div className="philosophy-type" aria-hidden="true">
             SCIENCE. CARE. <em>YOU.</em>
           </div>
@@ -244,9 +273,11 @@ export function Site({ locale }: { locale: Locale }) {
                     height="1067"
                     loading="lazy"
                   />
-                  <span className="stock-image-label">
-                    {stockLabel[locale]}
-                  </span>
+                  {i > 0 && (
+                    <span className="stock-image-label">
+                      {stockLabel[locale]}
+                    </span>
+                  )}
                 </div>
                 <div className="practice-card-heading">
                   <h3>{p.title}</h3>
@@ -330,6 +361,7 @@ export function Site({ locale }: { locale: Locale }) {
               <p>{c.contactBody}</p>
             </div>
             <div className="contact-actions">
+              <h3 className="contact-kind">{c.medicalContact}</h3>
               <a
                 className="contact-button"
                 href={`${clinicUrl}/contact/`}
@@ -345,6 +377,25 @@ export function Site({ locale }: { locale: Locale }) {
                 <Arrow />
               </a>
               <p className="contact-hours">{c.hours}</p>
+            </div>
+          </div>
+          <div className="editorial-contact" id="editorial-contact">
+            <div>
+              <p className="eyebrow">PRESS & CONVERSATIONS</p>
+              <h3>{c.editorialContact}</h3>
+              <p>{c.editorialBody}</p>
+            </div>
+            <div>
+              <a
+                className="text-link"
+                href={`${clinicUrl}/contact/`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {c.editorialButton}
+                <Arrow />
+              </a>
+              <p className="external-note">{c.editorialNote}</p>
             </div>
           </div>
         </section>

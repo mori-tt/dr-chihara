@@ -27,10 +27,10 @@ export function DialogueTeaser({ locale }: { locale: Locale }) {
           aria-label={c.explore}
         >
           <img
-            src={asset(stockPhotos.laboratory.src)}
-            alt={stockPhotos.laboratory.alt[locale]}
-            width="767"
-            height="511"
+            src={asset(stockPhotos.conversation.src)}
+            alt={stockPhotos.conversation.alt[locale]}
+            width="1600"
+            height="2400"
             loading="lazy"
           />
           <span aria-hidden="true">
@@ -51,7 +51,7 @@ export function DialogueTeaser({ locale }: { locale: Locale }) {
           </h2>
           <p>{c.homeIntro}</p>
           <small className="stock-credit">
-            {stockLabel[locale]} · {stockPhotos.laboratory.credit}
+            {stockLabel[locale]} · {stockPhotos.conversation.credit}
           </small>
           <a className="text-link" href={dialoguePath(locale)}>
             {c.explore}
@@ -198,6 +198,13 @@ export function DialogueIndex({ locale }: { locale: Locale }) {
             <span aria-hidden="true">“</span>
             <p>{c.homeTitle.join(" ")}</p>
             <small>YOSHITOMO CHIHARA / DIALOGUES</small>
+            <a
+              className="text-link dialogue-editorial-link"
+              href={`${localePath(locale)}#editorial-contact`}
+            >
+              {content[locale].editorialContact}
+              <span aria-hidden="true">↗</span>
+            </a>
           </div>
         </div>
       </main>
@@ -461,6 +468,13 @@ export function DialogueArticle({
               </span>
             </a>
           </section>
+          <a
+            className="text-link dialogue-editorial-link"
+            href={`${localePath(locale)}#editorial-contact`}
+          >
+            {content[locale].editorialContact}
+            <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </main>
       <Footer locale={locale} />

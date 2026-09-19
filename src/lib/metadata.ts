@@ -27,10 +27,10 @@ export function pageMetadata(locale: Locale): Metadata {
       locale: locale === "zh" ? "zh_CN" : locale === "ja" ? "ja_JP" : "en_US",
       images: [
         {
-          url: `${siteUrl}/images/portrait.webp`,
-          width: 767,
-          height: 651,
-          alt: copy.portraitAlt,
+          url: `${siteUrl}/images/og/profile-${locale}.png`,
+          width: 1200,
+          height: 630,
+          alt: copy.title,
         },
       ],
     },
@@ -38,7 +38,7 @@ export function pageMetadata(locale: Locale): Metadata {
       card: "summary_large_image",
       title: copy.title,
       description: copy.description,
-      images: [`${siteUrl}/images/portrait.webp`],
+      images: [`${siteUrl}/images/og/profile-${locale}.png`],
     },
     icons: { icon: asset("/icon.svg") },
   };

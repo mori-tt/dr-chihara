@@ -1,6 +1,9 @@
 import sharp from "sharp";
 // Originals downloaded from the source URLs recorded in docs/image-sources.md.
-for (const name of ["laboratory", "microscope", "stethoscope"]) {
+const names = process.argv.slice(2);
+for (const name of names.length
+  ? names
+  : ["laboratory", "microscope", "stethoscope", "conversation", "wellbeing"]) {
   await sharp(`/tmp/chihara-stock-${name}.jpg`)
     .rotate()
     .resize({ width: 1600, withoutEnlargement: true })

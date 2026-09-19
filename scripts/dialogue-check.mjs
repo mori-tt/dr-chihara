@@ -1,5 +1,6 @@
 import { chromium } from "@playwright/test";
 import assert from "node:assert/strict";
+import sharp from "sharp";
 import { mkdir } from "node:fs/promises";
 const base = (
   process.env.TEST_URL || "http://127.0.0.1:4173/dr-chihara"
@@ -28,6 +29,20 @@ try {
         assert.equal(response.status(), 200);
         assert.equal(await page.locator("html").getAttribute("lang"), lang);
         assert.equal(await page.locator("h1").count(), 1);
+        assert.equal(await page.locator(".dialogue-editorial-link").count(), 1);
+        assert.equal(
+          await page.locator(".dialogue-editorial-link").getAttribute("href"),
+          `${new URL(base).pathname.replace(/\/$/, "")}/${prefix}#editorial-contact`,
+        );
+        const imageName = `${suffix.includes("sample") ? "sample" : "crossroads"}-${lang === "zh-Hans" ? "zh" : lang}.png`;
+        const og = await page
+          .locator('meta[property="og:image"]')
+          .getAttribute("content");
+        assert.ok(og.endsWith(`/images/og/${imageName}`));
+        const social = await page.request.get(`${base}/images/og/${imageName}`);
+        assert.equal(social.status(), 200);
+        const dimensions = await sharp(await social.body()).metadata();
+        assert.deepEqual([dimensions.width, dimensions.height], [1200, 630]);
         assert.ok(
           await page.evaluate(
             () => document.documentElement.scrollWidth <= innerWidth,
@@ -51,6 +66,14 @@ try {
           .evaluateAll((links) => links.map((a) => a.getAttribute("href"))))
           assert.ok(await page.locator(href).count(), `Missing anchor ${href}`);
         if (suffix.includes("sample")) {
+          assert.ok(
+            await page
+              .locator(".dialogue-answer p")
+              .first()
+              .evaluate(
+                (el) => parseFloat(getComputedStyle(el).fontSize) >= 16,
+              ),
+          );
           assert.ok(
             (
               await page.locator('meta[name="robots"]').getAttribute("content")

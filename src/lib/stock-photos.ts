@@ -1,6 +1,26 @@
 import type { Locale } from "./content";
 
 export const stockPhotos = {
+  conversation: {
+    src: "/images/stock/conversation.webp",
+    credit: "Mike Jones / Pexels",
+    url: "https://www.pexels.com/photo/two-people-with-coffee-cups-9051671/",
+    alt: {
+      ja: "コーヒーを手にテーブルを囲む二人。対話のイメージ写真。",
+      en: "Two people sharing coffee at a table; an illustrative photograph of conversation.",
+      zh: "两人围桌喝咖啡，交流的示意照片。",
+    },
+  },
+  wellbeing: {
+    src: "/images/stock/wellbeing.webp",
+    credit: "Onur Burak Akın / Pexels",
+    url: "https://www.pexels.com/photo/serene-forest-path-with-sunlight-filtering-through-trees-34269400/",
+    alt: {
+      ja: "木漏れ日が差す森の小道。穏やかな日常のイメージ写真。",
+      en: "Sunlight filtering through a woodland path; an illustrative photograph of a quiet everyday moment.",
+      zh: "阳光穿过林间小径，宁静日常的示意照片。",
+    },
+  },
   laboratory: {
     src: "/images/stock/laboratory.webp",
     credit: "Chokniti Khongchum / Pexels",
