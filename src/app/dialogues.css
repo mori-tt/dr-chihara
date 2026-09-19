@@ -1,6 +1,11 @@
 .desktop-nav a[aria-current="page"] {
   color: var(--accent);
 }
+.section-number,
+.dialogue-asterisk {
+  font-variant-emoji: text;
+  font-family: var(--serif);
+}
 .dialogue-teaser {
   border-bottom: 1px solid var(--line);
 }

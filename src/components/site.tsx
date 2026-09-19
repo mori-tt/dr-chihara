@@ -113,7 +113,7 @@ export function Site({ locale }: { locale: Locale }) {
           </div>
         </section>
         <div className="intro-strip">
-          <span className="strip-mark">✳</span>
+          <span className="strip-mark">✳︎</span>
           <span>{c.strip}</span>
           <a href="#journey">
             MY JOURNEY <span aria-hidden="true">↗</span>
@@ -199,7 +199,7 @@ export function Site({ locale }: { locale: Locale }) {
               <article className="principle" key={p.title}>
                 <span className="principle-number">
                   0{i + 1}
-                  <span aria-hidden="true">{["↗", "✳", "∞"][i]}</span>
+                  <span aria-hidden="true">{["↗", "✳︎", "∞"][i]}</span>
                 </span>
                 <h3>{p.title}</h3>
                 <span className="principle-english">{p.en}</span>

@@ -424,6 +424,8 @@ button {
 .strip-mark {
   font-size: 28px;
   color: #d96b51;
+  font-family: var(--serif);
+  font-variant-emoji: text;
 }
 .intro-strip > a {
   margin-left: auto;
@@ -669,6 +671,7 @@ a:hover .arrow {
   font-family: var(--sans);
   font-size: 40px;
   line-height: 1;
+  font-variant-emoji: text;
 }
 .principle h3 {
   font-size: 24px;

@@ -16,7 +16,7 @@ export function DialogueTeaser({ locale }: { locale: Locale }) {
   return (
     <section className="section dialogue-teaser" id="dialogues">
       <div className="section-label">
-        <span className="section-number">✳</span>
+        <span className="section-number">✳︎</span>
         <span>DIALOGUES</span>
         <span className="label-local">{c.label}</span>
       </div>
@@ -176,7 +176,7 @@ export function DialogueIndex({ locale }: { locale: Locale }) {
             {!published.length && (
               <div className="dialogue-coming">
                 <span className="dialogue-asterisk" aria-hidden="true">
-                  ✳
+                  ✳︎
                 </span>
                 <div>
                   <h3>{c.upcoming}</h3>

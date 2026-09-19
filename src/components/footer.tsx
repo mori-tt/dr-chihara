@@ -6,7 +6,7 @@ export function Footer({ locale }: { locale: Locale }) {
       <div className="footer-brand">
         YOSHITOMO
         <br />
-        CHIHARA<span>✳</span>
+        CHIHARA<span>✳︎</span>
       </div>
       <div className="footer-bottom">
         <span>© {new Date().getFullYear()} Yoshitomo Chihara</span>
