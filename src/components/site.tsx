@@ -1,4 +1,6 @@
 import { Header } from "./header";
+import { Footer } from "./footer";
+import { DialogueTeaser } from "./dialogues";
 import { Journey } from "./journey";
 import { asset, clinicUrl, content, type Locale } from "@/lib/content";
 import { personSchema } from "@/lib/metadata";
@@ -186,6 +188,7 @@ export function Site({ locale }: { locale: Locale }) {
             SCIENCE. CARE. <em>YOU.</em>
           </div>
         </section>
+        <DialogueTeaser locale={locale} />
         <section className="section journey" id="journey">
           <Label number="03" en="MY JOURNEY" local={c.journeyLabel} />
           <div className="journey-grid">
@@ -352,26 +355,7 @@ export function Site({ locale }: { locale: Locale }) {
           </div>
         </section>
       </main>
-      <footer className="footer">
-        <div className="footer-brand">
-          YOSHITOMO
-          <br />
-          CHIHARA<span>✳</span>
-        </div>
-        <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} Yoshitomo Chihara</span>
-          <a
-            href={`${clinicUrl}/doctor/`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {c.source} ↗
-          </a>
-          <a className="back-top" href="#top">
-            {c.backTop} ↑
-          </a>
-        </div>
-      </footer>
+      <Footer locale={locale} />
     </div>
   );
 }

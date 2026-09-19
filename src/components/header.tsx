@@ -1,9 +1,18 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { content, localePath, type Locale } from "@/lib/content";
+import { dialogueCopy, dialoguePath } from "@/lib/dialogues";
 const anchors = ["about", "philosophy", "journey", "clinic"];
-export function Header({ locale }: { locale: Locale }) {
+export function Header({
+  locale,
+  section = "",
+}: {
+  locale: Locale;
+  section?: string;
+}) {
   const c = content[locale];
+  const homeAnchor = (anchor: string) =>
+    `${section ? localePath(locale) : ""}#${anchor}`;
   const [open, setOpen] = useState(false);
   const button = useRef<HTMLButtonElement>(null);
   const panel = useRef<HTMLDivElement>(null);
@@ -49,7 +58,7 @@ export function Header({ locale }: { locale: Locale }) {
       {(["ja", "en", "zh"] as const).map((l) => (
         <a
           key={l}
-          href={localePath(l)}
+          href={`${localePath(l)}${section}`}
           hrefLang={l === "zh" ? "zh-Hans" : l}
           lang={l === "zh" ? "zh-Hans" : l}
           aria-current={locale === l ? "page" : undefined}
@@ -90,10 +99,16 @@ export function Header({ locale }: { locale: Locale }) {
           }
         >
           {c.nav.map((n, i) => (
-            <a key={n} href={`#${anchors[i]}`}>
+            <a key={n} href={homeAnchor(anchors[i])}>
               {n}
             </a>
           ))}
+          <a
+            href={dialoguePath(locale)}
+            aria-current={section.startsWith("dialogues/") ? "page" : undefined}
+          >
+            {dialogueCopy[locale].label}
+          </a>
         </nav>
         <div className="header-actions">
           {languages}
@@ -122,14 +137,19 @@ export function Header({ locale }: { locale: Locale }) {
           <div className="menu-inner">
             <p className="eyebrow">EXPLORE</p>
             {c.nav.map((n, i) => (
-              <a key={n} href={`#${anchors[i]}`} onClick={close}>
+              <a key={n} href={homeAnchor(anchors[i])} onClick={close}>
                 <span>0{i + 1}</span>
                 {n}
                 <span>↗</span>
               </a>
             ))}
-            <a href="#contact" onClick={close}>
+            <a href={dialoguePath(locale)} onClick={close}>
               <span>05</span>
+              {dialogueCopy[locale].label}
+              <span>↗</span>
+            </a>
+            <a href={homeAnchor("contact")} onClick={close}>
+              <span>06</span>
               {c.contact}
               <span>↗</span>
             </a>

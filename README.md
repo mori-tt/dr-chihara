@@ -20,6 +20,8 @@ npm run dev
 
 翻訳とプロフィール: `src/lib/content.ts`。サイト構成: `src/components/site.tsx`。スタイル: `src/app/globals.css`。
 
+対談シリーズ「私の哲学」の一覧・詳細を `/dialogues/` に追加しています。3言語対応の記事サンプルと、今後の記事追加手順は [docs/dialogues.md](docs/dialogues.md) を参照してください。記事データは `src/lib/dialogues.ts`、対談用スタイルは `src/app/dialogues.css` にまとめています。
+
 ## GitHub Pages
 
 `main` へのpushで `.github/workflows/pages.yml` がビルド・型チェック・デプロイを行います。Pagesの公開元は **GitHub Actions**。

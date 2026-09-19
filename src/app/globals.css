@@ -77,6 +77,9 @@ button {
 .skip-link:focus {
   top: 15px;
 }
+.skip-link:not(:focus) {
+  clip-path: inset(50%);
+}
 .header {
   height: 108px;
   padding: 0 4.2%;
