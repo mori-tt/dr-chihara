@@ -2,7 +2,9 @@
 import { useState } from "react";
 import { content, type Locale } from "@/lib/content";
 export function Journey({ locale }: { locale: Locale }) {
-  const [expanded, setExpanded] = useState(false);
+  // The full career is a central part of Dr. Chihara's profile, so it is
+  // visible on first load. Visitors can still collapse it for a shorter view.
+  const [expanded, setExpanded] = useState(true);
   const c = content[locale];
   const featured = ["1999", "2007", "2010", "2019", "2022"];
   return (
