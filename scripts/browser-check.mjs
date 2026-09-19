@@ -114,10 +114,7 @@ for (const width of (process.env.TEST_WIDTHS || "1440,768,390,320")
       assert.ok(await page.locator(id).count(), `Missing anchor ${id}`);
     const before = await page.locator(".career-row").count();
     assert.equal(before, 11);
-    await page.locator(".career-toggle").click();
-    assert.equal(await page.locator(".career-row").count(), 5);
-    await page.locator(".career-toggle").click();
-    assert.equal(await page.locator(".career-row").count(), before);
+    assert.equal(await page.locator(".career-toggle").count(), 0);
     await page.locator(".menu-button").click();
     assert.equal(await page.locator('[role="dialog"]').count(), 1);
     await page.keyboard.press("Escape");
