@@ -1,0 +1,427 @@
+export const locales = ["ja", "en", "zh"] as const;
+export type Locale = (typeof locales)[number];
+export const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+export const asset = (path: string) => `${basePath}${path}`;
+export const localePath = (locale: Locale) =>
+  `${basePath}/${locale === "ja" ? "" : `${locale}/`}`;
+export const clinicUrl = "https://www.norris-beauty-clinic.com";
+
+export const content = {
+  ja: {
+    title: "千原良友 | 医師・医学博士 | Yoshitomo Chihara",
+    description:
+      "ノリス美容クリニック院長、千原良友の個人サイト。泌尿器科、がん研究、そして美容医療へ。医療への想い、プロフィール、これまでの歩みをご紹介します。",
+    nav: ["私について", "医療への想い", "これまでの歩み", "クリニック"],
+    contact: "ご相談・お問い合わせ",
+    menu: "メニューを開く",
+    close: "メニューを閉じる",
+    skip: "本文へ移動",
+    role: "医師・医学博士 / ノリス美容クリニック 院長",
+    hero: ["その人らしさに、", "医療で寄り添う。"],
+    intro: "臨床と研究で培った視点を、一人ひとりの笑顔へ。",
+    discover: "千原良友について",
+    scroll: "スクロールして読む",
+    name: "千原 良友",
+    strip: "臨床から研究へ。研究から、一人ひとりの人生へ。",
+    aboutLabel: "私について",
+    aboutTitle: ["科学を見つめ、", "人と向き合う。"],
+    aboutBody:
+      "泌尿器科の臨床を出発点に、米国でのがん研究、分子病理学、そして美容医療へ。異なる領域で積み重ねてきた経験が、いまの診療につながっています。",
+    aboutBody2:
+      "2022年、大阪・上本町にノリス美容クリニックを開院。患者様のご希望を丁寧に伺い、医師の視点を交えながら、納得できる選択を一緒に考えています。",
+    qualifications: "資格・所属",
+    credentials: [
+      "医学博士（奈良県立医科大学）",
+      "日本医師会認定産業医",
+      "日本再生医療学会 所属",
+    ],
+    profileLink: "クリニック公式プロフィール",
+    philosophyLabel: "医療への想い",
+    philosophyTitle: ["美しさの、その先にある", "毎日のために。"],
+    philosophyIntro:
+      "診療の中心にあるのは、いつも目の前の一人。ご希望に耳を傾けることから、医療は始まります。",
+    principles: [
+      {
+        title: "想いを聴く。",
+        en: "Listen first.",
+        text: "気になることも、なりたい姿も。一人ひとりが大切にしていることを、カウンセリングで共有します。",
+      },
+      {
+        title: "経験をつなぐ。",
+        en: "Connect perspectives.",
+        text: "泌尿器科での臨床と、がん研究・分子病理学の経験。多面的な視点を診療に活かします。",
+      },
+      {
+        title: "ともに考える。",
+        en: "Find your own path.",
+        text: "ご希望と医師からの提案をすり合わせながら、ご自身が納得できる治療の選択を大切にします。",
+      },
+    ],
+    journeyLabel: "これまでの歩み",
+    journeyTitle: ["探究を重ね、", "いま、ここに。"],
+    journeyIntro:
+      "奈良からロサンゼルス、そして大阪へ。臨床と研究を行き来してきた医師としての歩み。",
+    journey: [
+      ["1999", "臨床の原点", "奈良県立医科大学 泌尿器科 研修医"],
+      ["2000", "総合病院での診療", "きっこう会多根総合病院 泌尿器科 医員"],
+      ["2001", "医学の探究へ", "奈良県立医科大学大学院"],
+      ["2005", "大学病院での臨床", "奈良県立医科大学 泌尿器科 医員"],
+      ["2006", "地域の医療へ", "奈良県立奈良病院（当時）泌尿器科 医員"],
+      [
+        "2007",
+        "研究の舞台を、米国へ",
+        "南カリフォルニア大学 ノリスがんセンター 博士研究員",
+      ],
+      [
+        "2009",
+        "がん研究への取り組み",
+        "国立がんセンター（当時）研究所 病理部 室長",
+      ],
+      [
+        "2010",
+        "分子病理学の研究と教育",
+        "奈良県立医科大学 分子病理学講座 講師",
+      ],
+      ["2015", "泌尿器科の診療を担う", "恩賜財団済生会中和病院 泌尿器科 部長"],
+      [
+        "2019",
+        "美容医療へ",
+        "栄セントラルクリニック 院長（現：アモーレクリニック）",
+      ],
+      [
+        "2022",
+        "ノリス美容クリニック開院",
+        "1月、大阪・上本町に開院。院長に就任。",
+      ],
+    ],
+    allJourney: "すべての経歴を見る",
+    hideJourney: "主な経歴に戻る",
+    practiceLabel: "診療のフィールド",
+    practiceTitle: "経験を、日々の診療に。",
+    practices: [
+      {
+        title: "美容医療",
+        en: "Aesthetic medicine",
+        text: "肌や年齢に伴う変化のお悩みを、カウンセリングから。",
+        path: "rejuvenation/",
+      },
+      {
+        title: "再生医療",
+        en: "Regenerative medicine",
+        text: "幹細胞治療・PRP療法などの情報をクリニックでご案内しています。",
+        path: "regenerate/",
+      },
+      {
+        title: "泌尿器科",
+        en: "Urology",
+        text: "日常の気になる症状を相談できる、身近な診療の場として。",
+        path: "urology/",
+      },
+    ],
+    learnMore: "診療情報を見る",
+    medicalNote:
+      "治療の適応・効果・リスク・費用は治療法や個人の状態によって異なります。詳細はクリニック公式サイトをご確認のうえ、診察時にご相談ください。",
+    clinicLabel: "クリニック",
+    clinicTitle: ["気軽に相談できる、", "あなたの身近な場所に。"],
+    clinicName: "ノリス美容クリニック",
+    clinicBody:
+      "大阪・上本町駅から徒歩1分。落ち着いた空間で、一人ひとりのお悩みに向き合います。",
+    address: "〒543-0031 大阪府大阪市天王寺区石ケ辻町18−21 上六ときビル4階",
+    access: "近鉄「大阪上本町駅」徒歩1分 / 大阪メトロ「谷町九丁目駅」徒歩7分",
+    hours: "水〜日 10:30–19:00 / 月・火 休診",
+    official: "クリニック公式サイト",
+    map: "地図・アクセス",
+    contactLabel: "ご相談・お問い合わせ",
+    contactTitle: ["まずは、お話しする", "ことから。"],
+    contactBody: "診療のご相談・ご予約は、ノリス美容クリニックへ。",
+    contactButton: "クリニックへお問い合わせ",
+    phoneLabel: "お電話でのご相談",
+    externalNote: "クリニック公式サイト（日本語）へ移動します。",
+    source: "プロフィール出典：ノリス美容クリニック",
+    backTop: "ページの先頭へ",
+    portraitAlt: "ノリス美容クリニック院長 千原良友",
+    clinicAlt: "ノリス美容クリニックの受付",
+    roomAlt: "落ち着いたクリニックの待合室",
+    consultAlt: "クリニックのカウンセリングルーム",
+  },
+  en: {
+    title: "Yoshitomo Chihara | Physician & PhD",
+    description:
+      "Meet Yoshitomo Chihara, director of Norris Beauty Clinic in Osaka. Discover his background in urology, cancer research and aesthetic medicine, his approach and professional journey.",
+    nav: ["About", "Philosophy", "Journey", "Clinic"],
+    contact: "Get in touch",
+    menu: "Open menu",
+    close: "Close menu",
+    skip: "Skip to content",
+    role: "Physician, PhD / Director, Norris Beauty Clinic",
+    hero: ["Care that sees", "the person in you."],
+    intro:
+      "Bringing a perspective shaped by clinical practice and research to every consultation.",
+    discover: "Meet Dr. Chihara",
+    scroll: "Scroll to explore",
+    name: "Yoshitomo Chihara",
+    strip:
+      "From clinical practice to research. From research to everyday life.",
+    aboutLabel: "About me",
+    aboutTitle: ["A scientific mind.", "A personal approach."],
+    aboutBody:
+      "From urology in Japan to cancer research in the United States, molecular pathology and aesthetic medicine: each chapter informs the way Dr. Chihara approaches patient care today.",
+    aboutBody2:
+      "In January 2022, he opened Norris Beauty Clinic in Uehommachi, Osaka. His consultations bring patients’ wishes and a physician’s perspective together to help them make informed choices.",
+    qualifications: "Qualifications & affiliation",
+    credentials: [
+      "PhD, Nara Medical University",
+      "JMA-certified occupational physician",
+      "Member, Japanese Society for Regenerative Medicine",
+    ],
+    profileLink: "View the official clinic profile",
+    philosophyLabel: "My approach",
+    philosophyTitle: ["Beyond beauty.", "Toward everyday wellbeing."],
+    philosophyIntro:
+      "Care begins with the individual: listening to what matters to each person and understanding their wishes.",
+    principles: [
+      {
+        title: "Listen first.",
+        en: "01 / Understanding",
+        text: "A consultation is a space to share concerns, aspirations and the things that matter to you.",
+      },
+      {
+        title: "Connect perspectives.",
+        en: "02 / Experience",
+        text: "Experience in urology, cancer research and molecular pathology brings different perspectives to patient care.",
+      },
+      {
+        title: "Find your own path.",
+        en: "03 / Partnership",
+        text: "Your preferences and medical advice come together in a discussion about the choices available to you.",
+      },
+    ],
+    journeyLabel: "Professional journey",
+    journeyTitle: ["A continuing", "pursuit of knowledge."],
+    journeyIntro:
+      "Nara, Los Angeles and Osaka. A career connecting clinical practice with scientific research.",
+    journey: [
+      [
+        "1999",
+        "The clinical foundation",
+        "Resident in Urology, Nara Medical University",
+      ],
+      [
+        "2000",
+        "Hospital practice",
+        "Physician, Urology, Tane General Hospital",
+      ],
+      ["2001", "Further study", "Graduate School, Nara Medical University"],
+      [
+        "2005",
+        "University hospital practice",
+        "Physician, Urology, Nara Medical University",
+      ],
+      [
+        "2006",
+        "Regional patient care",
+        "Physician, Urology, Nara Prefectural Nara Hospital (then name)",
+      ],
+      [
+        "2007",
+        "A new chapter in the United States",
+        "Postdoctoral Fellow, USC Norris Cancer Center",
+      ],
+      [
+        "2009",
+        "Cancer research in Japan",
+        "Section Chief, Pathology Division, National Cancer Center Research Institute (then name)",
+      ],
+      [
+        "2010",
+        "Research and teaching",
+        "Lecturer, Molecular Pathology, Nara Medical University",
+      ],
+      [
+        "2015",
+        "Leading a urology department",
+        "Head of Urology, Saiseikai Chuwa Hospital",
+      ],
+      [
+        "2019",
+        "Aesthetic medicine",
+        "Director, Sakae Central Clinic (now Amore Clinic)",
+      ],
+      [
+        "2022",
+        "Norris Beauty Clinic opens",
+        "Founded in Uehommachi, Osaka in January; appointed director.",
+      ],
+    ],
+    allJourney: "View full career",
+    hideJourney: "Show highlights",
+    practiceLabel: "Areas of practice",
+    practiceTitle: "Experience, in practice.",
+    practices: [
+      {
+        title: "Aesthetic medicine",
+        en: "Individual perspectives",
+        text: "Consultations about skin concerns and changes associated with aging.",
+        path: "rejuvenation/",
+      },
+      {
+        title: "Regenerative medicine",
+        en: "Exploring possibilities",
+        text: "Information on stem cell treatments and PRP therapy is available from the clinic.",
+        path: "regenerate/",
+      },
+      {
+        title: "Urology",
+        en: "Everyday health",
+        text: "An approachable place to discuss urinary symptoms and concerns.",
+        path: "urology/",
+      },
+    ],
+    learnMore: "Explore clinic information",
+    medicalNote:
+      "Suitability, results, risks and costs vary by treatment and individual circumstances. Please consult the clinic’s official information and discuss your options with a physician.",
+    clinicLabel: "The clinic",
+    clinicTitle: ["A place to talk.", "A space for you."],
+    clinicName: "Norris Beauty Clinic",
+    clinicBody:
+      "A one-minute walk from Osaka-Uehommachi Station. A calm setting for personal conversations about your concerns.",
+    address:
+      "Ueroku Toki Building 4F, 18-21 Ishigatsujicho, Tennoji-ku, Osaka 543-0031, Japan",
+    access:
+      "1 min from Kintetsu Osaka-Uehommachi Station / 7 min from Osaka Metro Tanimachi 9-chome Station",
+    hours: "Wed–Sun 10:30–19:00 / Closed Mon & Tue",
+    official: "Visit the clinic website",
+    map: "Map & directions",
+    contactLabel: "Get in touch",
+    contactTitle: ["It starts with", "a conversation."],
+    contactBody:
+      "For appointments and medical inquiries, please contact Norris Beauty Clinic.",
+    contactButton: "Contact the clinic",
+    phoneLabel: "Call the clinic",
+    externalNote: "Opens the clinic’s official website in Japanese.",
+    source: "Profile source: Norris Beauty Clinic",
+    backTop: "Back to top",
+    portraitAlt: "Dr. Yoshitomo Chihara, director of Norris Beauty Clinic",
+    clinicAlt: "Reception at Norris Beauty Clinic",
+    roomAlt: "The clinic’s waiting lounge",
+    consultAlt: "The clinic’s consultation room",
+  },
+  zh: {
+    title: "千原良友 | 医师・医学博士",
+    description:
+      "诺里斯美容诊所院长千原良友的个人网站。从泌尿科临床、癌症研究到美容医疗，了解他的医疗理念、个人简介与职业历程。",
+    nav: ["关于我", "医疗理念", "职业历程", "诊所介绍"],
+    contact: "咨询与联系",
+    menu: "打开菜单",
+    close: "关闭菜单",
+    skip: "跳至正文",
+    role: "医师・医学博士 / 诺里斯美容诊所 院长",
+    hero: ["用心倾听，", "守护独特的你。"],
+    intro: "将临床与研究积累的视角，融入每一次面对面的诊疗。",
+    discover: "了解千原良友",
+    scroll: "向下探索",
+    name: "千原 良友",
+    strip: "从临床走向研究，从研究回归每个人的生活。",
+    aboutLabel: "关于我",
+    aboutTitle: ["以科学为基础，", "以人为中心。"],
+    aboutBody:
+      "从日本的泌尿科临床工作，到美国的癌症研究、分子病理学，再到美容医疗。不同领域的经历，共同构成了千原医师今天的诊疗视角。",
+    aboutBody2:
+      "2022年1月，千原医师在大阪上本町创立诺里斯美容诊所。通过充分了解患者的意愿，结合专业意见，一起探讨适合的选择。",
+    qualifications: "资格与所属学会",
+    credentials: [
+      "医学博士（奈良县立医科大学）",
+      "日本医师会认证产业医师",
+      "日本再生医疗学会会员",
+    ],
+    profileLink: "查看诊所官方医师简介",
+    philosophyLabel: "医疗理念",
+    philosophyTitle: ["美丽之外，", "更关注每一天的生活。"],
+    philosophyIntro:
+      "诊疗始终围绕眼前的每一个人展开。从认真倾听开始，了解您的意愿与关注。",
+    principles: [
+      {
+        title: "用心倾听。",
+        en: "Listen first.",
+        text: "无论是困扰、期待，还是您珍视的事物，都可以在咨询中坦诚交流。",
+      },
+      {
+        title: "融会经验。",
+        en: "Connect perspectives.",
+        text: "将泌尿科临床、癌症研究与分子病理学的经历，融入多角度的诊疗思考。",
+      },
+      {
+        title: "共同选择。",
+        en: "Find your own path.",
+        text: "将您的意愿与医师的建议相结合，重视充分理解后的自主选择。",
+      },
+    ],
+    journeyLabel: "职业历程",
+    journeyTitle: ["不断探索，", "步履不停。"],
+    journeyIntro:
+      "从奈良到洛杉矶，再到大阪。在临床与科研之间不断积累的医师之路。",
+    journey: [
+      ["1999", "临床工作的起点", "奈良县立医科大学 泌尿科 住院医师"],
+      ["2000", "综合医院临床工作", "多根综合医院 泌尿科 医师"],
+      ["2001", "深入医学研究", "奈良县立医科大学研究生院"],
+      ["2005", "大学医院临床工作", "奈良县立医科大学 泌尿科 医师"],
+      ["2006", "地区医疗工作", "奈良县立奈良医院（当时名称）泌尿科 医师"],
+      ["2007", "赴美开展研究", "南加利福尼亚大学 诺里斯癌症中心 博士后研究员"],
+      ["2009", "投身癌症研究", "国立癌症中心（当时名称）研究所 病理部 室长"],
+      ["2010", "分子病理学研究与教学", "奈良县立医科大学 分子病理学讲座 讲师"],
+      ["2015", "负责泌尿科诊疗", "恩赐财团济生会中和医院 泌尿科 部长"],
+      ["2019", "走向美容医疗", "荣Central诊所 院长（现Amore诊所）"],
+      ["2022", "诺里斯美容诊所开院", "1月于大阪上本町开院，担任院长。"],
+    ],
+    allJourney: "查看完整经历",
+    hideJourney: "收起完整经历",
+    practiceLabel: "诊疗领域",
+    practiceTitle: "将经验融入日常诊疗。",
+    practices: [
+      {
+        title: "美容医疗",
+        en: "Aesthetic medicine",
+        text: "从咨询开始，探讨肌肤以及随年龄变化而产生的困扰。",
+        path: "rejuvenation/",
+      },
+      {
+        title: "再生医疗",
+        en: "Regenerative medicine",
+        text: "诊所提供干细胞治疗、PRP疗法等相关信息。",
+        path: "regenerate/",
+      },
+      {
+        title: "泌尿科",
+        en: "Urology",
+        text: "为日常泌尿系统症状提供便于咨询的诊疗场所。",
+        path: "urology/",
+      },
+    ],
+    learnMore: "查看诊疗信息",
+    medicalNote:
+      "治疗的适用性、效果、风险与费用因治疗方式及个人情况而异。请查阅诊所官方网站，并在就诊时与医师充分沟通。",
+    clinicLabel: "诊所介绍",
+    clinicTitle: ["在您身边，", "安心交流的空间。"],
+    clinicName: "诺里斯美容诊所",
+    clinicBody:
+      "距大阪上本町站步行1分钟。在安静舒适的空间里，认真倾听每一位患者的困扰。",
+    address: "日本〒543-0031 大阪府大阪市天王寺区石辻町18−21 上六Toki大楼4层",
+    access: "近铁大阪上本町站步行1分钟 / 大阪地铁谷町九丁目站步行7分钟",
+    hours: "周三至周日 10:30–19:00 / 周一、周二休诊",
+    official: "访问诊所官方网站",
+    map: "地图与交通",
+    contactLabel: "咨询与联系",
+    contactTitle: ["从一次交流，", "开始了解。"],
+    contactBody: "有关诊疗咨询与预约，请联系诺里斯美容诊所。",
+    contactButton: "联系诊所",
+    phoneLabel: "电话咨询",
+    externalNote: "将前往诊所的日语官方网站。",
+    source: "简介来源：诺里斯美容诊所",
+    backTop: "返回顶部",
+    portraitAlt: "诺里斯美容诊所院长 千原良友",
+    clinicAlt: "诺里斯美容诊所接待处",
+    roomAlt: "诊所舒适的候诊室",
+    consultAlt: "诊所咨询室",
+  },
+};
+export type Copy = (typeof content)[Locale];

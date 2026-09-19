@@ -1,0 +1,28 @@
+{
+  "name": "dr-chihara",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build:pages": "NEXT_PUBLIC_BASE_PATH=/dr-chihara NEXT_PUBLIC_SITE_URL=https://mori-tt.github.io/dr-chihara next build",
+    "typecheck": "tsc --noEmit",
+    "test:browser": "node scripts/browser-check.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/dm-sans": "^5.3.0",
+    "@fontsource-variable/noto-sans-jp": "^5.3.0",
+    "next": "16.3.5",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55",
+    "@types/node": "^24",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "prettier": "^3.9.8",
+    "sharp": "^0.35.4",
+    "typescript": "^5"
+  }
+}
