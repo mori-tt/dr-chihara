@@ -40,9 +40,6 @@ export const content = {
       "専用フォームではありません。クリニックの共通窓口（日本語）へ移動します。",
     credentials: [
       "奈良県立医科大学 博士",
-      "日本泌尿器科学会指導医",
-      "日本泌尿器科学会専門医",
-      "日本がん治療認定医機構 がん治療認定医",
       "日本再生医療学会",
       "日本医師会認定 産業医",
       "死体解剖資格",
@@ -196,9 +193,6 @@ export const content = {
       "This is the clinic’s shared Japanese-language form, not a dedicated press form. Language support is not guaranteed.",
     credentials: [
       "PhD, Nara Medical University",
-      "Certified instructor, Japanese Urological Association",
-      "Certified urologist, Japanese Urological Association",
-      "Certified cancer treatment physician, Japanese Board of Cancer Therapy",
       "Member, Japanese Society for Regenerative Medicine",
       "JMA-certified occupational physician",
       "Qualification to perform autopsies",
@@ -369,9 +363,6 @@ export const content = {
       "此链接前往诊所共用的日语联系表单，并非采访专用表单。不保证提供中文服务。",
     credentials: [
       "奈良县立医科大学 博士",
-      "日本泌尿器科学会指导医师",
-      "日本泌尿器科学会专科医师",
-      "日本癌症治疗认定医机构 认证癌症治疗医师",
       "日本再生医疗学会会员",
       "日本医师会认证 产业医师",
       "尸体解剖资格",
