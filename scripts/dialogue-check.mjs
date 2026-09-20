@@ -132,7 +132,7 @@ try {
         assert.equal(await page.locator('[role="dialog"]').count(), 0);
       }
       await page.goto(`${base}/${prefix}`, { waitUntil: "networkidle" });
-      assert.equal(await page.locator(".credentials li").count(), 8);
+      assert.equal(await page.locator(".credentials li").count(), 5);
       assert.ok(
         !(await page.locator("body").innerText()).match(
           /私の哲学|My Philosophy|我的哲学/,

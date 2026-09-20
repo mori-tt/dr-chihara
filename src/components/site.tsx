@@ -156,7 +156,7 @@ export function Site({ locale }: { locale: Locale }) {
               </div>
               <div className="credentials">
                 <h3>{c.qualifications}</h3>
-                {[[0], [1, 2, 3, 5, 6, 7], [4]].map((indices, group) => (
+                {[[0], [2, 3, 4], [1]].map((indices, group) => (
                   <div
                     className="credential-group"
                     key={c.credentialGroups[group]}

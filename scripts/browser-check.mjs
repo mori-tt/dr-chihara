@@ -33,7 +33,7 @@ for (const width of (process.env.TEST_WIDTHS || "1440,768,390,320")
     assert.equal(await page.locator("html").getAttribute("lang"), lang);
     assert.equal(await page.locator("h1").count(), 1);
     assert.equal(await page.locator(".credential-group").count(), 3);
-    assert.equal(await page.locator(".credentials li").count(), 8);
+    assert.equal(await page.locator(".credentials li").count(), 5);
     assert.equal(await page.locator("#editorial-contact").count(), 1);
     assert.equal(
       await page.locator("#editorial-contact a").getAttribute("href"),
