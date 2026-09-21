@@ -188,7 +188,7 @@ button {
   width: 34px;
   height: 44px;
   padding: 8px 0;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   gap: 7px;
@@ -1330,6 +1330,9 @@ a:hover .arrow {
   }
   .header-actions {
     gap: 25px;
+  }
+  .menu-button {
+    display: flex;
   }
   .hero,
   .hero-photo {

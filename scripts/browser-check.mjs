@@ -115,14 +115,24 @@ for (const width of (process.env.TEST_WIDTHS || "1440,768,390,320")
     const before = await page.locator(".career-row").count();
     assert.equal(before, 11);
     assert.equal(await page.locator(".career-toggle").count(), 0);
-    await page.locator(".menu-button").click();
-    assert.equal(await page.locator('[role="dialog"]').count(), 1);
-    await page.keyboard.press("Escape");
-    assert.equal(await page.locator('[role="dialog"]').count(), 0);
-    await page.locator(".menu-button").click();
-    await page.locator('.menu-inner>a[href="#clinic"]').click();
-    assert.equal(await page.locator('[role="dialog"]').count(), 0);
-    assert.equal(await page.evaluate(() => document.body.style.overflow), "");
+    if (width <= 820) {
+      await page.locator(".menu-button").click();
+      assert.equal(await page.locator('[role="dialog"]').count(), 1);
+      await page.keyboard.press("Escape");
+      assert.equal(await page.locator('[role="dialog"]').count(), 0);
+      await page.locator(".menu-button").click();
+      await page.locator('.menu-inner>a[href="#clinic"]').click();
+      assert.equal(await page.locator('[role="dialog"]').count(), 0);
+      assert.equal(await page.evaluate(() => document.body.style.overflow), "");
+    } else {
+      assert.equal(await page.locator(".menu-button").count(), 1);
+      assert.equal(
+        await page
+          .locator(".menu-button")
+          .evaluate((el) => getComputedStyle(el).display),
+        "none",
+      );
+    }
     await page.evaluate(() => {
       document.documentElement.style.scrollBehavior = "auto";
       window.scrollTo(0, 0);
