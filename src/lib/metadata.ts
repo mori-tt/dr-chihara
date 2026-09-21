@@ -122,7 +122,7 @@ export function breadcrumbSchema(
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      ...(item.path
+      ...(item.path !== undefined
         ? {
             item: `${siteUrl}/${locale === "ja" ? "" : `${locale}/`}${item.path}`,
           }

@@ -1,5 +1,6 @@
 import "../globals.css";
 import "../dialogues.css";
+import "../care.css";
 export default async function Layout({
   children,
   params,

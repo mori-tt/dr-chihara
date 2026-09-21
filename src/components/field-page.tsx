@@ -1,9 +1,11 @@
 import { Header } from "./header";
 import { Footer } from "./footer";
-import { asset, localePath, type Locale } from "@/lib/content";
+import { asset, content, localePath, type Locale } from "@/lib/content";
 import { fieldCopy, fieldPath, fieldSlugs, type FieldSlug } from "@/lib/fields";
 import { stockPhotos, stockLabel } from "@/lib/stock-photos";
 import { breadcrumbSchema } from "@/lib/metadata";
+import { CareGuide } from "./care-guide";
+import { careUi } from "@/lib/care-support";
 
 export function FieldPage({
   locale,
@@ -24,7 +26,7 @@ export function FieldPage({
         : stockPhotos.stethoscope.src;
   const alt =
     slug === "rejuvenation"
-      ? "相談を受けるクリニックのカウンセリングルーム"
+      ? content[locale].consultAlt
       : stockPhotos[slug === "regenerate" ? "laboratory" : "stethoscope"].alt[
           locale
         ];
@@ -52,10 +54,33 @@ export function FieldPage({
       <Header locale={locale} section={`fields/${slug}/`} />
       <main id="main" className="field-main">
         <div className="field-wrap">
-          <nav className="field-breadcrumb" aria-label="Breadcrumb">
-            <a href={localePath(locale)}>Home</a>
+          <nav
+            className="field-breadcrumb"
+            aria-label={
+              locale === "ja"
+                ? "パンくずリスト"
+                : locale === "zh"
+                  ? "面包屑导航"
+                  : "Breadcrumb"
+            }
+          >
+            <a href={localePath(locale)}>{careUi.home[locale]}</a>
             <span>/</span>
             <span aria-current="page">{c.title}</span>
+          </nav>
+          <nav
+            className="care-field-switch"
+            aria-label={careUi.related[locale]}
+          >
+            {fieldSlugs.map((field) => (
+              <a
+                key={field}
+                href={fieldPath(locale, field)}
+                aria-current={field === slug ? "page" : undefined}
+              >
+                {fieldCopy[locale][field].title}
+              </a>
+            ))}
           </nav>
           <header className="field-heading">
             <p className="eyebrow">
@@ -63,49 +88,19 @@ export function FieldPage({
             </p>
             <h1>{c.title}</h1>
             <p className="field-lead">{c.lead}</p>
+            <p className="care-hero-intro">{c.sections[0].body}</p>
           </header>
           <figure className="field-hero">
             <img src={asset(photo)} alt={alt} width="1600" height="1067" />
             <figcaption>
-              {stockLabel[locale]} ·{" "}
               {slug === "rejuvenation"
                 ? "Norris Beauty Clinic / Osaka"
                 : slug === "regenerate"
-                  ? stockPhotos.laboratory.credit
-                  : stockPhotos.stethoscope.credit}
+                  ? `${stockLabel[locale]} · ${stockPhotos.laboratory.credit}`
+                  : `${stockLabel[locale]} · ${stockPhotos.stethoscope.credit}`}
             </figcaption>
           </figure>
-          <div className="field-content">
-            <div className="field-sections">
-              {c.sections.map((section) => (
-                <section key={section.heading}>
-                  <h2>{section.heading}</h2>
-                  <p>{section.body}</p>
-                  {section.items && (
-                    <ul>
-                      {section.items.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  )}
-                </section>
-              ))}
-            </div>
-            <aside className="field-process">
-              <p className="eyebrow">
-                {locale === "ja"
-                  ? "診療の流れ"
-                  : locale === "zh"
-                    ? "咨询流程"
-                    : "A CONSULTATION"}
-              </p>
-              <ol>
-                {c.process.map((step) => (
-                  <li key={step}>{step}</li>
-                ))}
-              </ol>
-            </aside>
-          </div>
+          <CareGuide locale={locale} slug={slug} />
           <aside className="field-note">
             <strong>
               {locale === "ja"
