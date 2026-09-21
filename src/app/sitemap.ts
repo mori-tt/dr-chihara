@@ -6,6 +6,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [
     "",
     "dialogues/",
+    "fields/rejuvenation/",
+    "fields/regenerate/",
+    "fields/urology/",
     ...publishedDialogues().map((article) => `dialogues/${article.slug}/`),
   ];
   return paths.flatMap((path) =>

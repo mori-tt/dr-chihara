@@ -3,6 +3,7 @@ import { Footer } from "./footer";
 import { DialogueTeaser } from "./dialogues";
 import { Journey } from "./journey";
 import { asset, clinicUrl, content, type Locale } from "@/lib/content";
+import { fieldPath, type FieldSlug } from "@/lib/fields";
 import { personSchema } from "@/lib/metadata";
 import { stockPhotos, stockLabel } from "@/lib/stock-photos";
 function Arrow() {
@@ -261,9 +262,7 @@ export function Site({ locale }: { locale: Locale }) {
               <a
                 className="practice-card"
                 key={p.title}
-                href={`${clinicUrl}/${p.path}`}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={fieldPath(locale, p.path.replace(/\/$/, "") as FieldSlug)}
               >
                 <div className="practice-stock">
                   <img

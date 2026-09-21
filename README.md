@@ -22,6 +22,8 @@ npm run dev
 
 対談シリーズ「人間交差点」の一覧・詳細を `/dialogues/` に追加しています。3言語対応の架空の医師との再生医療対談サンプルと、今後の記事追加手順は [docs/dialogues.md](docs/dialogues.md) を参照してください。記事データは `src/lib/dialogues.ts`、サンプル本文は `src/lib/sample-dialogue.ts`、対談用スタイルは `src/app/dialogues.css` にまとめています。
 
+診療分野の詳細ページを `/fields/rejuvenation/`（美容医療）、`/fields/regenerate/`（再生医療）、`/fields/urology/`（泌尿器科）に用意しています。英語 `/en/fields/`・中国語 `/zh/fields/` も静的生成し、クリニック公式の案内をもとに一般向けの概要、相談の流れ、注意事項、公式ページへのリンクを掲載しています。
+
 ## GitHub Pages
 
 `main` へのpushで `.github/workflows/pages.yml` がビルド・型チェック・デプロイを行います。Pagesの公開元は **GitHub Actions**。
