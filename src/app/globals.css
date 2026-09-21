@@ -87,10 +87,27 @@ button {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 50;
   border-bottom: 1px solid var(--line);
   background: var(--paper);
+  transition:
+    height 0.28s ease,
+    box-shadow 0.28s ease,
+    padding 0.28s ease;
+  backdrop-filter: blur(10px);
+  background: color-mix(in srgb, var(--paper) 94%, transparent);
+}
+.header.is-scrolled {
+  height: 76px;
+  box-shadow: 0 8px 24px #24262112;
+}
+.header.is-scrolled .monogram {
+  font-size: 50px;
+}
+.header.is-scrolled .brand-sub {
+  margin-top: 3px;
 }
 .wordmark {
   display: flex;
@@ -1462,6 +1479,12 @@ a:hover .arrow {
     height: 80px;
     padding: 0 6%;
     gap: 12px;
+  }
+  .header.is-scrolled {
+    height: 62px;
+  }
+  .header.is-scrolled .monogram {
+    font-size: 39px;
   }
   .wordmark {
     gap: 10px;

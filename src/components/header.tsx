@@ -14,6 +14,7 @@ export function Header({
   const homeAnchor = (anchor: string) =>
     `${section ? localePath(locale) : ""}#${anchor}`;
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const button = useRef<HTMLButtonElement>(null);
   const panel = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -49,6 +50,12 @@ export function Header({
       document.removeEventListener("keydown", key);
     };
   }, [open]);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 48);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   function close() {
     setOpen(false);
     button.current?.focus();
@@ -73,7 +80,7 @@ export function Header({
       <a className="skip-link" href="#main">
         {c.skip}
       </a>
-      <header className="header">
+      <header className={`header ${scrolled ? "is-scrolled" : ""}`}>
         <a
           className="wordmark"
           href={localePath(locale)}
