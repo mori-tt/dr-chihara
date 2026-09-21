@@ -2,11 +2,11 @@
 
 取得・確認日: 2026-09-20。写真はPexelsの配信元からダウンロードし、`sharp` で最大幅1600pxのWebPに変換しています。画像生成・人物の合成は行っていません。静的出力に含まれるため、閲覧時にPexelsへのアクセスは不要です。
 
-| 保存先（`public/images/stock/`） | 配布者                      | 写真ページ                                                                                               | 用途                                           |
-| -------------------------------- | --------------------------- | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| 保存先（`public/images/stock/`） | 配布者                      | 写真ページ                                                                                               | 用途                                               |
+| -------------------------------- | --------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
 | `laboratory.webp`                | Chokniti Khongchum / Pexels | [Person Holding Laboratory Flask](https://www.pexels.com/photo/person-holding-laboratory-flask-2280571/) | 再生医療サンプルのカバー・共有画像、再生医療の案内 |
-| `microscope.webp`                | Edward Jenner / Pexels      | [A Researcher Using a Microscope](https://www.pexels.com/photo/a-researcher-using-a-microscope-4031522/) | 再生医療サンプルの本文                   |
-| `stethoscope.webp`               | Pixabay / Pexels            | [Blue and Silver Stethoscope](https://www.pexels.com/photo/blue-and-silver-stetoscope-40568/)            | 対談本文、泌尿器科の案内                   |
+| `microscope.webp`                | Edward Jenner / Pexels      | [A Researcher Using a Microscope](https://www.pexels.com/photo/a-researcher-using-a-microscope-4031522/) | 再生医療サンプルの本文                             |
+| `stethoscope.webp`               | Pixabay / Pexels            | [Blue and Silver Stethoscope](https://www.pexels.com/photo/blue-and-silver-stetoscope-40568/)            | 対談本文、泌尿器科の案内                           |
 
 写真ページには地域・取得方法によるアクセス制限がある場合があります。40568は写真ページの直接取得に失敗しましたが、Pexels配信元からのダウンロード・画像確認は成功し、写真ページURLとPixabay名義は複数の既存出典表示でも確認しています。
 
@@ -32,3 +32,15 @@
 依頼で挙げられた [Unsplash](https://unsplash.com/license)、[Pixabay](https://pixabay.com/service/license-summary/) のライセンス案内も確認しました。今回実際に採用した素材の取得元はPexelsです（1点の配布者名がPixabay）。
 
 通常のビルドで再ダウンロードは不要です。変換用 `scripts/prepare-stock-images.mjs` は制作時の一時画像を入力とする補助スクリプトです。
+
+## 診療情報の参照先
+
+診療分野ページの内容は、2026-09-21に確認したクリニック公式の案内を一般向けに要約したものです。料金・メニュー・適応・注意事項は更新される可能性があるため、ページから公式情報を確認できるようにしています。
+
+- [エイジングケア治療](https://www.norris-beauty-clinic.com/rejuvenation/)
+- [再生医療](https://www.norris-beauty-clinic.com/regenerate/)
+- [PRP療法](https://www.norris-beauty-clinic.com/prp/)
+- [エクソソーム療法](https://www.norris-beauty-clinic.com/exosome/)
+- [フォトフェイシャル M22](https://www.norris-beauty-clinic.com/photofacial/)
+- [HIFU（ハイフ）](https://www.norris-beauty-clinic.com/hifu/)
+- [泌尿器科](https://www.norris-beauty-clinic.com/urology/)

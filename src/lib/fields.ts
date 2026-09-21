@@ -47,6 +47,19 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
           heading: "選択肢を知り、納得して決める",
           body: "ヒアルロン酸、ボトックス、光治療、HIFU、糸による治療、美容点滴など、目的に応じた選択肢があります。施術名から選ぶのではなく、希望・適応・リスク・費用・通院回数を確認して決めます。",
         },
+        {
+          heading: "光治療・HIFUの例",
+          body: "公式サイトでは、IPLを用いるフォトフェイシャルM22や、超音波を用いるHIFU（ハイフ）を案内しています。しみ・そばかす・赤み・毛穴、たるみなど、対象となる悩みと機器の特性を確認し、肌の状態に合わせて照射方法を検討します。赤み、熱感、色素変化などのリスクや、紫外線対策・保湿などのアフターケアも事前に確認します。",
+          items: [
+            "フォトフェイシャルM22：IPLの波長を肌の状態に合わせて選ぶ光治療",
+            "HIFU：超音波の熱エネルギーを用いた、切開を伴わないたるみ治療",
+            "施術の可否・回数・間隔は診察と肌の状態によって決まります",
+          ],
+        },
+        {
+          heading: "注入・肌質治療を検討するとき",
+          body: "PRPやヒアルロン酸、ボトックス、水光注射、ダーマペンなどは、使用する薬剤・注入部位・目的が異なります。腫れ、赤み、内出血、痛み、感染などの可能性、妊娠・授乳、服薬や既往歴への影響を医師に伝え、施術後の予定も含めて相談します。",
+        },
       ],
       process: [
         "悩みや希望を聞く",
@@ -79,6 +92,19 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
         {
           heading: "情報を受け取るときのポイント",
           body: "どの疾患・症状を対象にするのか、研究段階か臨床で確立した方法か、代替治療はあるか、費用と副作用は何かを確認しましょう。『再生』『若返り』という言葉だけで治療効果を判断しないことが重要です。",
+        },
+        {
+          heading: "PRP・培養上清液について",
+          body: "PRPは採血した血液から血小板を含む血漿を分離し、注入する方法です。公式サイトでは、目元の細かいしわ、くすみ、乾燥、肌の弾力などを相談テーマとして紹介しています。一方、培養上清液・エクソソームは細胞そのものではなく、製造方法や由来、品質管理、投与方法を確認すべき製剤です。",
+          items: [
+            "PRP：採血・遠心分離・注入という流れ",
+            "エクソソーム／培養上清液：点滴や水光注射など方法が異なる",
+            "赤み・腫れ・内出血・痛みなどの副作用と、適さない体調を確認",
+          ],
+        },
+        {
+          heading: "再生医療を相談する前に",
+          body: "治療の対象、期待できること、まだ分かっていないこと、代替案、費用、通院回数、治療後の連絡先を説明してもらいましょう。公式ページの内容や料金は更新されることがあるため、最新情報はクリニックへ確認してください。",
         },
       ],
       process: [
@@ -115,6 +141,19 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
           heading: "検査と治療",
           body: "症状を伺い、尿検査・血液検査・超音波検査などから必要な検査を組み合わせて原因を確認します。原因や重症度に応じて、生活上の助言、薬物療法、専門医療機関への紹介などを検討します。",
         },
+        {
+          heading: "主な疾患の例",
+          body: "公式サイトでは、前立腺肥大症・前立腺がん・前立腺炎、膀胱炎・過活動膀胱・尿路結石、腎盂腎炎などを例に挙げています。症状が似ていても原因は異なるため、尿検査や血液検査、超音波検査などを組み合わせて確認します。",
+          items: [
+            "前立腺：頻尿、夜間頻尿、尿の出にくさ、残尿感",
+            "膀胱・尿路：排尿時痛、尿の濁り、血尿、突然の強い尿意",
+            "腎臓・尿管：腰や背中の痛み、発熱、吐き気を伴うことがある症状",
+          ],
+        },
+        {
+          heading: "受診を先延ばしにしないために",
+          body: "血尿や排尿痛、急な腰痛、発熱などは、単なる年齢変化とは限りません。症状の強さや経過によっては早めの受診が必要です。強い痛み・高熱・嘔吐などがある場合は、通常の予約を待たず、地域の救急相談や医療機関に連絡してください。",
+        },
       ],
       process: [
         "症状・経過・服薬を聞く",
@@ -145,6 +184,10 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
           heading: "Choose with context",
           body: "Injectables, light-based treatments, HIFU, thread lifts and infusions each have different purposes, limits, risks, costs and follow-up needs. A treatment name is not a substitute for a consultation.",
         },
+        {
+          heading: "Examples from the clinic menu",
+          body: "The official guide describes IPL photofacial M22 for several skin concerns and HIFU for non-incisional laxity care. It also lists injectables, skin treatments, hair removal and infusions. Suitability, session spacing, downtime and aftercare should be discussed for your skin and health history.",
+        },
       ],
       process: [
         "Share your concerns and goals",
@@ -173,6 +216,10 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
           heading: "Questions worth asking",
           body: "What condition is being treated? What evidence applies to people like me? What alternatives exist? What are the risks, total costs and follow-up requirements? These questions support a careful decision.",
         },
+        {
+          heading: "PRP and culture-derived products",
+          body: "PRP uses a patient’s blood, which is processed before injection. Culture-derived supernatant or exosome products are different preparations; ask about source, manufacturing, intended use, quality controls, risks and what remains uncertain.",
+        },
       ],
       process: [
         "Clarify the goal and current condition",
@@ -200,6 +247,10 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
         {
           heading: "Assessment and next steps",
           body: "Depending on symptoms, clinicians may combine a history, urine or blood tests and ultrasound. Treatment may involve advice, medication or referral to a specialist service.",
+        },
+        {
+          heading: "Examples of conditions",
+          body: "The clinic guide discusses prostate conditions, cystitis, overactive bladder, urinary stones and kidney infection among other concerns. Similar symptoms can have different causes, so testing and follow-up matter.",
         },
       ],
       process: [
@@ -231,6 +282,10 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
           heading: "了解选项后再决定",
           body: "注射、光疗、HIFU、线雕与点滴等方法的目的、风险、费用和复诊需求不同。请不要只根据项目名称作决定。",
         },
+        {
+          heading: "诊所介绍的项目例子",
+          body: "官方介绍了针对多种肌肤困扰的IPL光子嫩肤M22，以及非切开式紧致护理HIFU，也列出注射、肌肤护理、脱毛与点滴等项目。适用性、次数、恢复期和术后护理需要结合个人情况咨询。",
+        },
       ],
       process: [
         "说明困扰与希望",
@@ -259,6 +314,10 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
           heading: "咨询时可以问什么",
           body: "治疗针对什么问题？有哪些证据？是否有替代方案？风险、总费用及复诊安排是什么？这些问题有助于谨慎决定。",
         },
+        {
+          heading: "PRP与培养上清液类产品",
+          body: "PRP使用本人血液，经处理后进行注射。培养上清液或外泌体是不同的制剂，应了解来源、制造管理、用途、风险以及仍不确定的部分。",
+        },
       ],
       process: [
         "整理目标与目前状态",
@@ -286,6 +345,10 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
         {
           heading: "检查与下一步",
           body: "医生会结合症状，选择尿液、血液或超声等检查。根据原因和程度，可能提供生活建议、药物治疗或转诊。",
+        },
+        {
+          heading: "常见疾病例子",
+          body: "诊所介绍涉及前列腺疾病、膀胱炎、膀胱过度活动、尿路结石及肾盂肾炎等。相似症状可能由不同原因造成，因此检查和复诊很重要。",
         },
       ],
       process: [
