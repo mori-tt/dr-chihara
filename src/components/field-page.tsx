@@ -1,7 +1,7 @@
 import { Header } from "./header";
 import { Footer } from "./footer";
 import { asset, localePath, type Locale } from "@/lib/content";
-import { fieldCopy, fieldPath, type FieldSlug } from "@/lib/fields";
+import { fieldCopy, fieldPath, fieldSlugs, type FieldSlug } from "@/lib/fields";
 import { stockPhotos, stockLabel } from "@/lib/stock-photos";
 import { breadcrumbSchema } from "@/lib/metadata";
 
@@ -13,6 +13,9 @@ export function FieldPage({
   slug: FieldSlug;
 }) {
   const c = fieldCopy[locale][slug];
+  const relatedFields = fieldSlugs.filter(
+    (relatedSlug): relatedSlug is FieldSlug => relatedSlug !== slug,
+  );
   const photo =
     slug === "rejuvenation"
       ? "/images/consultation.webp"
@@ -135,6 +138,47 @@ export function FieldPage({
               <span className="arrow">↗</span>
             </a>
           </div>
+          <section
+            className="field-related"
+            aria-labelledby="field-related-title"
+          >
+            <div>
+              <p className="eyebrow">
+                {locale === "ja"
+                  ? "RELATED CARE"
+                  : locale === "zh"
+                    ? "相关诊疗"
+                    : "RELATED CARE"}
+              </p>
+              <h2 id="field-related-title">
+                {locale === "ja"
+                  ? "ほかの診療を見る"
+                  : locale === "zh"
+                    ? "了解其他诊疗领域"
+                    : "Explore other areas of care"}
+              </h2>
+            </div>
+            <div className="field-related-links">
+              {relatedFields.map((relatedSlug) => {
+                const related = fieldCopy[locale][relatedSlug];
+                return (
+                  <a
+                    className="field-related-link"
+                    href={fieldPath(locale, relatedSlug)}
+                    key={relatedSlug}
+                  >
+                    <span className="field-related-eyebrow">
+                      {related.eyebrow}
+                    </span>
+                    <span className="field-related-title">{related.title}</span>
+                    <span className="arrow" aria-hidden="true">
+                      ↗
+                    </span>
+                  </a>
+                );
+              })}
+            </div>
+          </section>
           <a className="field-back text-link" href={localePath(locale)}>
             ←{" "}
             {locale === "ja"

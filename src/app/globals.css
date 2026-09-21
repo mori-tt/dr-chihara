@@ -2254,6 +2254,65 @@ a:hover .arrow {
 .field-actions .text-link {
   flex: 1;
 }
+.field-related {
+  border-top: 1px solid var(--line);
+  margin-top: 78px;
+  padding-top: 30px;
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 8%;
+  align-items: start;
+}
+.field-related h2 {
+  font-family: var(--serif);
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-top: 14px;
+}
+.field-related-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.field-related-link {
+  border: 1px solid var(--line);
+  min-height: 145px;
+  padding: 20px 20px 17px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--ink);
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+}
+.field-related-link:hover,
+.field-related-link:focus-visible {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+.field-related-eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+}
+.field-related-link:hover .field-related-eyebrow,
+.field-related-link:focus-visible .field-related-eyebrow {
+  color: inherit;
+  opacity: 0.7;
+}
+.field-related-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1.25;
+}
+.field-related-link .arrow {
+  align-self: flex-end;
+  font-size: 20px;
+}
 .field-back {
   display: inline-block;
   margin-top: 65px;
@@ -2303,5 +2362,19 @@ a:hover .arrow {
   }
   .field-actions .text-link {
     display: flex;
+  }
+  .field-related {
+    display: block;
+    margin-top: 58px;
+  }
+  .field-related h2 {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+  .field-related-links {
+    grid-template-columns: 1fr;
+  }
+  .field-related-link {
+    min-height: 120px;
   }
 }
