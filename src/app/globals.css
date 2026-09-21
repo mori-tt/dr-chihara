@@ -235,6 +235,29 @@ button {
 .menu-inner > a > span:last-child {
   margin-left: auto;
 }
+.menu-field-links {
+  margin: -10px 0 12px 72px;
+  border-left: 1px solid var(--line);
+}
+.menu-field-links a {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 12px 0 12px 22px;
+  color: var(--muted);
+  font-size: 15px;
+}
+.menu-field-links a:hover {
+  color: var(--accent);
+}
+.menu-field-links a span:first-child {
+  color: var(--accent);
+  font-size: 11px;
+}
+.menu-field-links a span:last-child {
+  margin-left: auto;
+  padding-right: 4px;
+}
 .menu-inner > .languages {
   margin-top: 30px;
   gap: 28px;

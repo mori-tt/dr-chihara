@@ -2,7 +2,9 @@
 import { useEffect, useRef, useState } from "react";
 import { content, localePath, type Locale } from "@/lib/content";
 import { dialogueCopy, dialoguePath } from "@/lib/dialogues";
+import { fieldPath, type FieldSlug } from "@/lib/fields";
 const anchors = ["about", "philosophy", "journey", "clinic"];
+const fieldSlugs: FieldSlug[] = ["rejuvenation", "regenerate", "urology"];
 export function Header({
   locale,
   section = "",
@@ -110,6 +112,7 @@ export function Header({
               {n}
             </a>
           ))}
+          <a href={homeAnchor("practice")}>{c.practiceLabel}</a>
           <a
             href={dialoguePath(locale)}
             aria-current={section.startsWith("dialogues/") ? "page" : undefined}
@@ -150,13 +153,27 @@ export function Header({
                 <span>↗</span>
               </a>
             ))}
-            <a href={dialoguePath(locale)} onClick={close}>
+            <a href={homeAnchor("practice")} onClick={close}>
               <span>05</span>
+              {c.practiceLabel}
+              <span>↗</span>
+            </a>
+            <div className="menu-field-links" aria-label={c.practiceLabel}>
+              {fieldSlugs.map((slug, index) => (
+                <a key={slug} href={fieldPath(locale, slug)} onClick={close}>
+                  <span>05.{index + 1}</span>
+                  {c.practices[index].title}
+                  <span>↗</span>
+                </a>
+              ))}
+            </div>
+            <a href={dialoguePath(locale)} onClick={close}>
+              <span>06</span>
               {dialogueCopy[locale].label}
               <span>↗</span>
             </a>
             <a href={homeAnchor("contact")} onClick={close}>
-              <span>06</span>
+              <span>07</span>
               {c.contact}
               <span>↗</span>
             </a>
