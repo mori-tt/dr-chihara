@@ -60,6 +60,41 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
           heading: "注入・肌質治療を検討するとき",
           body: "PRPやヒアルロン酸、ボトックス、水光注射、ダーマペンなどは、使用する薬剤・注入部位・目的が異なります。腫れ、赤み、内出血、痛み、感染などの可能性、妊娠・授乳、服薬や既往歴への影響を医師に伝え、施術後の予定も含めて相談します。",
         },
+        {
+          heading: "公式サイトで紹介されている診療メニュー",
+          body: "ノリス美容クリニックでは、再生医療だけでなく、肌診断から機器治療、注入治療、脱毛、薄毛治療まで幅広く案内しています。目的や肌の状態に合わせて、単一の施術に決めつけず組み合わせを検討します。",
+          items: [
+            "肌診断：re-Beau 2で肉眼では見えにくいシミ・赤みなどを確認",
+            "光・レーザー：M22、PicoWayなどを悩みに合わせて使い分ける治療",
+            "引き締め：ウルトラセルQ+（HIFU）など、切開を伴わない選択肢",
+            "肌質・注入：ダーマペン、水光注射、PRP、ヒアルロン酸、ボトックス",
+            "毛髪・体毛：HARG療法、医療脱毛（ライトシェアデュエット）",
+          ],
+        },
+        {
+          heading: "肌悩みから考える治療の組み立て",
+          body: "しみ・そばかす・肝斑・赤み・ニキビ跡・毛穴・しわ・たるみは、似て見えても原因や適した機器が異なります。公式サイトでは、まず肌状態を確認し、必要な施術とホームケアを組み合わせる考え方を紹介しています。診断名が分からない場合も、気になる変化を写真や時期とともに伝えると相談しやすくなります。",
+          items: [
+            "色・くすみ：肝斑や炎症後色素沈着などを見分けて照射の可否を検討",
+            "赤み・ニキビ：炎症の程度や再発要因を確認し、刺激を抑えた計画を立てる",
+            "しわ・たるみ：表情、皮膚、脂肪、筋膜など原因を分けて考える",
+            "毛穴・肌質：ダーマペンや光治療などの適応とダウンタイムを確認",
+          ],
+        },
+        {
+          heading: "機器治療の特徴と経過",
+          body: "M22は複数のIPL波長から肌状態に合う設定を選ぶ光治療、HIFUは超音波の熱エネルギーを利用して引き締めを目指す治療です。PicoWayは短いパルスのレーザー、re-Beau 2は肌状態を画像化する診断機器として紹介されています。照射直後の赤みや熱感、色素変化などの可能性を含め、施術間隔・紫外線対策・保湿を確認します。",
+          items: [
+            "フォトフェイシャルM22：顔全体で約40分という案内がありますが、内容により異なります",
+            "HIFU：部位によって痛みがあり、出力や照射範囲を調整します",
+            "ダーマペン：微細な針を使うため、赤み・腫れ・乾燥などを確認します",
+            "施術後の経過や必要回数は、肌質・症状・設定によって変わります",
+          ],
+        },
+        {
+          heading: "料金・自由診療・カウンセリング",
+          body: "美容医療は施術内容、範囲、薬剤、回数で費用が変わる自由診療が中心です。公式サイトの料金表を確認し、初診料・検査料・麻酔・薬剤・再診・キャンセル条件などを含む総額を事前に確認してください。診察の結果、希望した施術が適さない場合に別の選択肢や見送りを提案することも、納得できる診療の一部です。",
+        },
       ],
       process: [
         "悩みや希望を聞く",
@@ -105,6 +140,30 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
         {
           heading: "再生医療を相談する前に",
           body: "治療の対象、期待できること、まだ分かっていないこと、代替案、費用、通院回数、治療後の連絡先を説明してもらいましょう。公式ページの内容や料金は更新されることがあるため、最新情報はクリニックへ確認してください。",
+        },
+        {
+          heading: "幹細胞治療の一般的な流れ",
+          body: "公式サイトでは、医師による相談・検査から、腹部などからの脂肪組織採取、細胞の分離・培養、品質確認後の点滴または注射、経過観察までの流れを案内しています。培養期間や投与方法は計画によって異なるため、治療前に必要な来院回数とスケジュールを確認します。",
+          items: [
+            "相談・診察：症状、既往歴、服薬、治療目的を確認",
+            "検査・採取：血液検査や脂肪組織採取の可否を判断",
+            "培養・品質確認：施設や計画に沿って細胞を調整",
+            "投与・フォロー：点滴・注射後の経過を確認し、必要に応じて再診",
+          ],
+        },
+        {
+          heading: "PRPと培養上清液・エクソソームの違い",
+          body: "PRPは本人の血液から血小板を含む血漿を分離して用いる方法です。培養上清液は細胞を培養した液体から得られる成分を製剤化したもの、エクソソームは細胞間の情報伝達に関わる小胞を指します。名称が似ていても由来、製造方法、含有成分、投与方法が異なるため、何をどのように投与するのかを確認する必要があります。",
+          items: [
+            "本人の血液を使うのか、培養由来の製剤なのか",
+            "皮膚への注入、点滴など投与経路は何か",
+            "製造・品質管理、保管、感染対策の説明があるか",
+            "期待できる範囲と、まだ研究段階の部分がどこか",
+          ],
+        },
+        {
+          heading: "安全性・制度・費用を確認する",
+          body: "公式サイトでは、再生医療等安全性確保法に基づく提供計画や認定再生医療等委員会による審査について案内しています。治療の種類によって制度上の区分や必要な手続きが異なるため、計画番号、説明・同意文書、検査費用、細胞採取・培養費用、投与後の診療費を含めて確認してください。",
         },
       ],
       process: [
@@ -154,6 +213,25 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
           heading: "受診を先延ばしにしないために",
           body: "血尿や排尿痛、急な腰痛、発熱などは、単なる年齢変化とは限りません。症状の強さや経過によっては早めの受診が必要です。強い痛み・高熱・嘔吐などがある場合は、通常の予約を待たず、地域の救急相談や医療機関に連絡してください。",
         },
+        {
+          heading: "泌尿器科で扱う主な疾患",
+          body: "公式サイトでは、尿路感染症、尿路結石、前立腺肥大症・前立腺炎・前立腺がん、過活動膀胱、尿失禁、性感染症、男性更年期や性機能の悩みなどを例として紹介しています。女性の膀胱炎や尿漏れ、男性の前立腺症状など、性別や年齢を問わず相談できます。",
+          items: [
+            "膀胱炎・尿路感染症：排尿時の痛み、頻尿、濁り、発熱など",
+            "尿路結石：腰や脇腹の強い痛み、血尿、吐き気など",
+            "前立腺の病気：尿の勢い低下、夜間頻尿、残尿感など",
+            "過活動膀胱・尿失禁：急な尿意、間に合わない、漏れるなど",
+            "性感染症・男性機能：痛み、分泌物、性機能に関する悩みなど",
+          ],
+        },
+        {
+          heading: "検査で分かること",
+          body: "症状と経過を聞いたうえで、尿検査では血尿や炎症、血液検査では感染や腎機能などを確認します。超音波検査では腎臓・膀胱・前立腺などの状態を確認することがあります。必要に応じて専門医療機関での画像検査や内視鏡検査につなげるなど、原因に応じて検査を組み合わせます。",
+        },
+        {
+          heading: "女性・男性それぞれの相談",
+          body: "女性では膀胱炎、尿漏れ、頻尿など、男性では前立腺肥大症、前立腺炎、性機能や男性更年期など、相談内容に応じた問診が重要です。泌尿器の悩みは話しにくいこともありますが、症状の始まった時期、頻度、痛み、服薬をメモしておくと診察が進めやすくなります。",
+        },
       ],
       process: [
         "症状・経過・服薬を聞く",
@@ -188,6 +266,20 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
           heading: "Examples from the clinic menu",
           body: "The official guide describes IPL photofacial M22 for several skin concerns and HIFU for non-incisional laxity care. It also lists injectables, skin treatments, hair removal and infusions. Suitability, session spacing, downtime and aftercare should be discussed for your skin and health history.",
         },
+        {
+          heading: "A broader menu, chosen by concern",
+          body: "The clinic also introduces skin imaging with re-Beau 2, PicoWay laser, Dermapen, PRP, fillers, botulinum toxin, mesotherapy, medical hair removal and HARG hair treatment. The relevant question is not which procedure is popular, but which diagnosis, goal and recovery time fit you.",
+          items: [
+            "Pigmentation and redness: clarify the diagnosis before light or laser treatment",
+            "Laxity and facial contour: compare HIFU, injectables and other approaches",
+            "Texture and acne scars: discuss Dermapen, light treatment and skincare",
+            "Hair concerns: separate hair removal from medical hair-loss treatment",
+          ],
+        },
+        {
+          heading: "What to confirm before and after treatment",
+          body: "Ask about the exact device or product, treatment area, expected course, downtime, contraindications, total cost and follow-up. Redness, swelling, bruising, pain, pigmentation changes and infection are possible with some procedures. Bring your medication and medical history, and plan sun protection and skincare after treatment.",
+        },
       ],
       process: [
         "Share your concerns and goals",
@@ -220,6 +312,20 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
           heading: "PRP and culture-derived products",
           body: "PRP uses a patient’s blood, which is processed before injection. Culture-derived supernatant or exosome products are different preparations; ask about source, manufacturing, intended use, quality controls, risks and what remains uncertain.",
         },
+        {
+          heading: "How a stem-cell plan may proceed",
+          body: "The clinic describes a sequence of consultation and testing, tissue collection, cell processing and culture, quality checks, administration by infusion or injection, and follow-up. The schedule and eligibility depend on the plan, so confirm the number of visits and the time required for processing before consenting.",
+          items: [
+            "Review symptoms, history, medicines and the purpose of treatment",
+            "Complete the required examination and blood tests",
+            "Discuss collection, culture, administration and monitoring",
+            "Receive follow-up information and contact instructions",
+          ],
+        },
+        {
+          heading: "Regulation, safety and total cost",
+          body: "The official guide describes a framework under Japan’s Act on the Safety of Regenerative Medicine and review by a certified committee. Ask for the treatment plan or plan number, consent documents, testing and collection costs, processing fees, administration costs and follow-up. A consultation should also explain what is not yet established.",
+        },
       ],
       process: [
         "Clarify the goal and current condition",
@@ -251,6 +357,20 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
         {
           heading: "Examples of conditions",
           body: "The clinic guide discusses prostate conditions, cystitis, overactive bladder, urinary stones and kidney infection among other concerns. Similar symptoms can have different causes, so testing and follow-up matter.",
+        },
+        {
+          heading: "Symptoms and conditions worth discussing",
+          body: "The official urology guide includes urinary infections, stones, prostate disease, overactive bladder, incontinence, sexually transmitted infections and male sexual or hormonal concerns. Women and men can both seek advice for urinary symptoms.",
+          items: [
+            "Pain, frequency, cloudy urine or fever may point to infection",
+            "Severe flank pain, nausea or blood may occur with stones",
+            "Weak stream, nighttime urination or residual sensation may relate to the prostate",
+            "Urgency and leakage can be assessed as overactive bladder or incontinence",
+          ],
+        },
+        {
+          heading: "What an assessment may include",
+          body: "A consultation may combine symptom history with urine tests, blood tests and ultrasound. If further imaging, endoscopy or specialist treatment is needed, referral and coordination can be considered. Keeping a record of timing, frequency, pain, fever and medicines makes the consultation more useful.",
         },
       ],
       process: [
@@ -286,6 +406,20 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
           heading: "诊所介绍的项目例子",
           body: "官方介绍了针对多种肌肤困扰的IPL光子嫩肤M22，以及非切开式紧致护理HIFU，也列出注射、肌肤护理、脱毛与点滴等项目。适用性、次数、恢复期和术后护理需要结合个人情况咨询。",
         },
+        {
+          heading: "从肌肤困扰选择方向",
+          body: "诊所还介绍了re-Beau 2肌肤检测、PicoWay激光、微针、PRP、玻尿酸、肉毒素、水光注射、医美脱毛与HARG育发等项目。应先确认问题和目标，再比较设备、药剂、恢复期与费用，而不是只根据项目名称决定。",
+          items: [
+            "色斑与泛红：先区分斑点、肝斑或炎症后的色素变化",
+            "松弛与轮廓：比较HIFU、注射等不同方案",
+            "毛孔与痘印：讨论微针、光疗和日常护理的组合",
+            "毛发问题：区分脱毛与脱发治疗",
+          ],
+        },
+        {
+          heading: "治疗前后需要确认的事项",
+          body: "请确认具体设备或产品、治疗范围、次数、恢复期、禁忌、总费用与复诊安排。部分治疗可能出现红肿、疼痛、淤青、色素变化或感染风险。咨询时请说明用药、既往病史和怀孕哺乳等情况，并按医嘱做好防晒与保湿。",
+        },
       ],
       process: [
         "说明困扰与希望",
@@ -318,6 +452,20 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
           heading: "PRP与培养上清液类产品",
           body: "PRP使用本人血液，经处理后进行注射。培养上清液或外泌体是不同的制剂，应了解来源、制造管理、用途、风险以及仍不确定的部分。",
         },
+        {
+          heading: "干细胞治疗的大致流程",
+          body: "官方介绍的流程包括咨询与检查、组织采集、细胞处理与培养、质量确认、点滴或注射，以及治疗后的复诊。具体方案、培养时间和来院次数会因计划而异，接受治疗前应确认完整时间表。",
+          items: [
+            "确认症状、既往史、用药和治疗目的",
+            "完成必要的检查和血液检测",
+            "了解采集、培养、投与和观察方式",
+            "确认复诊安排及出现异常时的联系方法",
+          ],
+        },
+        {
+          heading: "制度、安全与总费用",
+          body: "官方页面介绍了日本再生医疗安全性相关法律框架及认证委员会审查。请确认治疗计划或计划编号、知情同意书、检查与采集费用、培养费用、投与费用和后续诊疗，同时了解目前尚未确定的部分。",
+        },
       ],
       process: [
         "整理目标与目前状态",
@@ -349,6 +497,20 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
         {
           heading: "常见疾病例子",
           body: "诊所介绍涉及前列腺疾病、膀胱炎、膀胱过度活动、尿路结石及肾盂肾炎等。相似症状可能由不同原因造成，因此检查和复诊很重要。",
+        },
+        {
+          heading: "可以咨询的症状与疾病",
+          body: "官方泌尿科介绍还涉及尿路感染、结石、前列腺疾病、膀胱过度活动、尿失禁、性传播感染，以及男性性功能或激素相关困扰。女性和男性都可以因排尿症状寻求咨询。",
+          items: [
+            "疼痛、尿频、尿液混浊或发热可能与感染有关",
+            "腰腹剧痛、恶心或血尿可能出现在结石等疾病中",
+            "尿流变弱、夜尿或残尿感可能与前列腺有关",
+            "强烈尿意和漏尿可以评估膀胱过度活动或尿失禁",
+          ],
+        },
+        {
+          heading: "检查可能包括什么",
+          body: "医生会结合症状和经过，安排尿液、血液或超声等检查。如需进一步影像、内窥镜或专科治疗，可考虑转诊与协作。记录症状出现时间、频率、疼痛、发热和用药，有助于更准确地咨询。",
         },
       ],
       process: [
