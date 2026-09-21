@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { content, localePath, type Locale } from "@/lib/content";
 import { dialogueCopy, dialoguePath } from "@/lib/dialogues";
 import { fieldPath, type FieldSlug } from "@/lib/fields";
-const anchors = ["about", "philosophy", "journey", "clinic"];
+const anchors = ["about", "philosophy", "journey"];
 const fieldSlugs: FieldSlug[] = ["rejuvenation", "regenerate", "urology"];
 export function Header({
   locale,
@@ -107,12 +107,13 @@ export function Header({
                 : "Main navigation"
           }
         >
-          {c.nav.map((n, i) => (
+          {c.nav.slice(0, 3).map((n, i) => (
             <a key={n} href={homeAnchor(anchors[i])}>
               {n}
             </a>
           ))}
           <a href={homeAnchor("practice")}>{c.practiceLabel}</a>
+          <a href={homeAnchor("clinic")}>{c.nav[3]}</a>
           <a
             href={dialoguePath(locale)}
             aria-current={section.startsWith("dialogues/") ? "page" : undefined}
@@ -146,7 +147,7 @@ export function Header({
         >
           <div className="menu-inner">
             <p className="eyebrow">EXPLORE</p>
-            {c.nav.map((n, i) => (
+            {c.nav.slice(0, 3).map((n, i) => (
               <a key={n} href={homeAnchor(anchors[i])} onClick={close}>
                 <span>0{i + 1}</span>
                 {n}
@@ -154,27 +155,32 @@ export function Header({
               </a>
             ))}
             <a href={homeAnchor("practice")} onClick={close}>
-              <span>05</span>
+              <span>04</span>
               {c.practiceLabel}
               <span>↗</span>
             </a>
             <div className="menu-field-links" aria-label={c.practiceLabel}>
               {fieldSlugs.map((slug, index) => (
                 <a key={slug} href={fieldPath(locale, slug)} onClick={close}>
-                  <span>05.{index + 1}</span>
+                  <span>04.{index + 1}</span>
                   {c.practices[index].title}
                   <span>↗</span>
                 </a>
               ))}
             </div>
-            <a href={dialoguePath(locale)} onClick={close}>
-              <span>06</span>
-              {dialogueCopy[locale].label}
+            <a href={homeAnchor("clinic")} onClick={close}>
+              <span>05</span>
+              {c.nav[3]}
               <span>↗</span>
             </a>
             <a href={homeAnchor("contact")} onClick={close}>
-              <span>07</span>
+              <span>06</span>
               {c.contact}
+              <span>↗</span>
+            </a>
+            <a href={dialoguePath(locale)} onClick={close}>
+              <span>07</span>
+              {dialogueCopy[locale].label}
               <span>↗</span>
             </a>
             {languages}
