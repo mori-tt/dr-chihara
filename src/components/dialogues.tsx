@@ -8,7 +8,7 @@ import {
   publishedDialogues,
   type Dialogue,
 } from "@/lib/dialogues";
-import { siteUrl } from "@/lib/metadata";
+import { breadcrumbSchema, siteLastModified, siteUrl } from "@/lib/metadata";
 import { stockPhotos, stockLabel } from "@/lib/stock-photos";
 
 export function DialogueTeaser({ locale }: { locale: Locale }) {
@@ -226,6 +226,18 @@ export function DialogueArticle({
   const canonical = `${siteUrl}/${locale === "ja" ? "" : `${locale}/`}dialogues/${article.slug}/`;
   return (
     <div className={`site locale-${locale} dialogue-site`} id="top">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbSchema(locale, [
+              { name: c.home, path: "" },
+              { name: c.label, path: "dialogues/" },
+              ...(sample ? [{ name: c.sample }] : [{ name: t.title }]),
+            ]),
+          ).replace(/</g, "\\u003c"),
+        }}
+      />
       <Header locale={locale} section={`dialogues/${article.slug}/`} />
       <main id="main">
         <div className="dialogue-wrap">
@@ -246,9 +258,19 @@ export function DialogueArticle({
                   headline: t.title,
                   description: t.introduction,
                   datePublished: article.publishedAt,
+                  dateModified: siteLastModified,
                   inLanguage: locale === "zh" ? "zh-Hans" : locale,
                   image: `${siteUrl}${article.cover}`,
-                  author: { "@type": "Person", name: "Yoshitomo Chihara" },
+                  author: {
+                    "@type": "Person",
+                    name: "Yoshitomo Chihara",
+                    url: `${siteUrl}/${locale === "ja" ? "" : `${locale}/`}`,
+                  },
+                  publisher: {
+                    "@type": "Person",
+                    name: "Yoshitomo Chihara",
+                  },
+                  articleSection: t.category,
                   mainEntityOfPage: canonical,
                 }).replace(/</g, "\\u003c"),
               }}

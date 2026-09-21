@@ -3,6 +3,7 @@ import { Footer } from "./footer";
 import { asset, localePath, type Locale } from "@/lib/content";
 import { fieldCopy, fieldPath, type FieldSlug } from "@/lib/fields";
 import { stockPhotos, stockLabel } from "@/lib/stock-photos";
+import { breadcrumbSchema } from "@/lib/metadata";
 
 export function FieldPage({
   locale,
@@ -26,6 +27,25 @@ export function FieldPage({
         ];
   return (
     <div className={`site locale-${locale} field-site`} id="top">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbSchema(locale, [
+              {
+                name:
+                  locale === "ja"
+                    ? "ホーム"
+                    : locale === "zh"
+                      ? "首页"
+                      : "Home",
+                path: "",
+              },
+              { name: c.title },
+            ]),
+          ).replace(/</g, "\\u003c"),
+        }}
+      />
       <Header locale={locale} section={`fields/${slug}/`} />
       <main id="main" className="field-main">
         <div className="field-wrap">

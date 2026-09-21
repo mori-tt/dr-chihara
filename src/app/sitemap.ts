@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { siteUrl } from "@/lib/metadata";
+import { siteLastModified, siteUrl } from "@/lib/metadata";
 import { publishedDialogues } from "@/lib/dialogues";
 export const dynamic = "force-static";
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -14,11 +14,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return paths.flatMap((path) =>
     ["", "en/", "zh/"].map((prefix) => ({
       url: `${siteUrl}/${prefix}${path}`,
+      lastModified: siteLastModified,
       alternates: {
         languages: {
           ja: `${siteUrl}/${path}`,
           en: `${siteUrl}/en/${path}`,
           "zh-Hans": `${siteUrl}/zh/${path}`,
+          "x-default": `${siteUrl}/${path}`,
         },
       },
     })),
