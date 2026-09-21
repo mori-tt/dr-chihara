@@ -5,6 +5,14 @@ export const asset = (path: string) => `${basePath}${path}`;
 export const localePath = (locale: Locale) =>
   `${basePath}/${locale === "ja" ? "" : `${locale}/`}`;
 export const clinicUrl = "https://www.norris-beauty-clinic.com";
+export const homeSectionNumbers = {
+  about: "01",
+  philosophy: "02",
+  journey: "03",
+  practice: "04",
+  clinic: "05",
+  contact: "06",
+} as const;
 
 export const content = {
   ja: {

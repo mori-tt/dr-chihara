@@ -2,7 +2,13 @@ import { Header } from "./header";
 import { Footer } from "./footer";
 import { DialogueTeaser } from "./dialogues";
 import { Journey } from "./journey";
-import { asset, clinicUrl, content, type Locale } from "@/lib/content";
+import {
+  asset,
+  clinicUrl,
+  content,
+  homeSectionNumbers,
+  type Locale,
+} from "@/lib/content";
 import { fieldPath, type FieldSlug } from "@/lib/fields";
 import { personSchema } from "@/lib/metadata";
 import { stockPhotos, stockLabel } from "@/lib/stock-photos";
@@ -121,7 +127,11 @@ export function Site({ locale }: { locale: Locale }) {
           </a>
         </div>
         <section className="section about" id="about">
-          <Label number="01" en="ABOUT" local={c.aboutLabel} />
+          <Label
+            number={homeSectionNumbers.about}
+            en="ABOUT"
+            local={c.aboutLabel}
+          />
           <div className="about-grid">
             <div className="about-visual">
               <div className="about-image">
@@ -186,7 +196,11 @@ export function Site({ locale }: { locale: Locale }) {
           </div>
         </section>
         <section className="philosophy section" id="philosophy">
-          <Label number="02" en="PHILOSOPHY" local={c.philosophyLabel} />
+          <Label
+            number={homeSectionNumbers.philosophy}
+            en="PHILOSOPHY"
+            local={c.philosophyLabel}
+          />
           <div className="philosophy-heading">
             <h2 className="section-title">
               {c.philosophyTitle.map((t) => (
@@ -226,7 +240,11 @@ export function Site({ locale }: { locale: Locale }) {
         </section>
         <DialogueTeaser locale={locale} />
         <section className="section journey" id="journey">
-          <Label number="03" en="MY JOURNEY" local={c.journeyLabel} />
+          <Label
+            number={homeSectionNumbers.journey}
+            en="MY JOURNEY"
+            local={c.journeyLabel}
+          />
           <div className="journey-grid">
             <div className="journey-intro">
               <h2 className="section-title">
@@ -255,7 +273,11 @@ export function Site({ locale }: { locale: Locale }) {
           </div>
         </section>
         <section className="section practice" id="practice">
-          <Label number="04" en="FIELDS OF CARE" local={c.practiceLabel} />
+          <Label
+            number={homeSectionNumbers.practice}
+            en="FIELDS OF CARE"
+            local={c.practiceLabel}
+          />
           <h2 className="section-title">{c.practiceTitle}</h2>
           <div className="practice-grid">
             {c.practices.map((p, i) => (
@@ -313,7 +335,11 @@ export function Site({ locale }: { locale: Locale }) {
             />
           </div>
           <div className="clinic-copy">
-            <Label number="05" en="THE CLINIC" local={c.clinicLabel} />
+            <Label
+              number={homeSectionNumbers.clinic}
+              en="THE CLINIC"
+              local={c.clinicLabel}
+            />
             <h2 className="section-title">
               {c.clinicTitle.map((t) => (
                 <span key={t}>{t}</span>
@@ -349,7 +375,11 @@ export function Site({ locale }: { locale: Locale }) {
           </div>
         </section>
         <section className="section contact" id="contact">
-          <Label number="06" en="LET’S TALK" local={c.contactLabel} />
+          <Label
+            number={homeSectionNumbers.contact}
+            en="LET’S TALK"
+            local={c.contactLabel}
+          />
           <div className="contact-grid">
             <div>
               <h2 className="section-title">

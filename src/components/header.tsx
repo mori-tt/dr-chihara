@@ -1,6 +1,11 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { content, localePath, type Locale } from "@/lib/content";
+import {
+  content,
+  homeSectionNumbers,
+  localePath,
+  type Locale,
+} from "@/lib/content";
 import { dialogueCopy, dialoguePath } from "@/lib/dialogues";
 import { fieldPath, type FieldSlug } from "@/lib/fields";
 const anchors = ["about", "philosophy", "journey"];
@@ -149,32 +154,40 @@ export function Header({
             <p className="eyebrow">EXPLORE</p>
             {c.nav.slice(0, 3).map((n, i) => (
               <a key={n} href={homeAnchor(anchors[i])} onClick={close}>
-                <span>0{i + 1}</span>
+                <span>
+                  {
+                    homeSectionNumbers[
+                      anchors[i] as "about" | "philosophy" | "journey"
+                    ]
+                  }
+                </span>
                 {n}
                 <span>↗</span>
               </a>
             ))}
             <a href={homeAnchor("practice")} onClick={close}>
-              <span>04</span>
+              <span>{homeSectionNumbers.practice}</span>
               {c.practiceLabel}
               <span>↗</span>
             </a>
             <div className="menu-field-links" aria-label={c.practiceLabel}>
               {fieldSlugs.map((slug, index) => (
                 <a key={slug} href={fieldPath(locale, slug)} onClick={close}>
-                  <span>04.{index + 1}</span>
+                  <span>
+                    {homeSectionNumbers.practice}.{index + 1}
+                  </span>
                   {c.practices[index].title}
                   <span>↗</span>
                 </a>
               ))}
             </div>
             <a href={homeAnchor("clinic")} onClick={close}>
-              <span>05</span>
+              <span>{homeSectionNumbers.clinic}</span>
               {c.nav[3]}
               <span>↗</span>
             </a>
             <a href={homeAnchor("contact")} onClick={close}>
-              <span>06</span>
+              <span>{homeSectionNumbers.contact}</span>
               {c.contact}
               <span>↗</span>
             </a>
