@@ -3,7 +3,11 @@ import { Footer } from "./footer";
 import { asset, content, localePath, type Locale } from "@/lib/content";
 import { fieldCopy, fieldPath, fieldSlugs, type FieldSlug } from "@/lib/fields";
 import { stockPhotos, stockLabel } from "@/lib/stock-photos";
-import { breadcrumbSchema } from "@/lib/metadata";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  medicalWebPageSchema,
+} from "@/lib/metadata";
 import { CareGuide } from "./care-guide";
 import { careUi } from "@/lib/care-support";
 
@@ -51,6 +55,24 @@ export function FieldPage({
           ).replace(/</g, "\\u003c"),
         }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(medicalWebPageSchema(locale, slug)).replace(
+            /</g,
+            "\\u003c",
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema(locale, slug)).replace(
+            /</g,
+            "\\u003c",
+          ),
+        }}
+      />
       <Header locale={locale} section={`fields/${slug}/`} />
       <main id="main" className="field-main">
         <div className="field-wrap">
@@ -91,7 +113,13 @@ export function FieldPage({
             <p className="care-hero-intro">{c.sections[0].body}</p>
           </header>
           <figure className="field-hero">
-            <img src={asset(photo)} alt={alt} width="1600" height="1067" />
+            <img
+              src={asset(photo)}
+              alt={alt}
+              width="1600"
+              height="1067"
+              fetchPriority="high"
+            />
             <figcaption>
               {slug === "rejuvenation"
                 ? "Norris Beauty Clinic / Osaka"

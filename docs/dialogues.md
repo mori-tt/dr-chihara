@@ -23,6 +23,7 @@ GitHub Pagesでは各パスの先頭に `/dr-chihara` が付きます。
   slug: "guest-name",
   status: "published",
   publishedAt: "2026-10-01", // 例。実際の公開日に置き換える
+  updatedAt: "2026-10-15", // 任意。本文を更新した日。省略時は publishedAt
   volume: "01",
   readingMinutes: 8, // 例。原稿に応じて設定
   cover: "/images/dialogues/guest-name/cover.webp",
@@ -58,7 +59,9 @@ GitHub Pagesでは各パスの先頭に `/dr-chihara` が付きます。
 
 `status: "published"` の記事は、一覧に公開日の新しい順に表示されます。最初の公開記事を追加すると、一覧の「公開準備中」とサンプルカードは非表示になります。サンプルのURL自体を削除する場合は配列から `sample` オブジェクトを除きます。
 
-公開記事の詳細には公開日・号数・読了目安が表示され、サンプル案内が消えます。検索エンジン向けに3言語のcanonical・hreflang・OG情報・Article構造化データ・サイトマップが生成されます。
+公開記事の詳細には公開日・号数・読了目安が表示され、サンプル案内が消えます。検索エンジン向けに3言語のcanonical・hreflang・OG情報（`article:published_time` 等を含む）・Article構造化データ・サイトマップが生成されます。
+
+公開記事のOG画像は `scripts/prepare-social-images.mjs` の `cards` に `article-{slug}` のカードを追加し、`npm run images:social` を実行すると `/images/og/article-{slug}-{locale}.png` として生成され、メタ情報から自動で参照されます。生成しない場合はカバー写真がそのままOG画像に使われます。
 
 ## 確認・デプロイ
 

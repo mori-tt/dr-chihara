@@ -10,7 +10,7 @@ import {
   type Locale,
 } from "@/lib/content";
 import { fieldPath, type FieldSlug } from "@/lib/fields";
-import { personSchema } from "@/lib/metadata";
+import { clinicSchema, personSchema, websiteSchema } from "@/lib/metadata";
 import { stockPhotos, stockLabel } from "@/lib/stock-photos";
 function Arrow() {
   return (
@@ -55,7 +55,19 @@ export function Site({ locale }: { locale: Locale }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
+          __html: JSON.stringify(websiteSchema(locale)).replace(/</g, "\\u003c"),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
           __html: JSON.stringify(personSchema(locale)).replace(/</g, "\\u003c"),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(clinicSchema()).replace(/</g, "\\u003c"),
         }}
       />
       <Header locale={locale} />

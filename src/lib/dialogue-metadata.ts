@@ -1,13 +1,23 @@
 import type { Metadata } from "next";
 import { type Locale } from "./content";
 import { dialogueCopy, type Dialogue } from "./dialogues";
-import { pageMetadata, siteUrl } from "./metadata";
+import {
+  ogImage,
+  ogLocales,
+  pageMetadata,
+  rssLink,
+  siteTitle,
+  siteUrl,
+} from "./metadata";
 
 export function dialogueMetadata(locale: Locale, article?: Dialogue): Metadata {
   const copy = dialogueCopy[locale];
   const suffix = `dialogues/${article ? `${article.slug}/` : ""}`;
   const url = `${siteUrl}/${locale === "ja" ? "" : `${locale}/`}${suffix}`;
-  const title = `${article ? `${article.translations[locale].title} | ` : ""}${copy.label} | Yoshitomo Chihara`;
+  const publishedArticle =
+    article && article.status === "published" ? article : undefined;
+  const pageTitle = `${article ? `${article.translations[locale].title} | ` : ""}${copy.label}`;
+  const fullTitle = `${pageTitle} | ${siteTitle(locale)}`;
   const description = article
     ? article.status === "template"
       ? copy.sampleNote
@@ -16,15 +26,21 @@ export function dialogueMetadata(locale: Locale, article?: Dialogue): Metadata {
   const generated = !article || article.slug === "sample";
   const image = generated
     ? `${siteUrl}/images/og/${article ? "sample" : "crossroads"}-${locale}.png`
-    : `${siteUrl}${article.cover}`;
+    : ogImage(
+        `/images/og/article-${article.slug}-${locale}.png`,
+        article.cover,
+      );
   return {
     ...pageMetadata(locale),
-    title,
+    title: pageTitle,
     description,
-    robots:
-      article?.status === "template"
-        ? { index: false, follow: true }
-        : { index: true, follow: true },
+    robots: {
+      index: article?.status !== "template",
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
     alternates: {
       canonical: url,
       languages: {
@@ -33,19 +49,30 @@ export function dialogueMetadata(locale: Locale, article?: Dialogue): Metadata {
         "zh-Hans": `${siteUrl}/zh/${suffix}`,
         "x-default": `${siteUrl}/${suffix}`,
       },
+      types: rssLink(locale),
     },
     openGraph: {
-      type: article?.status === "published" ? "article" : "website",
-      title,
+      type: publishedArticle ? "article" : "website",
+      title: fullTitle,
       description,
       url,
       siteName: "Yoshitomo Chihara",
-      locale: locale === "ja" ? "ja_JP" : locale === "zh" ? "zh_CN" : "en_US",
+      ...ogLocales(locale),
+      ...(publishedArticle
+        ? {
+            publishedTime: publishedArticle.publishedAt,
+            modifiedTime:
+              publishedArticle.updatedAt ?? publishedArticle.publishedAt,
+            authors: [`${siteUrl}/${locale === "ja" ? "" : `${locale}/`}`],
+            section: publishedArticle.translations[locale].category,
+          }
+        : {}),
       images: [
         {
           url: image,
+          type: image.endsWith(".webp") ? "image/webp" : "image/png",
           alt: generated
-            ? title
+            ? fullTitle
             : article?.translations[locale].coverAlt || copy.label,
           ...(generated ? { width: 1200, height: 630 } : {}),
         },
@@ -53,7 +80,7 @@ export function dialogueMetadata(locale: Locale, article?: Dialogue): Metadata {
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: fullTitle,
       description,
       images: [image],
     },

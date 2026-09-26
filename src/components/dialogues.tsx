@@ -8,7 +8,11 @@ import {
   publishedDialogues,
   type Dialogue,
 } from "@/lib/dialogues";
-import { breadcrumbSchema, siteLastModified, siteUrl } from "@/lib/metadata";
+import {
+  breadcrumbSchema,
+  collectionSchema,
+  siteUrl,
+} from "@/lib/metadata";
 import { stockPhotos, stockLabel } from "@/lib/stock-photos";
 
 export function DialogueTeaser({ locale }: { locale: Locale }) {
@@ -141,6 +145,26 @@ export function DialogueIndex({ locale }: { locale: Locale }) {
     published = publishedDialogues();
   return (
     <div className={`site locale-${locale} dialogue-site`} id="top">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(collectionSchema(locale, published)).replace(
+            /</g,
+            "\\u003c",
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbSchema(locale, [
+              { name: c.home, path: "" },
+              { name: c.label },
+            ]),
+          ).replace(/</g, "\\u003c"),
+        }}
+      />
       <Header locale={locale} section="dialogues/" />
       <main id="main">
         <div className="dialogue-wrap">
@@ -258,7 +282,7 @@ export function DialogueArticle({
                   headline: t.title,
                   description: t.introduction,
                   datePublished: article.publishedAt,
-                  dateModified: siteLastModified,
+                  dateModified: article.updatedAt ?? article.publishedAt,
                   inLanguage: locale === "zh" ? "zh-Hans" : locale,
                   image: `${siteUrl}${article.cover}`,
                   author: {
@@ -267,11 +291,26 @@ export function DialogueArticle({
                     url: `${siteUrl}/${locale === "ja" ? "" : `${locale}/`}`,
                   },
                   publisher: {
-                    "@type": "Person",
+                    "@type": "Organization",
                     name: "Yoshitomo Chihara",
+                    url: siteUrl,
+                    logo: {
+                      "@type": "ImageObject",
+                      url: `${siteUrl}/icon.png`,
+                      width: 512,
+                      height: 512,
+                    },
                   },
                   articleSection: t.category,
                   mainEntityOfPage: canonical,
+                  isAccessibleForFree: true,
+                  wordCount:
+                    t.introduction.length +
+                    t.sections
+                      .flatMap((s) =>
+                        s.exchanges.flatMap((e) => [e.question, ...e.answer]),
+                      )
+                      .join("").length,
                 }).replace(/</g, "\\u003c"),
               }}
             />

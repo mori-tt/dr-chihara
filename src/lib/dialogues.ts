@@ -170,12 +170,14 @@ export type Dialogue = DialogueBase &
     | {
         status: "template";
         publishedAt?: never;
+        updatedAt?: never;
         volume?: never;
         readingMinutes?: never;
       }
     | {
         status: "published";
         publishedAt: string;
+        updatedAt?: string;
         volume: string;
         readingMinutes: number;
       }

@@ -7,6 +7,8 @@
     "build": "next build",
     "build:pages": "NEXT_PUBLIC_BASE_PATH=/dr-chihara NEXT_PUBLIC_SITE_URL=https://mori-tt.github.io/dr-chihara next build",
     "typecheck": "tsc --noEmit",
+    "images:social": "node scripts/prepare-social-images.mjs",
+    "images:icons": "node scripts/prepare-icons.mjs",
     "test:browser": "node scripts/browser-check.mjs",
     "test:care": "node scripts/care-check.mjs"
   },

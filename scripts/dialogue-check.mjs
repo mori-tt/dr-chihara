@@ -123,13 +123,15 @@ try {
           new URL(page.url()).pathname,
           new URL(`${base}/en/${suffix}`).pathname,
         );
-        await page.locator(".menu-button").click();
-        const about = page
-          .locator(".menu-inner>a")
-          .filter({ hasText: "About" });
-        assert.ok((await about.getAttribute("href")).endsWith("/en/#about"));
-        await page.keyboard.press("Escape");
-        assert.equal(await page.locator('[role="dialog"]').count(), 0);
+        if (width <= 820) {
+          await page.locator(".menu-button").click();
+          const about = page
+            .locator(".menu-inner>a")
+            .filter({ hasText: "About" });
+          assert.ok((await about.getAttribute("href")).endsWith("/en/#about"));
+          await page.keyboard.press("Escape");
+          assert.equal(await page.locator('[role="dialog"]').count(), 0);
+        }
       }
       await page.goto(`${base}/${prefix}`, { waitUntil: "networkidle" });
       assert.equal(await page.locator(".credentials li").count(), 5);

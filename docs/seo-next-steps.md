@@ -17,6 +17,13 @@
 
 ドメインプロパティを登録し、以下を送信・確認します。
 
+所有権の確認タグは環境変数に設定するだけで全ページの `<meta name="google-site-verification">` に出力されます（Bingも同様）。
+
+```sh
+NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=Search Consoleの確認トークン
+NEXT_PUBLIC_BING_SITE_VERIFICATION=Bing Webmaster Toolsの確認トークン
+```
+
 - `https://本番ドメイン/sitemap.xml`
 - 日本語トップページ
 - `/en/` と `/zh/` のトップページ
