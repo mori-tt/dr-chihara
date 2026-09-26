@@ -13,6 +13,13 @@ export const siteUrl =
 export const siteLastModified =
   process.env.NEXT_PUBLIC_SITE_LAST_MODIFIED || "2026-09-21";
 
+/**
+ * Set NEXT_PUBLIC_NOINDEX=1 for staging/preview builds (e.g. GitHub Pages)
+ * so search engines drop that host from the index while still being able
+ * to crawl and see the canonical URL of the production site.
+ */
+export const siteNoindex = process.env.NEXT_PUBLIC_NOINDEX === "1";
+
 export const siteTitle = (locale: Locale) =>
   locale === "ja" ? "千原良友" : "Yoshitomo Chihara";
 
@@ -59,7 +66,7 @@ export function pageMetadata(locale: Locale): Metadata {
     publisher: "Yoshitomo Chihara",
     category: "medical",
     robots: {
-      index: true,
+      index: !siteNoindex,
       follow: true,
       "max-image-preview": "large",
       "max-snippet": -1,

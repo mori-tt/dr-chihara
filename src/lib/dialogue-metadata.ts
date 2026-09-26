@@ -6,6 +6,7 @@ import {
   ogLocales,
   pageMetadata,
   rssLink,
+  siteNoindex,
   siteTitle,
   siteUrl,
 } from "./metadata";
@@ -35,7 +36,7 @@ export function dialogueMetadata(locale: Locale, article?: Dialogue): Metadata {
     title: pageTitle,
     description,
     robots: {
-      index: article?.status !== "template",
+      index: !siteNoindex && article?.status !== "template",
       follow: true,
       "max-image-preview": "large",
       "max-snippet": -1,

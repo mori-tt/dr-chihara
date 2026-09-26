@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:pages": "NEXT_PUBLIC_BASE_PATH=/dr-chihara NEXT_PUBLIC_SITE_URL=https://mori-tt.github.io/dr-chihara next build",
+    "build:pages": "NEXT_PUBLIC_BASE_PATH=/dr-chihara NEXT_PUBLIC_SITE_URL=https://mori-tt.github.io/dr-chihara NEXT_PUBLIC_NOINDEX=1 next build",
     "typecheck": "tsc --noEmit",
     "images:social": "node scripts/prepare-social-images.mjs",
     "images:icons": "node scripts/prepare-icons.mjs",

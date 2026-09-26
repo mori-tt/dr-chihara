@@ -28,6 +28,8 @@ npm run dev
 
 `main` へのpushで `.github/workflows/pages.yml` がビルド・型チェック・デプロイを行います。Pagesの公開元は **GitHub Actions**。
 
+`build:pages` では `NEXT_PUBLIC_NOINDEX=1` が付き、GitHub Pages側の全ページに `noindex` を出力します（本番ドメインとの重複コンテンツ防止）。本番ビルドではこの変数を付けないでください。
+
 ```sh
 npm run build:pages
 node scripts/serve.mjs
@@ -65,7 +67,7 @@ TEST_BASE_PATH= node scripts/serve.mjs
 TEST_URL=http://127.0.0.1:4173 npm run test:browser
 ```
 
-公開ドメインが未指定の場合、canonical等はGitHub PagesのURLを使用します。本番移設時には必ず `NEXT_PUBLIC_SITE_URL` を設定してください。
+公開ドメインが未指定の場合、canonical等はGitHub PagesのURLを使用します。本番移設時には必ず `NEXT_PUBLIC_SITE_URL` を設定してください。本番向けは `npm run build`（`NEXT_PUBLIC_NOINDEX` なし）なので、全ページが `index, follow` で出力されます。
 
 ## コンテンツと画像の出典
 

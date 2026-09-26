@@ -6,6 +6,8 @@
 
 候補は `yoshitomo-chihara.jp`（日本を主対象）または `yoshitomo-chihara.com`（国際向け）です。ドメイン取得後、GitHub PagesのCustom domainへ登録し、DNSにGitHub指定のCNAME/Aレコードを設定します。
 
+GitHub Pages公開用の `npm run build:pages` は `NEXT_PUBLIC_NOINDEX=1` 付きで、全ページに `noindex` を出力します（本番ドメインとの重複コンテンツ・canonical競合を防ぐため）。本番ビルド（`npm run build` + `NEXT_PUBLIC_SITE_URL`）では `index, follow` が出力されるので、旧URL側をインデックスから自然に外せます。
+
 接続後に必要な作業:
 
 1. `NEXT_PUBLIC_SITE_URL` を本番ドメインへ変更
