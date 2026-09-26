@@ -53,6 +53,7 @@ export function CareGuide({
           label={ui.contents[locale]}
           contactLabel={ui.booking[locale]}
           contactUrl={`${clinicUrl}/contact/`}
+          newTabText={ui.newTab[locale]}
         />
         <div className="care-reading">
           <section
@@ -185,8 +186,14 @@ export function CareGuide({
                   </div>
                 </dl>
                 <div className="care-topic-links">
-                  <a href={topic.source}>
-                    {ui.source[locale]} <span aria-hidden="true">↗</span>
+                  <a
+                    href={topic.source}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {ui.source[locale]}
+                    <span className="visually-hidden">{ui.newTab[locale]}</span>
+                    <span aria-hidden="true"> ↗</span>
                   </a>
                   <a href="#care-explore">{ui.back[locale]} ↑</a>
                 </div>
@@ -270,8 +277,15 @@ export function CareGuide({
             )}
             <p className="care-fee-note">{costExtra[slug][locale]}</p>
             {!isUrology && (
-              <a className="care-inline-link" href={`${clinicUrl}/fee/`}>
-                {ui.feeLink[locale]} ↗
+              <a
+                className="care-inline-link"
+                href={`${clinicUrl}/fee/`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {ui.feeLink[locale]}
+                <span className="visually-hidden">{ui.newTab[locale]}</span>
+                <span aria-hidden="true"> ↗</span>
               </a>
             )}
           </section>
@@ -309,14 +323,20 @@ export function CareGuide({
             <div className="care-contact-panel">
               <h3>{ui.booking[locale]}</h3>
               <p>{ui.bookingNote[locale]}</p>
-              <a className="contact-button" href={`${clinicUrl}/contact/`}>
+              <a
+                className="contact-button"
+                href={`${clinicUrl}/contact/`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {
                   tr(
                     "お問い合わせフォーム",
                     "Clinic contact form",
                     "诊所咨询表",
                   )[locale]
-                }{" "}
+                }
+                <span className="visually-hidden">{ui.newTab[locale]}</span>
                 <span aria-hidden="true">↗</span>
               </a>
               <a className="care-inline-link" href="tel:+81667723456">
@@ -338,7 +358,17 @@ export function CareGuide({
                 .filter((item) => item.field === slug)
                 .map((item) => (
                   <li key={item.url}>
-                    <a href={item.url}>{item.label[locale]} ↗</a>
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {item.label[locale]}
+                      <span className="visually-hidden">
+                        {ui.newTab[locale]}
+                      </span>
+                      <span aria-hidden="true"> ↗</span>
+                    </a>
                   </li>
                 ))}
             </ul>

@@ -489,7 +489,11 @@ export function DialogueArticle({
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          FDA — Focus Area: Regenerative Medicine ↗
+                          FDA — Focus Area: Regenerative Medicine
+                          <span className="visually-hidden">
+                            {content[locale].newTab}
+                          </span>
+                          <span aria-hidden="true"> ↗</span>
                         </a>
                       </li>
                       <li>
@@ -498,7 +502,11 @@ export function DialogueArticle({
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          ISSCR — Patient Resources ↗
+                          ISSCR — Patient Resources
+                          <span className="visually-hidden">
+                            {content[locale].newTab}
+                          </span>
+                          <span aria-hidden="true"> ↗</span>
                         </a>
                       </li>
                       <li>
@@ -507,7 +515,11 @@ export function DialogueArticle({
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          ISSCR — Informed Consent Standard ↗
+                          ISSCR — Informed Consent Standard
+                          <span className="visually-hidden">
+                            {content[locale].newTab}
+                          </span>
+                          <span aria-hidden="true"> ↗</span>
                         </a>
                       </li>
                     </ul>

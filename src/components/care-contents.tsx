@@ -7,11 +7,13 @@ export function CareContents({
   label,
   contactLabel,
   contactUrl,
+  newTabText,
 }: {
   links: string[][];
   label: string;
   contactLabel: string;
   contactUrl: string;
+  newTabText: string;
 }) {
   const [active, setActive] = useState("");
   const list = useRef<HTMLOListElement>(null);
@@ -68,8 +70,15 @@ export function CareContents({
           </li>
         ))}
       </ol>
-      <a className="care-toc-contact" href={contactUrl}>
-        {contactLabel} <span aria-hidden="true">↗</span>
+      <a
+        className="care-toc-contact"
+        href={contactUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {contactLabel}
+        <span className="visually-hidden">{newTabText}</span>
+        <span aria-hidden="true"> ↗</span>
       </a>
     </nav>
   );

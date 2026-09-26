@@ -149,8 +149,12 @@ export function Header({
           role="dialog"
           aria-modal="true"
           aria-label={c.menu}
+          onClick={close}
         >
-          <div className="menu-inner">
+          <div
+            className="menu-inner"
+            onClick={(e) => e.stopPropagation()}
+          >
             <p className="eyebrow">EXPLORE</p>
             {c.nav.slice(0, 3).map((n, i) => (
               <a key={n} href={homeAnchor(anchors[i])} onClick={close}>

@@ -87,7 +87,7 @@ export function FieldPage({
             }
           >
             <a href={localePath(locale)}>{careUi.home[locale]}</a>
-            <span>/</span>
+            <span aria-hidden="true">/</span>
             <span aria-current="page">{c.title}</span>
           </nav>
           <nav
@@ -158,7 +158,8 @@ export function FieldPage({
               rel="noopener noreferrer"
             >
               {c.official}
-              <span className="arrow">↗</span>
+              <span className="visually-hidden">{content[locale].newTab}</span>
+              <span className="arrow" aria-hidden="true">↗</span>
             </a>
           </div>
           <section

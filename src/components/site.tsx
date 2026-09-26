@@ -202,6 +202,7 @@ export function Site({ locale }: { locale: Locale }) {
                 rel="noopener noreferrer"
               >
                 {c.profileLink}
+                <span className="visually-hidden">{c.newTab}</span>
                 <Arrow />
               </a>
             </div>
@@ -373,6 +374,7 @@ export function Site({ locale }: { locale: Locale }) {
                 rel="noopener noreferrer"
               >
                 {c.official}
+                <span className="visually-hidden">{c.newTab}</span>
                 <Arrow />
               </a>
               <a
@@ -381,7 +383,9 @@ export function Site({ locale }: { locale: Locale }) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {c.map} ↗
+                {c.map}
+                <span className="visually-hidden">{c.newTab}</span>
+                <span aria-hidden="true"> ↗</span>
               </a>
             </div>
           </div>
@@ -410,6 +414,7 @@ export function Site({ locale }: { locale: Locale }) {
                 rel="noopener noreferrer"
               >
                 {c.contactButton}
+                <span className="visually-hidden">{c.newTab}</span>
                 <span aria-hidden="true">↗</span>
               </a>
               <p className="external-note">{c.externalNote}</p>
@@ -434,6 +439,7 @@ export function Site({ locale }: { locale: Locale }) {
                 rel="noopener noreferrer"
               >
                 {c.editorialButton}
+                <span className="visually-hidden">{c.newTab}</span>
                 <Arrow />
               </a>
               <p className="external-note">{c.editorialNote}</p>

@@ -65,6 +65,15 @@ a,
 button {
   touch-action: manipulation;
 }
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
 .skip-link {
   position: fixed;
   top: -100px;
@@ -1164,6 +1173,21 @@ a:hover .arrow {
   display: inline-block;
   margin: 15px 0 0 18px;
 }
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  margin-top: 44px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+.footer-nav a {
+  color: #b5b8ad;
+  padding: 4px 0;
+}
+.footer-nav a:hover {
+  color: var(--paper);
+}
 .footer-bottom {
   display: flex;
   justify-content: space-between;
@@ -1171,7 +1195,7 @@ a:hover .arrow {
   gap: 25px;
   border-top: 1px solid #51534b;
   padding-top: 23px;
-  margin-top: 50px;
+  margin-top: 38px;
   font-size: 9px;
   color: #b5b8ad;
 }
@@ -1330,6 +1354,9 @@ a:hover .arrow {
   }
   .header-actions {
     gap: 25px;
+  }
+  .languages a {
+    padding: 12px 4px;
   }
   .menu-button {
     display: flex;
@@ -1531,6 +1558,9 @@ a:hover .arrow {
   .languages {
     gap: 8px;
     font-size: 10px;
+  }
+  .languages a {
+    padding: 12px 4px;
   }
   .menu-button {
     width: 25px;
@@ -2148,6 +2178,35 @@ a:hover .arrow {
   *:after {
     transition: none !important;
     animation: none !important;
+  }
+}
+@media print {
+  .header,
+  .skip-link,
+  .menu-overlay,
+  .scroll,
+  .back-top,
+  .care-toc,
+  .field-breadcrumb,
+  .dialogue-breadcrumb,
+  .care-field-switch,
+  .care-explorer,
+  .dialogue-toc,
+  .footer-nav,
+  .photo-caption,
+  .photo-scroll {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+  }
+  .intro-strip,
+  .footer {
+    background: #fff;
+    color: #242621;
+  }
+  .section {
+    padding: 24px 0;
   }
 }
 .field-main {

@@ -32,6 +32,11 @@ export const careUi = {
     "诊所详细说明（日语）",
   ),
   back: tr("項目一覧へ戻る", "Back to topics", "返回主题列表"),
+  newTab: tr(
+    "（新しいタブで開きます）",
+    " (opens in a new tab)",
+    "（在新标签页中打开）",
+  ),
   process: tr(
     "相談からフォローまで",
     "From consultation to follow-up",
