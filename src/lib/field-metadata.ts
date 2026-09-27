@@ -5,16 +5,17 @@ import { ogImage, pageMetadata, rssLink, siteTitle, siteUrl } from "./metadata";
 
 export function fieldMetadata(locale: Locale, slug: FieldSlug): Metadata {
   const copy = fieldCopy[locale][slug];
+  const base = pageMetadata(locale);
   const url = `${siteUrl}/${locale === "ja" ? "" : `${locale}/`}fields/${slug}/`;
-  const fullTitle = `${copy.title} | ${siteTitle(locale)}`;
+  const fullTitle = `${copy.seoTitle} | ${siteTitle(locale)}`;
   const image = ogImage(
     `/images/og/field-${slug}-${locale}.png`,
     `/images/og/profile-${locale}.png`,
   );
   return {
-    ...pageMetadata(locale),
-    title: copy.title,
-    description: copy.lead,
+    ...base,
+    title: copy.seoTitle,
+    description: copy.seoDescription,
     alternates: {
       canonical: url,
       languages: {
@@ -26,9 +27,9 @@ export function fieldMetadata(locale: Locale, slug: FieldSlug): Metadata {
       types: rssLink(locale),
     },
     openGraph: {
-      ...pageMetadata(locale).openGraph,
+      ...base.openGraph,
       title: fullTitle,
-      description: copy.lead,
+      description: copy.seoDescription,
       url,
       images: [
         {
@@ -36,14 +37,14 @@ export function fieldMetadata(locale: Locale, slug: FieldSlug): Metadata {
           width: 1200,
           height: 630,
           type: "image/png",
-          alt: fullTitle,
+          alt: `${copy.title} | ${siteTitle(locale)}`,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
       title: fullTitle,
-      description: copy.lead,
+      description: copy.seoDescription,
       images: [image],
     },
   };

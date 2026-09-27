@@ -1,9 +1,15 @@
 import { Header } from "./header";
 import { Footer } from "./footer";
-import { DialogueTeaser } from "./dialogues";
+import { DialogueTeaser } from "./dialogue-teaser";
 import { Journey } from "./journey";
+import { JsonLd } from "./json-ld";
+import { Picture } from "./picture";
 import {
-  asset,
+  clinicContactUrl,
+  clinicMapUrl,
+  clinicPhone,
+  clinicPhoneHref,
+  clinicReserveUrl,
   clinicUrl,
   content,
   homeSectionNumbers,
@@ -41,35 +47,21 @@ export function Site({ locale }: { locale: Locale }) {
   const practicePhotos = [
     {
       src: "/images/consultation.webp",
+      width: 767,
+      height: 511,
+      widths: [480],
       alt: {
         ja: content.ja.consultAlt,
         en: content.en.consultAlt,
         zh: content.zh.consultAlt,
       },
     },
-    stockPhotos.laboratory,
-    stockPhotos.stethoscope,
+    { ...stockPhotos.laboratory, widths: [480, 800] },
+    { ...stockPhotos.stethoscope, widths: [480, 800] },
   ];
   return (
     <div className={`site locale-${locale}`} id="top">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(websiteSchema(locale)).replace(/</g, "\\u003c"),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(personSchema(locale)).replace(/</g, "\\u003c"),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(clinicSchema()).replace(/</g, "\\u003c"),
-        }}
-      />
+      <JsonLd nodes={[websiteSchema(), personSchema(locale), clinicSchema()]} />
       <Header locale={locale} />
       <main id="main">
         <section className="hero" aria-labelledby="hero-title">
@@ -78,21 +70,25 @@ export function Site({ locale }: { locale: Locale }) {
               <span className="status-dot" />
               YOSHITOMO CHIHARA — PERSONAL WEBSITE
             </p>
-            <h1 id="hero-title">
+            <p className="hero-display" aria-hidden="true">
               <span>CARE</span>
               <span>BEYOND</span>
               <span className="outline-word">
                 BEAUTY<span className="hero-period">.</span>
               </span>
-            </h1>
+            </p>
             <div className="hero-bottom">
               <div>
-                <h2>
+                <h1 id="hero-title">
+                  <span className="hero-name">{c.name}</span>
+                  <span className="hero-role">{c.role}</span>
+                </h1>
+                <p className="hero-tagline">
                   {c.hero[0]}
                   <br />
                   {c.hero[1]}
-                </h2>
-                <p>{c.intro}</p>
+                </p>
+                <p className="hero-intro">{c.intro}</p>
               </div>
               <a className="round-link" href="#about" aria-label={c.discover}>
                 <span aria-hidden="true">↓</span>
@@ -100,12 +96,14 @@ export function Site({ locale }: { locale: Locale }) {
             </div>
           </div>
           <div className="hero-photo">
-            <img
-              src={asset("/images/portrait.webp")}
+            <Picture
+              src="/images/portrait.webp"
               alt={c.portraitAlt}
-              width="767"
-              height="651"
-              fetchPriority="high"
+              width={767}
+              height={651}
+              widths={[480]}
+              sizes="(max-width: 600px) 100vw, 49vw"
+              priority
             />
             <div className="photo-top">
               <span>
@@ -121,8 +119,8 @@ export function Site({ locale }: { locale: Locale }) {
             </div>
             <div className="photo-caption">
               <span>
-                {c.name}
-                <small>{c.role}</small>
+                {locale === "en" ? content.ja.name : content.en.name}
+                <small>NORRIS BEAUTY CLINIC / OSAKA</small>
               </span>
               <span className="photo-index">01 / PORTRAIT</span>
             </div>
@@ -147,12 +145,13 @@ export function Site({ locale }: { locale: Locale }) {
           <div className="about-grid">
             <div className="about-visual">
               <div className="about-image">
-                <img
-                  src={asset("/images/consultation.webp")}
+                <Picture
+                  src="/images/consultation.webp"
                   alt={c.consultAlt}
-                  width="767"
-                  height="511"
-                  loading="lazy"
+                  width={767}
+                  height={511}
+                  widths={[480]}
+                  sizes="(max-width: 600px) 86vw, 45vw"
                 />
               </div>
               <div className="about-image-caption">
@@ -236,20 +235,19 @@ export function Site({ locale }: { locale: Locale }) {
             ))}
           </div>
           <figure className="everyday-image">
-            <img
-              src={asset(stockPhotos.wellbeing.src)}
+            <Picture
+              src={stockPhotos.wellbeing.src}
               alt={stockPhotos.wellbeing.alt[locale]}
-              width="1600"
-              height="2400"
-              loading="lazy"
+              width={stockPhotos.wellbeing.width}
+              height={stockPhotos.wellbeing.height}
+              widths={[480, 800, 1200]}
+              sizes="(max-width: 600px) 86vw, 84vw"
             />
             <figcaption>
               {stockLabel[locale]} · {stockPhotos.wellbeing.credit}
             </figcaption>
           </figure>
-          <div className="philosophy-type" aria-hidden="true">
-            SCIENCE. CARE. <em>YOU.</em>
-          </div>
+          <div className="philosophy-type" aria-hidden="true" />
         </section>
         <DialogueTeaser locale={locale} />
         <section className="section journey" id="journey">
@@ -300,12 +298,13 @@ export function Site({ locale }: { locale: Locale }) {
                 href={fieldPath(locale, p.path.replace(/\/$/, "") as FieldSlug)}
               >
                 <div className="practice-stock">
-                  <img
-                    src={asset(practicePhotos[i].src)}
+                  <Picture
+                    src={practicePhotos[i].src}
                     alt={practicePhotos[i].alt[locale]}
-                    width="1600"
-                    height="1067"
-                    loading="lazy"
+                    width={practicePhotos[i].width}
+                    height={practicePhotos[i].height}
+                    widths={practicePhotos[i].widths}
+                    sizes="(max-width: 600px) 86vw, 28vw"
                   />
                   {i > 0 && (
                     <span className="stock-image-label">
@@ -327,24 +326,26 @@ export function Site({ locale }: { locale: Locale }) {
         </section>
         <section className="clinic" id="clinic">
           <div className="clinic-images">
-            <img
+            <Picture
               className="clinic-main-image"
-              src={asset("/images/reception.webp")}
+              src="/images/reception.webp"
               alt={c.clinicAlt}
-              width="767"
-              height="511"
-              loading="lazy"
+              width={767}
+              height={511}
+              widths={[480]}
+              sizes="(max-width: 600px) 100vw, 50vw"
             />
             <span className="clinic-photo-caption">
               NORRIS BEAUTY CLINIC / OSAKA
             </span>
-            <img
+            <Picture
               className="clinic-inset"
-              src={asset("/images/lounge.webp")}
+              src="/images/lounge.webp"
               alt={c.roomAlt}
-              width="767"
-              height="511"
-              loading="lazy"
+              width={767}
+              height={511}
+              widths={[480]}
+              sizes="(max-width: 600px) 34vw, 19vw"
             />
           </div>
           <div className="clinic-copy">
@@ -379,7 +380,7 @@ export function Site({ locale }: { locale: Locale }) {
               </a>
               <a
                 className="map-link"
-                href="https://www.google.com/maps/search/?api=1&query=Norris+Beauty+Clinic+Osaka"
+                href={clinicMapUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -409,7 +410,18 @@ export function Site({ locale }: { locale: Locale }) {
               <h3 className="contact-kind">{c.medicalContact}</h3>
               <a
                 className="contact-button"
-                href={`${clinicUrl}/contact/`}
+                href={clinicReserveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {c.reserve}
+                <span className="visually-hidden">{c.newTab}</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+              <p className="external-note">{c.reserveNote}</p>
+              <a
+                className="contact-button contact-button-secondary"
+                href={clinicContactUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -418,8 +430,9 @@ export function Site({ locale }: { locale: Locale }) {
                 <span aria-hidden="true">↗</span>
               </a>
               <p className="external-note">{c.externalNote}</p>
-              <a className="phone" href="tel:+81667723456">
-                <span>{c.phoneLabel}</span>06-6772-3456
+              <a className="phone" href={clinicPhoneHref}>
+                <span>{c.phoneLabel}</span>
+                {clinicPhone}
                 <Arrow />
               </a>
               <p className="contact-hours">{c.hours}</p>
@@ -434,7 +447,7 @@ export function Site({ locale }: { locale: Locale }) {
             <div>
               <a
                 className="text-link"
-                href={`${clinicUrl}/contact/`}
+                href={clinicContactUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >

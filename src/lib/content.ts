@@ -5,6 +5,12 @@ export const asset = (path: string) => `${basePath}${path}`;
 export const localePath = (locale: Locale) =>
   `${basePath}/${locale === "ja" ? "" : `${locale}/`}`;
 export const clinicUrl = "https://www.norris-beauty-clinic.com";
+export const clinicContactUrl = `${clinicUrl}/contact/`;
+export const clinicReserveUrl = `${clinicUrl}/reserve/`;
+export const clinicPhone = "06-6772-3456";
+export const clinicPhoneHref = "tel:+81667723456";
+export const clinicMapUrl =
+  "https://www.google.com/maps/search/?api=1&query=Norris+Beauty+Clinic+Osaka";
 export const homeSectionNumbers = {
   about: "01",
   philosophy: "02",
@@ -153,8 +159,14 @@ export const content = {
     contactTitle: ["まずは、お話しする", "ことから。"],
     contactBody: "診療のご相談・ご予約は、ノリス美容クリニックへ。",
     contactButton: "クリニックへお問い合わせ",
+    reserve: "WEB予約",
+    reserveLong: "WEB予約（クリニック公式）",
+    reserveNote: "クリニックのWEB予約ページ（日本語）へ移動します。",
     phoneLabel: "お電話でのご相談",
     externalNote: "クリニック公式サイト（日本語）へ移動します。",
+    footerClinicLabel: "診療・ご予約",
+    footerNote:
+      "本サイトは千原良友の個人サイトです。診療のご相談・ご予約はノリス美容クリニックで承ります。",
     backTop: "ページの先頭へ",
     newTab: "（新しいタブで開きます）",
     portraitAlt: "ノリス美容クリニック院長 千原良友",
@@ -329,8 +341,14 @@ export const content = {
     contactBody:
       "For appointments and medical inquiries, please contact Norris Beauty Clinic.",
     contactButton: "Contact the clinic",
+    reserve: "Book online",
+    reserveLong: "Book online (official clinic page)",
+    reserveNote: "Opens the clinic’s online booking page in Japanese.",
     phoneLabel: "Call the clinic",
     externalNote: "Opens the clinic’s official website in Japanese.",
+    footerClinicLabel: "Appointments & inquiries",
+    footerNote:
+      "This is the personal website of Yoshitomo Chihara. Medical inquiries and appointments are handled by Norris Beauty Clinic.",
     backTop: "Back to top",
     newTab: " (opens in a new tab)",
     portraitAlt: "Dr. Yoshitomo Chihara, director of Norris Beauty Clinic",
@@ -456,8 +474,14 @@ export const content = {
     contactTitle: ["从一次交流，", "开始了解。"],
     contactBody: "有关诊疗咨询与预约，请联系诺里斯美容诊所。",
     contactButton: "联系诊所",
+    reserve: "在线预约",
+    reserveLong: "在线预约（诊所官方页面）",
+    reserveNote: "将前往诊所的在线预约页面（日语）。",
     phoneLabel: "电话咨询",
     externalNote: "将前往诊所的日语官方网站。",
+    footerClinicLabel: "诊疗与预约",
+    footerNote:
+      "本网站为千原良友的个人网站。诊疗咨询与预约由诺里斯美容诊所受理。",
     backTop: "返回顶部",
     newTab: "（在新标签页中打开）",
     portraitAlt: "诺里斯美容诊所院长 千原良友",

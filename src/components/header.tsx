@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import {
+  clinicReserveUrl,
   content,
   homeSectionNumbers,
   localePath,
@@ -88,12 +89,8 @@ export function Header({
         {c.skip}
       </a>
       <header className={`header ${scrolled ? "is-scrolled" : ""}`}>
-        <a
-          className="wordmark"
-          href={localePath(locale)}
-          aria-label="Yoshitomo Chihara"
-        >
-          <span className="monogram">
+        <a className="wordmark" href={localePath(locale)}>
+          <span className="monogram" aria-hidden="true">
             yc<span>·</span>
           </span>
           <span>
@@ -128,6 +125,16 @@ export function Header({
         </nav>
         <div className="header-actions">
           {languages}
+          <a
+            className="header-reserve"
+            href={clinicReserveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {c.reserve}
+            <span className="visually-hidden">{c.newTab}</span>
+            <span aria-hidden="true"> ↗</span>
+          </a>
           <button
             ref={button}
             className={`menu-button ${open ? "is-open" : ""}`}
@@ -151,10 +158,7 @@ export function Header({
           aria-label={c.menu}
           onClick={close}
         >
-          <div
-            className="menu-inner"
-            onClick={(e) => e.stopPropagation()}
-          >
+          <div className="menu-inner" onClick={(e) => e.stopPropagation()}>
             <p className="eyebrow">EXPLORE</p>
             {c.nav.slice(0, 3).map((n, i) => (
               <a key={n} href={homeAnchor(anchors[i])} onClick={close}>
@@ -199,6 +203,16 @@ export function Header({
               <span>07</span>
               {dialogueCopy[locale].label}
               <span>↗</span>
+            </a>
+            <a
+              className="menu-reserve contact-button"
+              href={clinicReserveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {c.reserveLong}
+              <span className="visually-hidden">{c.newTab}</span>
+              <span aria-hidden="true">↗</span>
             </a>
             {languages}
             <p className="menu-footer">YOSHITOMO CHIHARA / OSAKA, JAPAN</p>

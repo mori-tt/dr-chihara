@@ -1,17 +1,27 @@
 import type { Metadata } from "next";
 import { existsSync } from "node:fs";
 import path from "node:path";
-import { content, type Locale, asset } from "./content";
+import {
+  content,
+  type Locale,
+  asset,
+  clinicReserveUrl,
+  clinicUrl,
+} from "./content";
 import { fieldCopy, type FieldSlug } from "./fields";
 import { careCheckedAt, careTopics } from "./care-guide";
 import { careFaq } from "./care-support";
 import { dialogueCopy, type Dialogue } from "./dialogues";
 export const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://mori-tt.github.io/dr-chihara";
+const personId = `${siteUrl}/#person`;
+const clinicId = `${clinicUrl}/#clinic`;
+const localeUrl = (locale: Locale, suffix = "") =>
+  `${siteUrl}/${locale === "ja" ? "" : `${locale}/`}${suffix}`;
 
 /** Keep this in sync with the most recent editorial change when publishing. */
 export const siteLastModified =
-  process.env.NEXT_PUBLIC_SITE_LAST_MODIFIED || "2026-09-21";
+  process.env.NEXT_PUBLIC_SITE_LAST_MODIFIED || "2026-09-27";
 
 /**
  * Set NEXT_PUBLIC_NOINDEX=1 for staging/preview builds (e.g. GitHub Pages)
@@ -23,8 +33,7 @@ export const siteNoindex = process.env.NEXT_PUBLIC_NOINDEX === "1";
 export const siteTitle = (locale: Locale) =>
   locale === "ja" ? "千原良友" : "Yoshitomo Chihara";
 
-export const feedUrl = (locale: Locale) =>
-  `${siteUrl}/${locale === "ja" ? "" : `${locale}/`}feed.xml`;
+export const feedUrl = (locale: Locale) => localeUrl(locale, "feed.xml");
 
 export const rssLink = (locale: Locale) => ({
   "application/rss+xml": [
@@ -55,7 +64,7 @@ export const ogImage = (preferred: string, fallback: string) =>
 
 export function pageMetadata(locale: Locale): Metadata {
   const copy = content[locale];
-  const url = `${siteUrl}/${locale === "ja" ? "" : `${locale}/`}`;
+  const url = localeUrl(locale);
   const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
   const bingVerification = process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION;
   return {
@@ -130,7 +139,7 @@ export function pageMetadata(locale: Locale): Metadata {
     },
   };
 }
-export function websiteSchema(locale: Locale) {
+export function websiteSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -139,56 +148,78 @@ export function websiteSchema(locale: Locale) {
     alternateName: "千原良友",
     url: siteUrl,
     inLanguage: ["ja", "en", "zh-Hans"],
-    publisher: { "@id": `${siteUrl}/#person` },
-    about: { "@id": `${siteUrl}/#person` },
+    publisher: { "@id": personId },
+    about: { "@id": personId },
   };
 }
+
+const clinicAddress = {
+  "@type": "PostalAddress",
+  postalCode: "543-0031",
+  addressRegion: "大阪府",
+  addressLocality: "大阪市天王寺区",
+  streetAddress: "石ケ辻町18−21 上六ときビル4階",
+  addressCountry: "JP",
+};
+
 export function personSchema(locale: Locale) {
-  const language = localeLanguage(locale);
-  const profileUrl = `${siteUrl}/${locale === "ja" ? "" : `${locale}/`}`;
+  const profileUrl = localeUrl(locale);
+  const specialties =
+    locale === "ja"
+      ? ["泌尿器科", "再生医療", "美容医療", "分子病理学"]
+      : locale === "zh"
+        ? ["泌尿科", "再生医学", "美容医学", "分子病理学"]
+        : [
+            "urology",
+            "regenerative medicine",
+            "aesthetic medicine",
+            "molecular pathology",
+          ];
   return {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
     "@id": `${profileUrl}#profile`,
-    inLanguage: language,
+    url: profileUrl,
+    inLanguage: localeLanguage(locale),
     dateModified: siteLastModified,
+    isPartOf: { "@id": `${siteUrl}/#website` },
     mainEntity: {
-      "@id": `${siteUrl}/#person`,
+      "@id": personId,
       "@type": "Person",
       name: "千原良友",
-      alternateName: "Yoshitomo Chihara",
+      alternateName: ["Yoshitomo Chihara", "千原 良友"],
+      honorificPrefix: "Dr.",
+      givenName: locale === "en" ? "Yoshitomo" : "良友",
+      familyName: locale === "en" ? "Chihara" : "千原",
       jobTitle: content[locale].role,
+      hasOccupation: {
+        "@type": "Occupation",
+        name: locale === "ja" ? "医師" : locale === "zh" ? "医师" : "Physician",
+      },
       url: profileUrl,
       image: [
         `${siteUrl}/images/portrait.webp`,
         `${siteUrl}/images/og/profile-${locale}.png`,
       ],
       description: content[locale].description,
-      knowsAbout:
-        locale === "ja"
-          ? ["泌尿器科", "再生医療", "美容医療", "分子病理学"]
-          : locale === "zh"
-            ? ["泌尿科", "再生医学", "美容医学", "分子病理学"]
-            : [
-                "urology",
-                "regenerative medicine",
-                "aesthetic medicine",
-                "molecular pathology",
-              ],
+      knowsAbout: specialties,
       alumniOf: {
         "@type": "CollegeOrUniversity",
         name: "奈良県立医科大学",
+        alternateName: "Nara Medical University",
       },
       hasCredential: content[locale].credentials.map((name) => ({
         "@type": "EducationalOccupationalCredential",
         name,
       })),
-      worksFor: {
-        "@type": "MedicalClinic",
-        name: "ノリス美容クリニック",
-        url: "https://www.norris-beauty-clinic.com/",
+      memberOf: {
+        "@type": "Organization",
+        name: "日本再生医療学会",
+        alternateName: "Japanese Society for Regenerative Medicine",
       },
-      sameAs: ["https://www.norris-beauty-clinic.com/doctor/"],
+      worksFor: { "@id": clinicId },
+      workLocation: { "@type": "Place", address: clinicAddress },
+      sameAs: [`${clinicUrl}/doctor/`],
     },
   };
 }
@@ -197,35 +228,79 @@ export function clinicSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "MedicalClinic",
-    "@id": "https://www.norris-beauty-clinic.com/#clinic",
+    "@id": clinicId,
     name: "ノリス美容クリニック",
     alternateName: "Norris Beauty Clinic",
-    url: "https://www.norris-beauty-clinic.com/",
+    url: `${clinicUrl}/`,
     telephone: "+81-6-6772-3456",
     image: `${siteUrl}/images/reception.webp`,
-    address: {
-      "@type": "PostalAddress",
-      postalCode: "543-0031",
-      addressRegion: "大阪府",
-      addressLocality: "大阪市天王寺区",
-      streetAddress: "石ケ辻町18−21 上六ときビル4階",
-      addressCountry: "JP",
-    },
+    address: clinicAddress,
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
       opens: "10:30",
       closes: "19:00",
     },
-    medicalSpecialty: ["PlasticSurgery", "Urologic"],
+    medicalSpecialty: [
+      "https://schema.org/Dermatology",
+      "https://schema.org/PlasticSurgery",
+      "https://schema.org/Urologic",
+    ],
+    // Coordinates from the clinic's own map embed (norris-beauty-clinic.com/access/).
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 34.65,
-      longitude: 135.5167,
+      latitude: 34.664259,
+      longitude: 135.520492,
     },
     hasMap:
       "https://www.google.com/maps/search/?api=1&query=Norris+Beauty+Clinic+Osaka",
-    employee: { "@id": `${siteUrl}/#person` },
+    sameAs: ["https://www.instagram.com/norris_beautyclinic/"],
+    potentialAction: {
+      "@type": "ReserveAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: clinicReserveUrl,
+        inLanguage: "ja",
+        actionPlatform: [
+          "https://schema.org/DesktopWebPlatform",
+          "https://schema.org/MobileWebPlatform",
+        ],
+      },
+    },
+    founder: { "@id": personId },
+    employee: { "@id": personId },
+  };
+}
+
+export function articleSchema(locale: Locale, article: Dialogue) {
+  const t = article.translations[locale];
+  const url = localeUrl(locale, `dialogues/${article.slug}/`);
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": `${url}#article`,
+    headline: t.title,
+    description: t.introduction,
+    datePublished: article.publishedAt,
+    dateModified: article.updatedAt ?? article.publishedAt,
+    inLanguage: localeLanguage(locale),
+    image: `${siteUrl}${article.cover}`,
+    author: { "@id": personId, "@type": "Person", name: "千原良友" },
+    publisher: {
+      "@type": "Person",
+      "@id": personId,
+      name: "Yoshitomo Chihara",
+      url: siteUrl,
+    },
+    articleSection: t.category,
+    mainEntityOfPage: url,
+    isPartOf: { "@id": `${siteUrl}/#website` },
+    isAccessibleForFree: true,
+    wordCount:
+      t.introduction.length +
+      t.sections
+        .flatMap((s) => s.exchanges.flatMap((e) => [e.question, ...e.answer]))
+        .join("").length,
   };
 }
 
@@ -241,9 +316,7 @@ export function breadcrumbSchema(
       position: index + 1,
       name: item.name,
       ...(item.path !== undefined
-        ? {
-            item: `${siteUrl}/${locale === "ja" ? "" : `${locale}/`}${item.path}`,
-          }
+        ? { item: localeUrl(locale, item.path) }
         : {}),
     })),
   };
@@ -251,21 +324,24 @@ export function breadcrumbSchema(
 
 export function medicalWebPageSchema(locale: Locale, slug: FieldSlug) {
   const c = fieldCopy[locale][slug];
-  const url = `${siteUrl}/${locale === "ja" ? "" : `${locale}/`}fields/${slug}/`;
+  const url = localeUrl(locale, `fields/${slug}/`);
   return {
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
     "@id": `${url}#webpage`,
     url,
-    name: `${c.title} | ${siteTitle(locale)}`,
-    description: c.lead,
+    name: `${c.seoTitle} | ${siteTitle(locale)}`,
+    headline: c.title,
+    description: c.seoDescription,
     inLanguage: localeLanguage(locale),
     lastReviewed: careCheckedAt,
+    dateModified: careCheckedAt,
+    author: { "@id": personId },
     reviewedBy: {
       "@type": "Person",
-      "@id": `${siteUrl}/#person`,
+      "@id": personId,
       name: "千原良友 / Yoshitomo Chihara",
-      url: `${siteUrl}/${locale === "ja" ? "" : `${locale}/`}`,
+      url: localeUrl(locale),
     },
     about: { "@type": "MedicalEntity", name: c.title },
     medicalAudience: { "@type": "MedicalAudience", audienceType: "Patient" },
@@ -291,7 +367,7 @@ export function medicalWebPageSchema(locale: Locale, slug: FieldSlug) {
 }
 
 export function faqSchema(locale: Locale, slug: FieldSlug) {
-  const url = `${siteUrl}/${locale === "ja" ? "" : `${locale}/`}fields/${slug}/`;
+  const url = localeUrl(locale, `fields/${slug}/`);
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -308,7 +384,7 @@ export function faqSchema(locale: Locale, slug: FieldSlug) {
 
 export function collectionSchema(locale: Locale, articles: Dialogue[]) {
   const copy = dialogueCopy[locale];
-  const url = `${siteUrl}/${locale === "ja" ? "" : `${locale}/`}dialogues/`;
+  const url = localeUrl(locale, "dialogues/");
   return {
     "@context": "https://schema.org",
     "@type": "CollectionPage",

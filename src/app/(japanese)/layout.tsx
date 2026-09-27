@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { content } from "@/lib/content";
 import "../globals.css";
-import "../dialogues.css";
-import "../care.css";
 export const metadata: Metadata = {
   title: { default: content.ja.title, template: "%s | 千原良友" },
 };

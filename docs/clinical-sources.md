@@ -2,7 +2,7 @@
 
 診療ページは、ノリス美容クリニックが公開している診療案内を参照し、個人サイト向けに要点を整理・言い換えています。料金・提供体制・適応・リスクは変更される可能性があるため、サイト上では公式ページへのリンクと「一般情報」の注意書きを併記しています。
 
-参照日：2026-09-22
+参照日：2026-09-27（料金表・診療時間・住所・電話・WEB予約URLを公式サイトと再照合）
 
 日本語・英語・中国語の3言語で、悩み別の入口、治療方法、通院・回復の目安、主な注意点、受診の流れ、料金、FAQ、受診前の準備を掲載しています。内容は折りたたまず、追従目次から移動できる構成です。
 
@@ -31,6 +31,22 @@
 ## 泌尿器科
 
 - https://www.norris-beauty-clinic.com/urology/
+
+## 個人サイトで詳述せずリンクのみ掲載しているメニュー
+
+美容医療ページ末尾の「公式サイトのその他のメニュー」。名称と公式URLのみを載せ、内容・適応・料金は公式ページと診察での確認を案内している。
+
+- https://www.norris-beauty-clinic.com/hormone/ （ホルモン注射）
+- https://www.norris-beauty-clinic.com/beauty/ （美容点滴）
+- https://www.norris-beauty-clinic.com/mole/ （いぼ・ほくろ・タトゥー除去）
+- https://www.norris-beauty-clinic.com/mens_menu/ （メンズメニュー）
+
+## 予約・連絡先
+
+- WEB予約: https://www.norris-beauty-clinic.com/reserve/
+- お問い合わせフォーム: https://www.norris-beauty-clinic.com/contact/
+- 電話: 06-6772-3456 / 診療時間 水〜日 10:30–19:00（月・火休診）
+- 座標: 公式アクセスページの Google Maps 埋め込み（34.664259, 135.520492）を `MedicalClinic.geo` に使用
 
 ## 料金と補足の一次資料
 

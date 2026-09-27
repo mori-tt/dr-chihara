@@ -5,6 +5,8 @@ export const sampleDialogue: Dialogue = {
   slug: "sample",
   status: "template",
   cover: "/images/stock/laboratory.webp",
+  coverWidth: 1600,
+  coverHeight: 1068,
   translations: {
     ja: {
       title: "再生医療の未来を、期待と根拠のあいだで考える。",

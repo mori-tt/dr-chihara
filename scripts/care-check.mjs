@@ -89,13 +89,18 @@ try {
             200,
           );
         }
-        const schema = await page
-          .locator('script[type="application/ld+json"]')
-          .first()
-          .textContent();
-        assert.ok(
-          JSON.parse(schema).itemListElement[0].item.endsWith(`/${prefix}`),
-        );
+        // One @graph per page; the breadcrumb must point back to the same-language home.
+        const graph = JSON.parse(
+          await page
+            .locator('script[type="application/ld+json"]')
+            .first()
+            .textContent(),
+        )["@graph"];
+        const breadcrumb = graph.find((n) => n["@type"] === "BreadcrumbList");
+        assert.ok(breadcrumb.itemListElement[0].item.endsWith(`/${prefix}`));
+        const webpage = graph.find((n) => n["@type"] === "MedicalWebPage");
+        assert.equal(webpage.mainEntity.itemListElement.length, counts[slug]);
+        assert.ok(graph.some((n) => n["@type"] === "FAQPage"));
         if (locale === "ja" && [1440, 390].includes(width)) {
           await page.locator('.care-toc a[href="#care-explore"]').click();
           await expect(

@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { content, type Locale } from "@/lib/content";
 import "../globals.css";
-import "../dialogues.css";
-import "../care.css";
 export async function generateMetadata({
   params,
 }: {

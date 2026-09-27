@@ -1,8 +1,16 @@
+import "@/app/care.css";
 import { Header } from "./header";
 import { Footer } from "./footer";
-import { asset, content, localePath, type Locale } from "@/lib/content";
+import { JsonLd } from "./json-ld";
+import { Picture } from "./picture";
+import {
+  clinicReserveUrl,
+  content,
+  localePath,
+  type Locale,
+} from "@/lib/content";
 import { fieldCopy, fieldPath, fieldSlugs, type FieldSlug } from "@/lib/fields";
-import { stockPhotos, stockLabel } from "@/lib/stock-photos";
+import { stockPhotos, stockLabel, variantWidths } from "@/lib/stock-photos";
 import {
   breadcrumbSchema,
   faqSchema,
@@ -10,6 +18,26 @@ import {
 } from "@/lib/metadata";
 import { CareGuide } from "./care-guide";
 import { careUi } from "@/lib/care-support";
+
+const fieldPhoto = (locale: Locale, slug: FieldSlug) => {
+  if (slug === "rejuvenation")
+    return {
+      src: "/images/consultation.webp",
+      width: 767,
+      height: 511,
+      widths: [480],
+      alt: content[locale].consultAlt,
+      caption: "Norris Beauty Clinic / Osaka",
+    };
+  const photo =
+    slug === "regenerate" ? stockPhotos.laboratory : stockPhotos.stethoscope;
+  return {
+    ...photo,
+    widths: variantWidths(photo.width),
+    alt: photo.alt[locale],
+    caption: `${stockLabel[locale]} · ${photo.credit}`,
+  };
+};
 
 export function FieldPage({
   locale,
@@ -19,59 +47,22 @@ export function FieldPage({
   slug: FieldSlug;
 }) {
   const c = fieldCopy[locale][slug];
+  const ui = careUi;
   const relatedFields = fieldSlugs.filter(
     (relatedSlug): relatedSlug is FieldSlug => relatedSlug !== slug,
   );
-  const photo =
-    slug === "rejuvenation"
-      ? "/images/consultation.webp"
-      : slug === "regenerate"
-        ? stockPhotos.laboratory.src
-        : stockPhotos.stethoscope.src;
-  const alt =
-    slug === "rejuvenation"
-      ? content[locale].consultAlt
-      : stockPhotos[slug === "regenerate" ? "laboratory" : "stethoscope"].alt[
-          locale
-        ];
+  const photo = fieldPhoto(locale, slug);
   return (
     <div className={`site locale-${locale} field-site`} id="top">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            breadcrumbSchema(locale, [
-              {
-                name:
-                  locale === "ja"
-                    ? "ホーム"
-                    : locale === "zh"
-                      ? "首页"
-                      : "Home",
-                path: "",
-              },
-              { name: c.title },
-            ]),
-          ).replace(/</g, "\\u003c"),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(medicalWebPageSchema(locale, slug)).replace(
-            /</g,
-            "\\u003c",
-          ),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqSchema(locale, slug)).replace(
-            /</g,
-            "\\u003c",
-          ),
-        }}
+      <JsonLd
+        nodes={[
+          breadcrumbSchema(locale, [
+            { name: ui.home[locale], path: "" },
+            { name: c.title },
+          ]),
+          medicalWebPageSchema(locale, slug),
+          faqSchema(locale, slug),
+        ]}
       />
       <Header locale={locale} section={`fields/${slug}/`} />
       <main id="main" className="field-main">
@@ -86,14 +77,11 @@ export function FieldPage({
                   : "Breadcrumb"
             }
           >
-            <a href={localePath(locale)}>{careUi.home[locale]}</a>
+            <a href={localePath(locale)}>{ui.home[locale]}</a>
             <span aria-hidden="true">/</span>
             <span aria-current="page">{c.title}</span>
           </nav>
-          <nav
-            className="care-field-switch"
-            aria-label={careUi.related[locale]}
-          >
+          <nav className="care-field-switch" aria-label={ui.related[locale]}>
             {fieldSlugs.map((field) => (
               <a
                 key={field}
@@ -113,22 +101,47 @@ export function FieldPage({
             <p className="care-hero-intro">{c.sections[0].body}</p>
           </header>
           <figure className="field-hero">
-            <img
-              src={asset(photo)}
-              alt={alt}
-              width="1600"
-              height="1067"
-              fetchPriority="high"
+            <Picture
+              src={photo.src}
+              alt={photo.alt}
+              width={photo.width}
+              height={photo.height}
+              widths={photo.widths}
+              sizes="(max-width: 700px) 86vw, (max-width: 1400px) 88vw, 1160px"
+              priority
             />
-            <figcaption>
-              {slug === "rejuvenation"
-                ? "Norris Beauty Clinic / Osaka"
-                : slug === "regenerate"
-                  ? `${stockLabel[locale]} · ${stockPhotos.laboratory.credit}`
-                  : `${stockLabel[locale]} · ${stockPhotos.stethoscope.credit}`}
-            </figcaption>
+            <figcaption>{photo.caption}</figcaption>
           </figure>
           <CareGuide locale={locale} slug={slug} />
+          {c.moreOfficial && (
+            <section className="field-more" aria-labelledby="field-more-title">
+              <h2 id="field-more-title">
+                {locale === "ja"
+                  ? "公式サイトのその他のメニュー"
+                  : locale === "zh"
+                    ? "官方网站的其他项目"
+                    : "Other menus on the official site"}
+              </h2>
+              <p>{c.moreOfficial.intro}</p>
+              <ul>
+                {c.moreOfficial.links.map((link) => (
+                  <li key={link.url}>
+                    <a
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {link.label}
+                      <span className="visually-hidden">
+                        {content[locale].newTab}
+                      </span>
+                      <span aria-hidden="true"> ↗</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
           <aside className="field-note">
             <strong>
               {locale === "ja"
@@ -142,14 +155,13 @@ export function FieldPage({
           <div className="field-actions">
             <a
               className="contact-button"
-              href={`${localePath(locale)}#contact`}
+              href={clinicReserveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              {locale === "ja"
-                ? "相談について"
-                : locale === "zh"
-                  ? "咨询与预约"
-                  : "Discuss your concerns"}
-              <span>↗</span>
+              {content[locale].reserve}
+              <span className="visually-hidden">{content[locale].newTab}</span>
+              <span aria-hidden="true">↗</span>
             </a>
             <a
               className="text-link"
@@ -159,7 +171,9 @@ export function FieldPage({
             >
               {c.official}
               <span className="visually-hidden">{content[locale].newTab}</span>
-              <span className="arrow" aria-hidden="true">↗</span>
+              <span className="arrow" aria-hidden="true">
+                ↗
+              </span>
             </a>
           </div>
           <section
@@ -168,19 +182,9 @@ export function FieldPage({
           >
             <div>
               <p className="eyebrow">
-                {locale === "ja"
-                  ? "RELATED CARE"
-                  : locale === "zh"
-                    ? "相关诊疗"
-                    : "RELATED CARE"}
+                {locale === "zh" ? "相关诊疗" : "RELATED CARE"}
               </p>
-              <h2 id="field-related-title">
-                {locale === "ja"
-                  ? "ほかの診療を見る"
-                  : locale === "zh"
-                    ? "了解其他诊疗领域"
-                    : "Explore other areas of care"}
-              </h2>
+              <h2 id="field-related-title">{ui.related[locale]}</h2>
             </div>
             <div className="field-related-links">
               {relatedFields.map((relatedSlug) => {

@@ -32,6 +32,40 @@ for (const width of (process.env.TEST_WIDTHS || "1440,768,390,320")
     assert.equal(response.status(), 200);
     assert.equal(await page.locator("html").getAttribute("lang"), lang);
     assert.equal(await page.locator("h1").count(), 1);
+    // The <h1> is the doctor's name in the page language; the display type is decorative.
+    assert.match(
+      await page.locator("h1").innerText(),
+      locale === "en" ? /Yoshitomo Chihara/ : /千原\s*良友/,
+    );
+    assert.equal(
+      await page.locator('.hero-display[aria-hidden="true"]').count(),
+      1,
+    );
+    for (const selector of [
+      ".header-reserve",
+      ".contact-actions .contact-button",
+      ".footer-clinic-links a",
+    ])
+      assert.ok(
+        (
+          await page
+            .locator(selector)
+            .evaluateAll((links) => links.map((a) => a.getAttribute("href")))
+        ).includes("https://www.norris-beauty-clinic.com/reserve/"),
+        `Reserve link missing in ${selector}`,
+      );
+    const graph = JSON.parse(
+      await page.locator('script[type="application/ld+json"]').textContent(),
+    )["@graph"];
+    const person = graph.find((n) => n["@type"] === "ProfilePage").mainEntity;
+    assert.equal(
+      person.worksFor["@id"],
+      "https://www.norris-beauty-clinic.com/#clinic",
+    );
+    assert.equal(
+      graph.find((n) => n["@type"] === "MedicalClinic").geo.latitude,
+      34.664259,
+    );
     assert.equal(await page.locator(".credential-group").count(), 3);
     assert.equal(await page.locator(".credentials li").count(), 5);
     assert.equal(await page.locator("#editorial-contact").count(), 1);

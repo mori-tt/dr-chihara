@@ -1,4 +1,12 @@
-import { clinicUrl, type Locale } from "@/lib/content";
+import {
+  clinicContactUrl,
+  clinicPhone,
+  clinicPhoneHref,
+  clinicReserveUrl,
+  clinicUrl,
+  content,
+  type Locale,
+} from "@/lib/content";
 import { careCheckedAt, careTopics, tr } from "@/lib/care-guide";
 import {
   careUi as ui,
@@ -51,8 +59,8 @@ export function CareGuide({
         <CareContents
           links={links}
           label={ui.contents[locale]}
-          contactLabel={ui.booking[locale]}
-          contactUrl={`${clinicUrl}/contact/`}
+          contactLabel={content[locale].reserve}
+          contactUrl={clinicReserveUrl}
           newTabText={ui.newTab[locale]}
         />
         <div className="care-reading">
@@ -323,24 +331,36 @@ export function CareGuide({
             <div className="care-contact-panel">
               <h3>{ui.booking[locale]}</h3>
               <p>{ui.bookingNote[locale]}</p>
-              <a
-                className="contact-button"
-                href={`${clinicUrl}/contact/`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {
-                  tr(
-                    "お問い合わせフォーム",
-                    "Clinic contact form",
-                    "诊所咨询表",
-                  )[locale]
-                }
-                <span className="visually-hidden">{ui.newTab[locale]}</span>
-                <span aria-hidden="true">↗</span>
-              </a>
-              <a className="care-inline-link" href="tel:+81667723456">
-                06-6772-3456
+              <div className="care-contact-actions">
+                <a
+                  className="contact-button"
+                  href={clinicReserveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {content[locale].reserve}
+                  <span className="visually-hidden">{ui.newTab[locale]}</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+                <a
+                  className="contact-button contact-button-secondary"
+                  href={clinicContactUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {
+                    tr(
+                      "お問い合わせフォーム",
+                      "Clinic contact form",
+                      "诊所咨询表",
+                    )[locale]
+                  }
+                  <span className="visually-hidden">{ui.newTab[locale]}</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+              <a className="care-inline-link" href={clinicPhoneHref}>
+                {content[locale].phoneLabel}: {clinicPhone}
               </a>
             </div>
           </section>

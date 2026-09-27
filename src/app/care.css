@@ -1,3 +1,231 @@
+/* Field (care) pages: base layout. Loaded only on /fields/* via field-page.tsx. */
+.field-main {
+  border-top: 1px solid var(--line);
+}
+.field-wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 42px 6% 100px;
+}
+.field-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 85px;
+}
+.field-breadcrumb a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.field-breadcrumb a:hover {
+  color: var(--accent);
+}
+.field-heading {
+  max-width: 780px;
+}
+.field-heading h1 {
+  font-family: var(--serif);
+  font-size: clamp(58px, 9vw, 132px);
+  line-height: 0.95;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  margin: 26px 0 30px;
+}
+.field-lead {
+  max-width: 680px;
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.4vw, 34px);
+  line-height: 1.55;
+}
+.field-hero {
+  margin: 78px 0 85px;
+}
+.field-hero img {
+  width: 100%;
+  height: 430px;
+  object-fit: cover;
+  filter: saturate(0.7);
+}
+.field-hero figcaption {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 12px;
+}
+.field-more {
+  border-top: 1px solid var(--line);
+  padding: 30px 0 10px;
+  margin-bottom: 40px;
+}
+.field-more h2 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.field-more p {
+  color: var(--muted);
+  line-height: 1.9;
+  margin-bottom: 14px;
+}
+.field-more ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+.field-more a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  font-size: 14px;
+}
+.field-more a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.field-note {
+  border-left: 2px solid var(--accent);
+  background: #f0eee8;
+  padding: 28px 32px;
+  margin: 5px 0 50px;
+}
+.field-note strong {
+  color: var(--accent);
+  font-size: 14px;
+}
+.field-note p {
+  color: var(--muted);
+  line-height: 1.9;
+  margin-top: 10px;
+  font-size: 14px;
+}
+.field-actions {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  border-top: 1px solid var(--line);
+  padding-top: 30px;
+}
+.field-actions .contact-button,
+.field-actions .text-link {
+  flex: 1;
+}
+.field-related {
+  border-top: 1px solid var(--line);
+  margin-top: 78px;
+  padding-top: 30px;
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 8%;
+  align-items: start;
+}
+.field-related h2 {
+  font-family: var(--serif);
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-top: 14px;
+}
+.field-related-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.field-related-link {
+  border: 1px solid var(--line);
+  min-height: 145px;
+  padding: 20px 20px 17px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--ink);
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+}
+.field-related-link:hover,
+.field-related-link:focus-visible {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+.field-related-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+}
+.field-related-link:hover .field-related-eyebrow,
+.field-related-link:focus-visible .field-related-eyebrow {
+  color: inherit;
+  opacity: 0.7;
+}
+.field-related-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1.25;
+}
+.field-related-link .arrow {
+  align-self: flex-end;
+  font-size: 20px;
+}
+.field-back {
+  display: inline-block;
+  margin-top: 65px;
+}
+@media (max-width: 700px) {
+  .field-wrap {
+    padding: 30px 7% 70px;
+  }
+  .field-breadcrumb {
+    margin-bottom: 54px;
+  }
+  .field-heading h1 {
+    font-size: 58px;
+    margin: 20px 0 24px;
+  }
+  .field-lead {
+    font-size: 22px;
+  }
+  .field-hero {
+    margin: 48px 0 55px;
+  }
+  .field-hero img {
+    height: 240px;
+  }
+  .field-actions {
+    display: block;
+  }
+  .field-actions .contact-button {
+    margin-bottom: 25px;
+  }
+  .field-actions .text-link {
+    display: flex;
+  }
+  .field-related {
+    display: block;
+    margin-top: 58px;
+  }
+  .field-related h2 {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+  .field-related-links {
+    grid-template-columns: 1fr;
+  }
+  .field-related-link {
+    min-height: 120px;
+  }
+}
 .field-site .field-wrap {
   max-width: 1320px;
 }
@@ -53,7 +281,7 @@
 }
 .care-toc {
   position: sticky;
-  top: 118px;
+  top: calc(var(--header-h-scrolled) + 32px);
   padding: 24px 0;
   border-top: 2px solid var(--accent);
 }
@@ -94,9 +322,16 @@
 .care-toc-contact {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 12px;
-  padding: 22px 0 0;
-  color: var(--accent);
+  margin-top: 22px;
+  padding: 14px 16px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 500;
+}
+.care-toc-contact:hover {
+  background: var(--accent-dark);
 }
 .care-reading {
   min-width: 0;
@@ -106,7 +341,7 @@
 }
 .care-section[id],
 .care-topic[id] {
-  scroll-margin-top: 120px;
+  scroll-margin-top: calc(var(--header-h-scrolled) + 40px);
 }
 .care-section h2,
 .care-comparison h2 {
@@ -165,7 +400,7 @@
   font-weight: 500;
 }
 .care-explorer-name {
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.6;
   color: var(--muted);
   padding-right: 22px;
@@ -224,7 +459,7 @@
   margin: 8px 0 22px;
 }
 .care-topic-heading .care-topic-concern {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--accent);
 }
 .care-topic-description {
@@ -262,9 +497,12 @@
   padding: 12px 0;
 }
 .care-topic-links a {
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.6;
-  padding: 10px 0;
+  padding: 12px 0;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -315,7 +553,7 @@
 }
 .care-fee-table caption {
   text-align: left;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
   padding-bottom: 12px;
 }
@@ -341,8 +579,14 @@
   background: #eaeae2;
 }
 .care-fee-table tbody a {
+  display: inline-block;
+  padding: 6px 0;
+  margin: -6px 0;
   text-decoration: underline;
   text-underline-offset: 4px;
+}
+.care-fee-table tbody a:hover {
+  color: var(--accent);
 }
 .care-fee-table td {
   white-space: nowrap;
@@ -412,10 +656,19 @@
 .care-contact-panel p {
   margin-bottom: 24px;
 }
+.care-contact-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
 .care-contact-panel .contact-button {
   max-width: 100%;
   width: 100%;
-  font-size: 16px;
+  margin: 0;
+  font-size: 15px;
+}
+.care-contact-panel .care-inline-link {
+  margin-top: 14px;
 }
 .care-sources {
   border-top: 1px solid var(--line);
@@ -429,7 +682,7 @@
 }
 .care-sources p,
 .care-sources li {
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.8;
   color: var(--muted);
 }
@@ -475,7 +728,7 @@
     display: block;
   }
   .care-toc {
-    top: 76px;
+    top: var(--header-h-scrolled);
     z-index: 15;
     background: var(--paper);
     padding: 10px 0;
@@ -508,7 +761,7 @@
   }
   .care-section[id],
   .care-topic[id] {
-    scroll-margin-top: 162px;
+    scroll-margin-top: calc(var(--header-h-scrolled) + 86px);
   }
   .care-field-switch {
     margin-bottom: 32px;
@@ -527,19 +780,50 @@
   }
 }
 @media (max-width: 600px) {
-  .care-toc {
-    top: 62px;
-  }
-  .care-explorer,
   .care-exams {
     grid-template-columns: 1fr;
   }
+  /* Compact list on phones: 11 concern cards would otherwise run ~1,900px tall. */
+  .care-explorer {
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
   .care-explorer-card {
-    min-height: 138px;
-    padding: 18px 20px;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr) 24px;
+    grid-template-areas:
+      "index concern arrow"
+      "index name arrow";
+    align-items: center;
+    column-gap: 10px;
+    padding: 14px 4px;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    background: transparent;
+  }
+  .care-explorer-card .care-index {
+    grid-area: index;
   }
   .care-explorer-card strong {
-    margin: 10px 0 7px;
+    grid-area: concern;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .care-explorer-name {
+    grid-area: name;
+    padding: 0;
+    margin-top: 2px;
+  }
+  .care-explorer-arrow {
+    grid-area: arrow;
+    position: static;
+    font-size: 20px;
+  }
+  .care-contact-actions {
+    grid-template-columns: 1fr;
   }
   .care-topic-heading {
     gap: 12px;

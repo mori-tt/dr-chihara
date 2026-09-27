@@ -162,7 +162,10 @@ export type DialogueTranslation = {
 };
 type DialogueBase = {
   slug: string;
+  /** Master cover image; `-480`/`-800` variants must exist (scripts/prepare-responsive-images.mjs). */
   cover: string;
+  coverWidth: number;
+  coverHeight: number;
   translations: Record<Locale, DialogueTranslation>;
 };
 export type Dialogue = DialogueBase &

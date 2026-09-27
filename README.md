@@ -5,9 +5,19 @@
 - Next.js 16.3.5 / React 19.3.0 / TypeScript
 - App Router、`output: 'export'`、`trailingSlash: true`
 - 日本語 `/`、英語 `/en/`、中国語 `/zh/`
-- 各言語の静的HTML・メタデータ・canonical・hreflang・構造化データ
+- 各言語の静的HTML・メタデータ・canonical・hreflang・構造化データ（ページごとに1つの JSON-LD `@graph`）
 - 写真とフォントをローカル配信。外部CMS・API・Node.jsサーバー不要
 - GitHub Pages: https://mori-tt.github.io/dr-chihara/
+
+## 設計上の判断（SEO / UX）
+
+- **見出し構造**: トップの `<h1>` は氏名と肩書（各言語）。大きな英字 `CARE BEYOND BEAUTY.` は装飾（`.hero-display`, `aria-hidden`）として残し、検索エンジンにはページ主題＝人物として伝える。
+- **予約導線**: クリニック公式の WEB予約 `https://www.norris-beauty-clinic.com/reserve/` を、ヘッダー・モバイルメニュー・お問い合わせ・診療ページ・フッターに配置。お問い合わせフォームは二次導線。定数は `src/lib/content.ts`（`clinicReserveUrl` など）に集約。
+- **フォント**: Webフォントは DM Sans（欧文、約36KB）のみ。日本語・中国語はOS標準フォント（Hiragino / Yu Gothic / PingFang / Noto CJK）。Noto Sans JP を配信すると1ページあたり約44リクエスト・約860KB増えるため外した。OGカード生成スクリプトだけが devDependency の `@fontsource-variable/noto-sans-jp` を使う。
+- **色**: `--muted: #5e6058`、`--accent: #ad3e2a` はすべての背景色（`#e8e8df` など）で 4.5:1 以上を満たす値。ラベル類の最小文字サイズは 10px、本文は 15〜16px。
+- **画像**: `<Picture>`（`src/components/picture.tsx`）が `name-{width}.webp` の `srcset` を出力。変種は `npm run images:responsive` で生成（`scripts/prepare-responsive-images.mjs`）。縦長だったストック写真2点はレイアウトどおり横長に切り出し済み。
+- **CSS**: `globals.css` は全ページ共通。`care.css` は診療ページ（`field-page.tsx`）、`dialogues.css` は対談ページ（`dialogues.tsx`）からのみ import し、ルート単位で読み込まれる。トップのティーザー用スタイルは `globals.css` 側。
+- **構造化データ**: `MedicalClinic` の座標は公式アクセスページの地図埋め込み（34.664259, 135.520492）。`ReserveAction`・Instagram の `sameAs`・`Person` と `MedicalClinic` の `@id` 相互参照を含む。診療ページの `<title>`・description は `fields.ts` の `seoTitle` / `seoDescription`。
 
 ## 開発
 
@@ -42,7 +52,7 @@ npx playwright install chromium
 npm run test:browser
 ```
 
-3言語 × PC・タブレット・スマートフォンを検証。言語切り替え、横はみ出し、写真、メニュー、経歴の展開、メタデータ、JavaScript無効時の本文を確認します。
+3言語 × PC・タブレット・スマートフォンを検証。`<h1>` が氏名であること、WEB予約リンク、構造化データの `@graph`、言語切り替え、横はみ出し、写真、メニュー、経歴、メタデータ、JavaScript無効時の本文を確認します。診療ページは `npm run test:care`、対談ページは `node scripts/dialogue-check.mjs`。
 
 ## ロリポップへの移設
 
@@ -97,4 +107,4 @@ TEST_URL=http://127.0.0.1:4173 npm run test:browser
 
 SNS共有画像は `public/images/og/` に6種類×3言語の1200×630 PNGを収録しています。ローカル写真とフォントを用い、`npm run images:social` で再生成できます（Playwright Chromiumが必要）。ビルド時の画像生成APIや外部アクセスは不要です。プロフィール・対談一覧・サンプル記事・診療分野3ページのOG/Twitter画像へ設定済みです。公開記事用のカードは `scripts/prepare-social-images.mjs` の `cards` に `article-{slug}` を追加して生成します。ファビコンのPNGフォールバックとapple-touch-iconは `npm run images:icons` で `public/icon.svg` から再生成できます。
 
-`scripts/research.mjs` は参考サイトの調査用。`scripts/prepare-images.mjs` は制作時に取得した一時画像の変換用で、通常のビルドには不要です。使用フォントのライセンスは配布パッケージ内のOFLファイルを参照してください。
+`scripts/research.mjs` は参考サイトの調査用。`scripts/prepare-images.mjs` と `scripts/prepare-stock-images.mjs` は制作時に取得した一時画像の変換用で、通常のビルドには不要です。写真を追加・差し替えたときは `npm run images:responsive` で `-480/-800/-1200` の変種を再生成してください。配信フォント（DM Sans）のライセンスは `public/licenses/dm-sans.txt` を参照してください。

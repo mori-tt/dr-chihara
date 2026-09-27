@@ -1,69 +1,6 @@
-.desktop-nav a[aria-current="page"] {
-  color: var(--accent);
-}
-.section-number,
 .dialogue-asterisk {
   font-variant-emoji: text;
   font-family: var(--serif);
-}
-.dialogue-teaser {
-  border-bottom: 1px solid var(--line);
-}
-.dialogue-teaser-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 9%;
-  align-items: center;
-}
-.dialogue-teaser-image {
-  position: relative;
-  display: block;
-  overflow: hidden;
-}
-.dialogue-teaser-image img {
-  aspect-ratio: 1.35;
-  object-fit: cover;
-  filter: saturate(0.55);
-  transition: transform 0.6s;
-}
-.dialogue-teaser-image:hover img {
-  transform: scale(1.025);
-}
-.dialogue-teaser-image > span:not(.teaser-arrow) {
-  position: absolute;
-  left: 25px;
-  top: 25px;
-  font-size: 10px;
-  letter-spacing: 1.7px;
-  line-height: 1.6;
-  color: var(--ink);
-  padding: 10px 12px;
-  background: #f3f2ede8;
-}
-.teaser-arrow {
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--paper);
-  width: 50px;
-  height: 50px;
-  font-size: 25px;
-}
-.dialogue-teaser-grid > div > .eyebrow {
-  color: var(--accent);
-  margin-bottom: 20px;
-}
-.dialogue-teaser-grid > div > .section-title {
-  margin-bottom: 23px;
-}
-.dialogue-teaser-grid > div > p:not(.eyebrow) {
-  font-size: 13px;
-  line-height: 2.1;
-  color: var(--muted);
-  margin-bottom: 25px;
 }
 .dialogue-wrap {
   max-width: 1280px;
@@ -72,12 +9,20 @@
 }
 .dialogue-breadcrumb {
   display: flex;
+  align-items: center;
   gap: 12px;
   flex-wrap: wrap;
-  font-size: 10px;
+  font-size: 13px;
   color: var(--muted);
-  padding: 30px 0;
+  padding: 22px 0;
   line-height: 1.8;
+}
+.dialogue-breadcrumb a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 .dialogue-breadcrumb a:hover {
   color: var(--accent);
@@ -146,7 +91,7 @@
   font-weight: 500;
 }
 .dialogue-archive-heading > span {
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 1.2px;
   color: var(--accent);
 }
@@ -196,7 +141,7 @@
   background: var(--paper);
   color: var(--accent);
   padding: 8px 12px;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.05em;
 }
 .dialogue-card-arrow {
@@ -216,7 +161,7 @@
 }
 .dialogue-card-copy > .eyebrow {
   color: var(--accent);
-  font-size: 10px;
+  font-size: 11px;
 }
 .dialogue-card-copy h2 {
   font-size: 27px;
@@ -231,7 +176,7 @@
 }
 .dialogue-card-guest > span {
   display: block;
-  font-size: 10px;
+  font-size: 13px;
   color: var(--muted);
   margin-top: 7px;
 }
@@ -239,7 +184,7 @@
   display: flex;
   justify-content: space-between;
   gap: 15px;
-  font-size: 10px;
+  font-size: 13px;
   border-top: 1px solid var(--line);
   padding-top: 18px;
   margin-top: 24px;
@@ -264,7 +209,7 @@
 }
 .dialogue-closing > small {
   display: block;
-  font-size: 8px;
+  font-size: 11px;
   letter-spacing: 2px;
   color: var(--muted);
   margin-top: 25px;
@@ -284,7 +229,7 @@
   white-space: nowrap;
 }
 .dialogue-sample-notice > p {
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.9;
   color: var(--muted);
 }
@@ -299,7 +244,7 @@
   gap: 18px;
   flex-wrap: wrap;
   margin-top: 30px;
-  font-size: 10px;
+  font-size: 13px;
   color: var(--muted);
   align-items: center;
 }
@@ -320,7 +265,7 @@
 .dialogue-byline {
   display: flex;
   gap: 24px;
-  font-size: 10px;
+  font-size: 13px;
   align-items: center;
   flex-wrap: wrap;
   color: var(--muted);
@@ -348,7 +293,7 @@
 }
 .dialogue-cover figcaption,
 .dialogue-inline-photo figcaption {
-  font-size: 10px;
+  font-size: 13px;
   color: var(--muted);
   line-height: 1.8;
   margin-top: 12px;
@@ -370,7 +315,7 @@
 }
 .dialogue-toc > .eyebrow {
   color: var(--accent);
-  font-size: 9px;
+  font-size: 11px;
 }
 .dialogue-toc h2 {
   font-size: 13px;
@@ -380,21 +325,21 @@
 .dialogue-toc a {
   display: flex;
   gap: 12px;
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.9;
   padding: 14px 0;
   border-bottom: 1px solid var(--line);
 }
 .dialogue-toc a > span {
   color: var(--accent);
-  font-size: 9px;
+  font-size: 11px;
 }
 .dialogue-toc a:hover {
   color: var(--accent);
 }
 .dialogue-back {
   display: inline-block;
-  font-size: 10px;
+  font-size: 13px;
   margin-top: 30px;
   color: var(--muted);
 }
@@ -431,7 +376,7 @@
   color: var(--muted);
 }
 .dialogue-guest-placeholder > span:first-child {
-  font-size: 8px;
+  font-size: 11px;
   letter-spacing: 1px;
 }
 .dialogue-guest-placeholder > span:last-child {
@@ -439,7 +384,7 @@
   font-weight: 400;
 }
 .dialogue-guest .eyebrow {
-  font-size: 8px;
+  font-size: 11px;
   color: var(--accent);
 }
 .dialogue-guest h2 {
@@ -453,7 +398,7 @@
   color: var(--muted);
 }
 .dialogue-guest .dialogue-guest-role {
-  font-size: 10px;
+  font-size: 13px;
   margin-bottom: 13px;
 }
 .dialogue-chapter {
@@ -462,7 +407,7 @@
 }
 .dialogue-chapter > .eyebrow {
   color: var(--accent);
-  font-size: 9px;
+  font-size: 11px;
 }
 .dialogue-chapter > h2 {
   font-size: 27px;
@@ -482,7 +427,7 @@
 }
 .dialogue-question > span,
 .dialogue-answer > span {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--accent);
   line-height: 2.1;
   padding-top: 5px;
@@ -528,7 +473,7 @@
   line-height: 0.8;
 }
 .dialogue-quote > figcaption {
-  font-size: 9px;
+  font-size: 11px;
   color: var(--muted);
   margin-top: 10px;
 }
@@ -546,7 +491,7 @@
 }
 .dialogue-afterword > .eyebrow {
   color: var(--accent);
-  font-size: 9px;
+  font-size: 11px;
 }
 .dialogue-afterword > h2 {
   font-size: 26px;
@@ -574,7 +519,7 @@
   filter: grayscale(1);
 }
 .dialogue-host .eyebrow {
-  font-size: 9px;
+  font-size: 11px;
   color: var(--muted);
 }
 .dialogue-host h3 {
@@ -583,12 +528,12 @@
   margin: 8px 0 10px;
 }
 .dialogue-host p:not(.eyebrow) {
-  font-size: 11px;
+  font-size: 14px;
   line-height: 2;
   color: var(--muted);
 }
 .dialogue-host a {
-  font-size: 10px;
+  font-size: 13px;
   display: inline-block;
   margin-top: 13px;
   border-bottom: 1px solid var(--line);
@@ -598,12 +543,12 @@
   padding: 25px 0 50px;
 }
 .dialogue-credits h2 {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 500;
   margin-bottom: 10px;
 }
 .dialogue-credits p {
-  font-size: 10px;
+  font-size: 14px;
   line-height: 1.9;
   color: var(--muted);
   white-space: pre-line;
@@ -622,7 +567,7 @@
   list-style: none;
 }
 .dialogue-references li {
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.9;
   margin-top: 8px;
   color: var(--muted);
@@ -640,7 +585,7 @@
   border-top: 1px solid var(--line);
 }
 .dialogue-next .eyebrow {
-  font-size: 9px;
+  font-size: 11px;
   color: var(--accent);
 }
 .dialogue-next h2 {
@@ -730,19 +675,13 @@
     grid-template-columns: 1fr !important;
     gap: 7px;
   }
-  .dialogue-teaser-grid {
-    gap: 6%;
-  }
-  .dialogue-teaser-grid .section-title {
-    font-size: 27px;
-  }
 }
 @media (max-width: 600px) {
   .dialogue-wrap {
     padding: 0 7%;
   }
   .dialogue-breadcrumb {
-    font-size: 9px;
+    font-size: 13px;
     padding: 23px 0;
     gap: 9px;
   }
@@ -750,7 +689,7 @@
     padding: 20px 0 40px;
   }
   .dialogue-index-heading > .eyebrow {
-    font-size: 8px;
+    font-size: 11px;
     letter-spacing: 1px;
   }
   .dialogue-masthead {
@@ -782,7 +721,7 @@
     font-size: 13px;
   }
   .dialogue-archive-heading > span {
-    font-size: 8px;
+    font-size: 11px;
   }
   .dialogue-coming {
     align-items: start;
@@ -796,7 +735,7 @@
     font-size: 15px;
   }
   .dialogue-coming p {
-    font-size: 11px;
+    font-size: 13px;
   }
   .dialogue-card-grid {
     grid-template-columns: minmax(0, 1fr);
@@ -805,7 +744,7 @@
   .dialogue-badge {
     left: 13px;
     top: 13px;
-    font-size: 9px;
+    font-size: 11px;
     padding: 7px 10px;
   }
   .dialogue-card-copy {
@@ -819,7 +758,7 @@
     margin-top: 17px;
   }
   .dialogue-card-bottom {
-    font-size: 9px;
+    font-size: 13px;
   }
   .dialogue-closing {
     padding: 15px 0 55px;
@@ -828,7 +767,7 @@
     font-size: 19px;
   }
   .dialogue-closing > small {
-    font-size: 7px;
+    font-size: 11px;
   }
   .dialogue-sample-notice {
     display: block;
@@ -836,17 +775,17 @@
     margin-bottom: 26px;
   }
   .dialogue-sample-notice > p {
-    font-size: 10px;
+    font-size: 14px;
     margin-top: 8px;
   }
   .dialogue-article-heading {
     padding: 10px 0 27px;
   }
   .dialogue-article-heading > .eyebrow {
-    font-size: 9px;
+    font-size: 11px;
   }
   .dialogue-article-meta {
-    font-size: 9px;
+    font-size: 13px;
     gap: 12px;
     margin-top: 24px;
   }
@@ -861,7 +800,7 @@
   }
   .dialogue-byline {
     gap: 12px;
-    font-size: 9px;
+    font-size: 13px;
   }
   .dialogue-byline strong {
     font-size: 12px;
@@ -872,7 +811,7 @@
   }
   .dialogue-cover figcaption,
   .dialogue-inline-photo figcaption {
-    font-size: 9px;
+    font-size: 13px;
   }
   .dialogue-reading-grid {
     display: flex;
@@ -892,7 +831,7 @@
   }
   .dialogue-toc a {
     padding: 11px 0;
-    font-size: 11px;
+    font-size: 13px;
   }
   .dialogue-back {
     display: none;
@@ -932,7 +871,7 @@
   }
   .dialogue-question > span,
   .dialogue-answer > span {
-    font-size: 10px;
+    font-size: 11px;
   }
   .dialogue-answer {
     margin-top: 15px;
@@ -968,7 +907,7 @@
     font-size: 16px;
   }
   .dialogue-host p:not(.eyebrow) {
-    font-size: 10px;
+    font-size: 14px;
   }
   .dialogue-next {
     display: block;
@@ -981,36 +920,8 @@
     width: 100%;
     margin-top: 20px;
   }
-  .dialogue-teaser-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-  }
-  .dialogue-teaser-image {
-    width: 100%;
-  }
-  .dialogue-teaser-image img {
-    aspect-ratio: 1.4;
-  }
-  .dialogue-teaser-grid > div {
-    width: 100%;
-  }
-  .dialogue-teaser-grid > div > .eyebrow {
-    font-size: 9px;
-    margin-bottom: 15px;
-  }
-  .dialogue-teaser-grid > div > .section-title {
-    font-size: 27px;
-    margin-bottom: 18px;
-  }
-  .dialogue-teaser-grid > div > p:not(.eyebrow) {
-    font-size: 12px;
-  }
   .locale-en .dialogue-index-intro h2 {
     font-size: 31px;
-  }
-  .locale-en .dialogue-teaser-grid .section-title {
-    font-size: 32px;
   }
   .locale-en .dialogue-article-heading h1 {
     font-size: 36px;
@@ -1030,7 +941,6 @@
   margin: 30px auto 50px;
   max-width: 440px;
 }
-.dialogue-teaser-grid > div > p:not(.eyebrow),
 .dialogue-index-intro > p,
 .dialogue-coming p,
 .dialogue-guest p,

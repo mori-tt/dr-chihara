@@ -1,4 +1,3 @@
-"use client";
 import { content, type Locale } from "@/lib/content";
 export function Journey({ locale }: { locale: Locale }) {
   const c = content[locale];

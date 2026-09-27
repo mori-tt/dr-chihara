@@ -1,5 +1,8 @@
+import "@/app/dialogues.css";
 import { Header } from "./header";
 import { Footer } from "./footer";
+import { JsonLd } from "./json-ld";
+import { Picture } from "./picture";
 import { asset, content, localePath, type Locale } from "@/lib/content";
 import {
   dialogueCopy,
@@ -9,63 +12,24 @@ import {
   type Dialogue,
 } from "@/lib/dialogues";
 import {
+  articleSchema,
   breadcrumbSchema,
   collectionSchema,
-  siteUrl,
 } from "@/lib/metadata";
-import { stockPhotos, stockLabel } from "@/lib/stock-photos";
+import { stockBySrc, variantWidths } from "@/lib/stock-photos";
 
-export function DialogueTeaser({ locale }: { locale: Locale }) {
-  const c = dialogueCopy[locale];
+/** Article body photo; stock photos get responsive variants, other paths load as-is. */
+function InlinePhoto({ src, alt }: { src: string; alt: string }) {
+  const photo = stockBySrc(src);
   return (
-    <section className="section dialogue-teaser" id="dialogues">
-      <div className="section-label">
-        <span className="section-number">✳︎</span>
-        <span>DIALOGUES</span>
-        <span className="label-local">{c.label}</span>
-      </div>
-      <div className="dialogue-teaser-grid">
-        <a
-          className="dialogue-teaser-image"
-          href={dialoguePath(locale)}
-          aria-label={c.explore}
-        >
-          <img
-            src={asset(stockPhotos.conversation.src)}
-            alt={stockPhotos.conversation.alt[locale]}
-            width="1600"
-            height="2400"
-            loading="lazy"
-          />
-          <span aria-hidden="true">
-            A CONVERSATION
-            <br />
-            OPENS A NEW DOOR.
-          </span>
-          <span className="teaser-arrow" aria-hidden="true">
-            ↗
-          </span>
-        </a>
-        <div>
-          <p className="eyebrow">{c.subtitle}</p>
-          <h2 className="section-title">
-            {c.homeTitle.map((t) => (
-              <span key={t}>{t}</span>
-            ))}
-          </h2>
-          <p>{c.homeIntro}</p>
-          <small className="stock-credit">
-            {stockLabel[locale]} · {stockPhotos.conversation.credit}
-          </small>
-          <a className="text-link" href={dialoguePath(locale)}>
-            {c.explore}
-            <span className="arrow" aria-hidden="true">
-              ↗
-            </span>
-          </a>
-        </div>
-      </div>
-    </section>
+    <Picture
+      src={src}
+      alt={alt}
+      width={photo?.width ?? 767}
+      height={photo?.height ?? 511}
+      widths={photo ? variantWidths(photo.width) : undefined}
+      sizes="(max-width: 600px) 86vw, (max-width: 1100px) 60vw, 760px"
+    />
   );
 }
 
@@ -110,12 +74,13 @@ function ArticleCard({
   return (
     <a className="dialogue-card" href={dialoguePath(locale, article.slug)}>
       <div className="dialogue-card-image">
-        <img
-          src={asset(article.cover)}
+        <Picture
+          src={article.cover}
           alt={t.coverAlt}
-          width="767"
-          height="511"
-          loading="lazy"
+          width={article.coverWidth}
+          height={article.coverHeight}
+          widths={[480, 800]}
+          sizes="(max-width: 600px) 86vw, (max-width: 950px) 44vw, 600px"
         />
         <span className="dialogue-badge">
           {sample ? c.sample : `VOL. ${article.volume}`}
@@ -145,25 +110,14 @@ export function DialogueIndex({ locale }: { locale: Locale }) {
     published = publishedDialogues();
   return (
     <div className={`site locale-${locale} dialogue-site`} id="top">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(collectionSchema(locale, published)).replace(
-            /</g,
-            "\\u003c",
-          ),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            breadcrumbSchema(locale, [
-              { name: c.home, path: "" },
-              { name: c.label },
-            ]),
-          ).replace(/</g, "\\u003c"),
-        }}
+      <JsonLd
+        nodes={[
+          breadcrumbSchema(locale, [
+            { name: c.home, path: "" },
+            { name: c.label },
+          ]),
+          collectionSchema(locale, published),
+        ]}
       />
       <Header locale={locale} section="dialogues/" />
       <main id="main">
@@ -247,20 +201,17 @@ export function DialogueArticle({
   const c = dialogueCopy[locale],
     t = article.translations[locale],
     sample = article.status === "template";
-  const canonical = `${siteUrl}/${locale === "ja" ? "" : `${locale}/`}dialogues/${article.slug}/`;
   return (
     <div className={`site locale-${locale} dialogue-site`} id="top">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            breadcrumbSchema(locale, [
-              { name: c.home, path: "" },
-              { name: c.label, path: "dialogues/" },
-              ...(sample ? [{ name: c.sample }] : [{ name: t.title }]),
-            ]),
-          ).replace(/</g, "\\u003c"),
-        }}
+      <JsonLd
+        nodes={[
+          breadcrumbSchema(locale, [
+            { name: c.home, path: "" },
+            { name: c.label, path: "dialogues/" },
+            ...(sample ? [{ name: c.sample }] : [{ name: t.title }]),
+          ]),
+          ...(sample ? [] : [articleSchema(locale, article)]),
+        ]}
       />
       <Header locale={locale} section={`dialogues/${article.slug}/`} />
       <main id="main">
@@ -271,49 +222,6 @@ export function DialogueArticle({
               <span>{c.sample}</span>
               <p>{c.sampleNote}</p>
             </aside>
-          )}
-          {!sample && (
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{
-                __html: JSON.stringify({
-                  "@context": "https://schema.org",
-                  "@type": "Article",
-                  headline: t.title,
-                  description: t.introduction,
-                  datePublished: article.publishedAt,
-                  dateModified: article.updatedAt ?? article.publishedAt,
-                  inLanguage: locale === "zh" ? "zh-Hans" : locale,
-                  image: `${siteUrl}${article.cover}`,
-                  author: {
-                    "@type": "Person",
-                    name: "Yoshitomo Chihara",
-                    url: `${siteUrl}/${locale === "ja" ? "" : `${locale}/`}`,
-                  },
-                  publisher: {
-                    "@type": "Organization",
-                    name: "Yoshitomo Chihara",
-                    url: siteUrl,
-                    logo: {
-                      "@type": "ImageObject",
-                      url: `${siteUrl}/icon.png`,
-                      width: 512,
-                      height: 512,
-                    },
-                  },
-                  articleSection: t.category,
-                  mainEntityOfPage: canonical,
-                  isAccessibleForFree: true,
-                  wordCount:
-                    t.introduction.length +
-                    t.sections
-                      .flatMap((s) =>
-                        s.exchanges.flatMap((e) => [e.question, ...e.answer]),
-                      )
-                      .join("").length,
-                }).replace(/</g, "\\u003c"),
-              }}
-            />
           )}
           <article>
             <header className="dialogue-article-heading">
@@ -350,12 +258,14 @@ export function DialogueArticle({
               </div>
             </header>
             <figure className="dialogue-cover">
-              <img
-                src={asset(article.cover)}
+              <Picture
+                src={article.cover}
                 alt={t.coverAlt}
-                width="767"
-                height="511"
-                fetchPriority="high"
+                width={article.coverWidth}
+                height={article.coverHeight}
+                widths={[480, 800, 1200]}
+                sizes="(max-width: 600px) 86vw, (max-width: 1400px) 88vw, 1160px"
+                priority
               />
               <figcaption>{t.coverCaption}</figcaption>
             </figure>
@@ -432,12 +342,9 @@ export function DialogueArticle({
                     ))}
                     {s.image && (
                       <figure className="dialogue-inline-photo">
-                        <img
-                          src={asset(s.image)}
+                        <InlinePhoto
+                          src={s.image}
                           alt={s.imageAlt || s.title}
-                          width="767"
-                          height="511"
-                          loading="lazy"
                         />
                         {s.caption && <figcaption>{s.caption}</figcaption>}
                       </figure>
@@ -458,12 +365,13 @@ export function DialogueArticle({
                     <p key={i}>{p}</p>
                   ))}
                   <div className="dialogue-host">
-                    <img
-                      src={asset("/images/portrait.webp")}
+                    <Picture
+                      src="/images/portrait.webp"
                       alt={content[locale].portraitAlt}
-                      width="767"
-                      height="651"
-                      loading="lazy"
+                      width={767}
+                      height={651}
+                      widths={[480]}
+                      sizes="95px"
                     />
                     <div>
                       <p className="eyebrow">{c.interviewer}</p>

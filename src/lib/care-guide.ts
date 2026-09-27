@@ -7,7 +7,7 @@ export const tr = (ja: string, en: string, zh: string): LocalText => ({
   en,
   zh,
 });
-export const careCheckedAt = "2026-09-22";
+export const careCheckedAt = "2026-09-27";
 export type CareTopic = {
   id: string;
   title: LocalText;
