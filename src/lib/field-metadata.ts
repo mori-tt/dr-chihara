@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
 import { type Locale } from "./content";
 import { fieldCopy, type FieldSlug } from "./fields";
-import { ogImage, pageMetadata, rssLink, siteTitle, siteUrl } from "./metadata";
+import {
+  canonicalUrl,
+  ogImage,
+  pageMetadata,
+  rssLink,
+  siteTitle,
+} from "./metadata";
 
 export function fieldMetadata(locale: Locale, slug: FieldSlug): Metadata {
   const copy = fieldCopy[locale][slug];
   const base = pageMetadata(locale);
-  const url = `${siteUrl}/${locale === "ja" ? "" : `${locale}/`}fields/${slug}/`;
+  const url = `${canonicalUrl}/${locale === "ja" ? "" : `${locale}/`}fields/${slug}/`;
   const fullTitle = `${copy.seoTitle} | ${siteTitle(locale)}`;
   const image = ogImage(
     `/images/og/field-${slug}-${locale}.png`,
@@ -19,10 +25,10 @@ export function fieldMetadata(locale: Locale, slug: FieldSlug): Metadata {
     alternates: {
       canonical: url,
       languages: {
-        ja: `${siteUrl}/fields/${slug}/`,
-        en: `${siteUrl}/en/fields/${slug}/`,
-        "zh-Hans": `${siteUrl}/zh/fields/${slug}/`,
-        "x-default": `${siteUrl}/fields/${slug}/`,
+        ja: `${canonicalUrl}/fields/${slug}/`,
+        en: `${canonicalUrl}/en/fields/${slug}/`,
+        "zh-Hans": `${canonicalUrl}/zh/fields/${slug}/`,
+        "x-default": `${canonicalUrl}/fields/${slug}/`,
       },
       types: rssLink(locale),
     },

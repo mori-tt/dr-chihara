@@ -1,7 +1,19 @@
 # 今後のタスク・課題一覧
 
-最終更新: 2026-09-27（SEO / UI・UXリファクタリング後）。
+最終更新: 2026-09-28（SEOコードレビュー後の修正反映）。
 コード側でできることは概ね対応済み。残りは外部作業・コンテンツ・デザイン判断・継続運用に分類される。
+
+## 2026-09-28 SEOコードレビューで対応済み
+
+- **canonical基盤の分離** — `NEXT_PUBLIC_CANONICAL_URL`（新規env、`src/lib/metadata.ts`）を追加。canonical・hreflang・OG・JSON-LDのURL・`@id`はcanonical側、robots.txt・sitemap.xml・RSS feedは配信ホスト側の `siteUrl` を使う。未設定時は従来どおり `siteUrl` にフォールバックするため現行ビルドの挙動は変わらない。
+- **Article schema の publisher** — Person → Organization（`logo` = icon.png の ImageObject 付き）に変更。Googleのガイドライン準拠。
+- **BreadcrumbList の最終項目に `item` URL を付与** — fields・dialogues両ページ。
+- **MedicalClinic に `contactPoint`（予約電話・日本語）を追加**。
+- **`/favicon.ico` を生成** — `scripts/prepare-icons.mjs` で 32/48px PNG-in-ICO を出力し、metadata の icons にも `sizes:"any"` で登録済み。
+- **OG画像フォールバックの寸法** — 生成カードがない記事で `article.coverWidth/coverHeight` を og:image width/height に出力。
+- **`<title>` 区切り統一** — ja の `seoTitle` 内 `｜` を `：` に統一（en `:` / zh `：` と整合）。
+
+## A. 外部作業（ドメイン・アカウント系）
 
 ## 2026-09-27 リファクタリングで対応済み
 
@@ -22,6 +34,8 @@
 3. **Bing Webmaster Tools** — 同様に `NEXT_PUBLIC_BING_SITE_VERIFICATION`。
 4. **GoogleビジネスプロフィールのNAP整合** — サイトの `MedicalClinic` 構造化データ（住所・電話・診療時間・座標）と同一情報にすること。
 5. **GitHub Pages旧URLの扱い** — noindex適用済み。既にインデックス済みなら自然脱落を待つか、GSCの削除ツールを利用。
+6. **Pagesビルドへの `NEXT_PUBLIC_CANONICAL_URL` 設定** — 本番ドメイン確定後、`build:pages` に追加してPages側canonicalを本番へ向ける（仕組みは実装済み、詳細は seo-next-steps.md）。
+7. **サイトマップは手動送信** — Pagesプロジェクトサイトでは robots.txt の `Sitemap:` 行が読まれないため、GSC/Bingから `sitemap.xml` を直接送信すること（独自ドメイン移行後は robots.txt 経由でも発見される）。
 
 ## B. コンテンツ・編集作業
 
@@ -33,6 +47,8 @@
 2. **架空サンプルの扱い** — 実記事が揃ったらサンプル(`/dialogues/sample/`)を置き換えるか削除判断。noindex維持の仕組みは済み。
 3. **日付の保守** — トップ更新時に `NEXT_PUBLIC_SITE_LAST_MODIFIED`(env)または `siteLastModified` を更新。診療情報を再確認したら `careCheckedAt`(src/lib/care-guide.ts) を更新。料金表・診療時間はクリニック公式と定期的に照合する。
 4. **クリニック情報の確認** — 構造化データの住所・電話(06-6772-3456)・診療時間(水〜日 10:30–19:00)・座標が公式と一致しているかクリニック側に確認。
+5. **Person `sameAs` の追加候補** — 現在はクリニック公式プロフィールのみ。researchmap・ORCID・学会ページ等、本人の実在する公開プロフィールがあれば `personSchema` の `sameAs` に追加するとE-E-A-T補強になる。実在確認が必要なため未追加。
+6. **診療ページ description の長さ** — `seoDescription` は約150〜190字で日本語スニペット（約110〜120字）の後半が切れる。重要語は前半配置済みのため実害は小さいが、CTRを重視するなら先頭100字程度への絞り込みは編集判断。
 
 ## C. UX・デザインの検討課題（判断保留中）
 
@@ -41,6 +57,8 @@
 3. **ダークモード** — `color-scheme: light` 固定の設計。対応するならカラートークン全体の見直しが必要。
 4. **X(Twitter)アカウント** — 作成したら `twitter:site`/`twitter:creator` を追加(各メタデータヘルパーに1行ずつ)。OG/Twitter Cardの画像・タイトルは対応済み。
 5. **診療ページの長さ** — モバイルで約13,000px。内容を折りたたまない方針のため、さらに短くするなら治療項目ごとの個別ページ化（`/fields/rejuvenation/hifu/` など）を検討。SEO上も個別URLが有利。
+6. **`/fields/` 中間ページ** — 現在 `/fields/` は404（sitemap未掲載）。フィールド一覧ページを作るとパンくず3階層・内部リンクハブとして機能する。新規ページのコンテンツ判断が必要なため未作成。
+7. **FAQ構造化データの期待値** — GoogleはFAQリッチリザルトを権威ある政府・公的医療サイトに限定済み。本サイトの `FAQPage` スキーマは実装済みだが、検索結果への表示は期待しないほうがよい（実装自体は正しく、残して害はない）。
 
 ## D. 技術的な既知の制約・負債
 

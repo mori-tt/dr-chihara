@@ -58,7 +58,7 @@ export function FieldPage({
         nodes={[
           breadcrumbSchema(locale, [
             { name: ui.home[locale], path: "" },
-            { name: c.title },
+            { name: c.title, path: `fields/${slug}/` },
           ]),
           medicalWebPageSchema(locale, slug),
           faqSchema(locale, slug),

@@ -34,7 +34,7 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
       title: "美容医療",
       eyebrow: "AESTHETIC MEDICINE",
       lead: "変化を急がず、その人らしい表情と毎日に寄り添う医療。",
-      seoTitle: "美容医療の診療案内｜治療の選び方・料金の目安・注意点",
+      seoTitle: "美容医療の診療案内：治療の選び方・料金の目安・注意点",
       seoDescription:
         "フォトフェイシャルM22、HIFU、ボトックス、ヒアルロン酸、ダーマペン、医療脱毛、HARG療法など、美容医療の選び方・通院の目安・リスクと公式料金の目安を、ノリス美容クリニック（大阪・上本町）院長 千原良友が一般向けに整理しました。",
       moreOfficial: {
@@ -129,7 +129,7 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
       title: "再生医療",
       eyebrow: "REGENERATIVE MEDICINE",
       lead: "期待だけでなく、根拠・限界・リスクを丁寧に確認する再生医療。",
-      seoTitle: "再生医療の基礎知識｜幹細胞・PRP・エクソソームの違いと費用",
+      seoTitle: "再生医療の基礎知識：幹細胞・PRP・エクソソームの違いと費用",
       seoDescription:
         "幹細胞治療・PRP療法・培養上清液（エクソソーム）の違い、治療の流れ、再生医療等安全性確保法に基づく制度と安全性、公式料金の目安を、ノリス美容クリニック院長・日本再生医療学会会員の千原良友が一般向けに整理。期待と根拠を分けて理解するための案内です。",
       sections: [
@@ -202,7 +202,7 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
       title: "泌尿器科",
       eyebrow: "UROLOGY",
       lead: "相談しづらい排尿の悩みを、腎臓から尿道までの仕組みから考える。",
-      seoTitle: "泌尿器科の診療案内｜頻尿・血尿・前立腺・尿漏れの相談",
+      seoTitle: "泌尿器科の診療案内：頻尿・血尿・前立腺・尿漏れの相談",
       seoDescription:
         "頻尿・夜間頻尿、血尿、排尿時の痛み、尿漏れ、前立腺の症状、性感染症、ED・男性更年期など泌尿器科で相談できる症状と、検査・治療の進め方、受診の目安を、泌尿器科での臨床経験をもつ千原良友（大阪・上本町 ノリス美容クリニック院長）が解説します。",
       sections: [

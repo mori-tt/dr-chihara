@@ -105,6 +105,6 @@ TEST_URL=http://127.0.0.1:4173 npm run test:browser
 
 研究・医療・対話・日常のイメージ写真5点をPexelsからダウンロードし、WebP化してサイト内から配信しています。人物写真は架空のゲストの肖像として使用していません。ダウンロード元・配布者・ライセンス・配置場所は [画像出典一覧](docs/image-sources.md) を参照してください。
 
-SNS共有画像は `public/images/og/` に6種類×3言語の1200×630 PNGを収録しています。ローカル写真とフォントを用い、`npm run images:social` で再生成できます（Playwright Chromiumが必要）。ビルド時の画像生成APIや外部アクセスは不要です。プロフィール・対談一覧・サンプル記事・診療分野3ページのOG/Twitter画像へ設定済みです。公開記事用のカードは `scripts/prepare-social-images.mjs` の `cards` に `article-{slug}` を追加して生成します。ファビコンのPNGフォールバックとapple-touch-iconは `npm run images:icons` で `public/icon.svg` から再生成できます。
+SNS共有画像は `public/images/og/` に6種類×3言語の1200×630 PNGを収録しています。ローカル写真とフォントを用い、`npm run images:social` で再生成できます（Playwright Chromiumが必要）。ビルド時の画像生成APIや外部アクセスは不要です。プロフィール・対談一覧・サンプル記事・診療分野3ページのOG/Twitter画像へ設定済みです。公開記事用のカードは `scripts/prepare-social-images.mjs` の `cards` に `article-{slug}` を追加して生成します。ファビコンのPNGフォールバック、apple-touch-icon、`favicon.ico`（32/48px）は `npm run images:icons` で `public/icon.svg` から再生成できます。
 
 `scripts/research.mjs` は参考サイトの調査用。`scripts/prepare-images.mjs` と `scripts/prepare-stock-images.mjs` は制作時に取得した一時画像の変換用で、通常のビルドには不要です。写真を追加・差し替えたときは `npm run images:responsive` で `-480/-800/-1200` の変種を再生成してください。配信フォント（DM Sans）のライセンスは `public/licenses/dm-sans.txt` を参照してください。

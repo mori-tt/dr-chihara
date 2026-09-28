@@ -114,7 +114,7 @@ export function DialogueIndex({ locale }: { locale: Locale }) {
         nodes={[
           breadcrumbSchema(locale, [
             { name: c.home, path: "" },
-            { name: c.label },
+            { name: c.label, path: "dialogues/" },
           ]),
           collectionSchema(locale, published),
         ]}
@@ -208,7 +208,10 @@ export function DialogueArticle({
           breadcrumbSchema(locale, [
             { name: c.home, path: "" },
             { name: c.label, path: "dialogues/" },
-            ...(sample ? [{ name: c.sample }] : [{ name: t.title }]),
+            {
+              name: sample ? c.sample : t.title,
+              path: `dialogues/${article.slug}/`,
+            },
           ]),
           ...(sample ? [] : [articleSchema(locale, article)]),
         ]}

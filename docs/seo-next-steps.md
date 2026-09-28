@@ -10,10 +10,19 @@ GitHub Pages公開用の `npm run build:pages` は `NEXT_PUBLIC_NOINDEX=1` 付�
 
 接続後に必要な作業:
 
-1. `NEXT_PUBLIC_SITE_URL` を本番ドメインへ変更
+1. 本番ビルドの `NEXT_PUBLIC_SITE_URL` を本番ドメインへ変更
 2. `next.config.ts` の `basePath` を本番構成に合わせて確認
 3. 旧GitHub Pages URLから新ドメインへの導線を残す
 4. Search Consoleで新ドメインを登録
+5. GitHub Pagesビルドに `NEXT_PUBLIC_CANONICAL_URL=https://本番ドメイン` を追加すると、Pages側のcanonical/hreflang/OG/構造化データが本番ドメインを指すようになり、外部リンク等のシグナルが本番へ統合されます（noindexとの併用で重複も防げます）。未設定時は `NEXT_PUBLIC_SITE_URL` と同じ値が使われます
+
+### robots.txt が効かない環境に注意
+
+GitHub Pagesのプロジェクトサイト（`mori-tt.github.io/dr-chihara/`）では、クローラが読むのはオリジンルートの `/robots.txt`（= `mori-tt.github.io/robots.txt`、ユーザーPages側のリポジトリ管理）だけです。`/dr-chihara/robots.txt` に置かれた `robots.txt` は読まれません（RFC 9309）。
+
+- `Sitemap:` ディレクティブも読まれないため、サイトマップはSearch Console / Bing Webmaster Toolsから手動で送信してください
+- ページの `noindex` はmeta robotsで効くため、Pagesのデindex化は問題なく動作します
+- 独自ドメイン（ルート配置）やロリポップの公開ディレクトリ直下に置けば `robots.txt` は正常に機能します
 
 ## 2. Google Search Console
 
