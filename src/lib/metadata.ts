@@ -366,6 +366,7 @@ export function medicalWebPageSchema(locale: Locale, slug: FieldSlug) {
       url: localeUrl(locale),
     },
     about: { "@type": "MedicalEntity", name: c.title },
+    contentLocation: { "@id": clinicId },
     medicalAudience: { "@type": "MedicalAudience", audienceType: "Patient" },
     significantLink: c.officialUrl,
     isAccessibleForFree: true,

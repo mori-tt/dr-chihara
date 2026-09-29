@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import {
+  clinicPhone,
+  clinicPhoneHref,
   clinicReserveUrl,
   content,
   homeSectionNumbers,
@@ -222,6 +224,9 @@ export function Header({
               {c.reserveLong}
               <span className="visually-hidden">{c.newTab}</span>
               <span aria-hidden="true">↗</span>
+            </a>
+            <a className="menu-phone" href={clinicPhoneHref}>
+              {c.phoneLabel}: {clinicPhone}
             </a>
             {languages}
             <p className="menu-footer">YOSHITOMO CHIHARA / OSAKA, JAPAN</p>

@@ -367,6 +367,31 @@ export function Site({ locale }: { locale: Locale }) {
               <br />
               {c.hours}
             </p>
+            <div className="clinic-hours-scroll">
+              <table className="clinic-hours">
+                <caption className="visually-hidden">
+                  {c.hours}
+                </caption>
+                <thead>
+                  <tr>
+                    {c.clinicDays.map((day) => (
+                      <th key={day} scope="col">
+                        {day}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    {c.clinicDays.map((day, index) => (
+                      <td key={day} className={index < 2 ? "is-closed" : ""}>
+                        {index < 2 ? c.closedLabel : "10:30–19:00"}
+                      </td>
+                    ))}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
             <div className="clinic-links">
               <a
                 className="text-link"

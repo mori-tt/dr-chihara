@@ -18,7 +18,7 @@ import {
   preparation,
   urgent,
 } from "@/lib/care-support";
-import { fieldCopy, type FieldSlug } from "@/lib/fields";
+import { fieldCopy, fieldPath, type FieldSlug } from "@/lib/fields";
 import { CareContents } from "./care-contents";
 
 export function CareGuide({
@@ -203,6 +203,12 @@ export function CareGuide({
                     <span className="visually-hidden">{ui.newTab[locale]}</span>
                     <span aria-hidden="true"> ↗</span>
                   </a>
+                  {topic.related && (
+                    <a href={fieldPath(locale, topic.related)}>
+                      {ui.related[locale]}：
+                      {fieldCopy[locale][topic.related].title}
+                    </a>
+                  )}
                   <a href="#care-explore">{ui.back[locale]} ↑</a>
                 </div>
               </article>

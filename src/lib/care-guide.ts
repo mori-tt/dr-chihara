@@ -17,6 +17,7 @@ export type CareTopic = {
   course: LocalText;
   caution: LocalText;
   source: string;
+  related?: FieldSlug;
 };
 const clinic = "https://www.norris-beauty-clinic.com";
 
@@ -299,6 +300,7 @@ export const careTopics: Record<FieldSlug, CareTopic[]> = {
         "可能红肿、皮疹、淤青、感染或色素沉着。需确认成分、批准情况及过敏史；官方一般建议翌日起化妆。",
       ),
       source: `${clinic}/vital/`,
+      related: "regenerate" as const,
     },
     {
       id: "epilation",
@@ -363,6 +365,7 @@ export const careTopics: Record<FieldSlug, CareTopic[]> = {
         "可能出现疼痛、发红、瘙痒或皮疹。需确认制剂成分、批准情况及整个疗程费用。",
       ),
       source: `${clinic}/harg/`,
+      related: "regenerate" as const,
     },
   ],
   regenerate: [
@@ -399,6 +402,7 @@ export const careTopics: Record<FieldSlug, CareTopic[]> = {
         "需了解采集或注射的疼痛、出血、感染和发热。自体来源并非无风险，须确认培养管理与紧急处置。",
       ),
       source: `${clinic}/stem_cell/`,
+      related: "rejuvenation" as const,
     },
     {
       id: "prp",
@@ -433,6 +437,7 @@ export const careTopics: Record<FieldSlug, CareTopic[]> = {
         "可能淤青、红肿或色素变化。须告知抗凝药、出血疾病、妊娠、癌症及免疫疾病，不可自行停药。",
       ),
       source: `${clinic}/prp/`,
+      related: "rejuvenation" as const,
     },
     {
       id: "exosome",
@@ -467,6 +472,7 @@ export const careTopics: Record<FieldSlug, CareTopic[]> = {
         "需了解疼痛、红肿、淤青、过敏和感染。日本厚劳省2024年7月通知指出当时无此类获批药品，并强调安全性及不确定性。官方记载产品在无血清培养基中培养，并经过皮内反应、毒性、抗原性等安全性试验。",
       ),
       source: `${clinic}/exosome/`,
+      related: "rejuvenation" as const,
     },
   ],
   urology: [
