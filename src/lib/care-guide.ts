@@ -7,7 +7,7 @@ export const tr = (ja: string, en: string, zh: string): LocalText => ({
   en,
   zh,
 });
-export const careCheckedAt = "2026-09-27";
+export const careCheckedAt = "2026-09-28";
 export type CareTopic = {
   id: string;
   title: LocalText;
@@ -45,9 +45,9 @@ export const careTopics: Record<FieldSlug, CareTopic[]> = {
         "咨询、洁面、拍摄和结果说明。官方拍摄约10～15分钟，需卸妆。",
       ),
       course: tr(
-        "画像を見ながら、日常のケアや施術の選択肢を検討します。必要に応じて前後の画像を比較し、経過を確認します。",
-        "Review skincare and treatment options using the images, with later comparisons when appropriate.",
-        "结合图像讨论护理及治疗选择，必要时比较前后图像。",
+        "画像を見ながら、日常のケアや施術の選択肢を検討します。必要に応じて前後の画像を比較し、経過を確認します。公式では、施術を受ける方は診断無料、診断のみの場合は3,000円（税込）と案内されています。",
+        "Review skincare and treatment options using the images, with later comparisons when appropriate. The official page notes the diagnosis is free for patients receiving treatment and ¥3,000 (tax included) for diagnosis only.",
+        "结合图像讨论护理及治疗选择，必要时比较前后图像。官方说明：接受治疗者免费，仅诊断收费3,000日元（含税）。",
       ),
       caution: tr(
         "撮影だけですべての皮膚疾患を診断できるわけではありません。画像の見た目だけで治療を決めず、問診・診察と合わせて判断します。",
@@ -75,9 +75,9 @@ export const careTopics: Record<FieldSlug, CareTopic[]> = {
         "评估表情、肌肉和病史后注射，官方介绍约两周后复诊确认。",
       ),
       course: tr(
-        "公式では数日後から変化が現れ、数か月持続すると案内しています。反応には個人差があるため、追加注射の要否・時期は診察で決めます。",
-        "The clinic describes onset over several days and effects lasting months. Response and repeat dosing require assessment.",
-        "官方介绍数日后开始变化并持续数月，追加必要性和时机需评估。",
+        "公式では効果は2〜3日後から現れ、約3〜4ヶ月持続し6ヶ月頃に消失すると案内しています。反応には個人差があるため、追加注射の要否・時期は診察で決めます。",
+        "The clinic describes onset two to three days after treatment, effects lasting about three to four months and fading around six months. Response and repeat dosing require assessment.",
+        "官方介绍2～3天后起效，约维持3～4个月、6个月左右消退，追加必要性和时机需评估。",
       ),
       caution: tr(
         "注射部位の痛み・内出血・アレルギー、眉やまぶたの下垂などが起こり得ます。妊娠・授乳、神経筋疾患、過去の副作用を申告し、製品名と承認・適応の範囲を確認します。",
@@ -130,9 +130,9 @@ export const careTopics: Record<FieldSlug, CareTopic[]> = {
         "IPL使用包含多种波长的光，依据色斑、泛红和肤质选择滤光片与能量，与局部激光的作用方式不同。",
       ),
       method: tr(
-        "診察 → 洗顔 → ジェル塗布 → 照射 → 冷却・肌状態の確認。公式案内の施術時間は約30〜40分です。",
-        "Assessment, cleansing, gel, light treatment and cooling. The clinic lists approximately 30–40 minutes.",
-        "问诊、洁面、涂凝胶、照射和冷却。官方介绍的治疗时间约为30～40分钟。",
+        "診察 → 洗顔 → ジェル塗布 → 照射 → 冷却・肌状態の確認。7種類のIPLフィルターから肌状態に合う波長を選び、公式案内の施術時間は顔全体で約30〜40分です。",
+        "Assessment, cleansing, gel, light treatment and cooling. Seven IPL filters let the clinician match wavelengths to your skin; the clinic lists about 30–40 minutes for a full face.",
+        "问诊、洁面、涂凝胶、照射和冷却。7种IPL滤光片可按肌肤状态选择波长，官方介绍全脸施术约30～40分钟。",
       ),
       course: tr(
         "公式案内は約1か月間隔で4〜5回を目安としています。反応した色素が一時的に濃く見え、薄いかさぶたになる場合があります。回数は診察で調整します。",
@@ -155,9 +155,9 @@ export const careTopics: Record<FieldSlug, CareTopic[]> = {
         "色斑、肤色不均与痘疤",
       ),
       description: tr(
-        "非常に短い時間幅のレーザーを用いる機器です。色素を局所的に狙う照射と、肌質を目的とした照射では設定や経過が異なります。『ピコレーザー』という名前だけで施術内容は決まりません。",
-        "Very short laser pulses are used with different settings for pigment and skin texture. The device name alone does not define the treatment.",
-        "以极短脉冲进行激光治疗。局部色素与肤质治疗的设置不同，不能只凭设备名称判断治疗内容。",
+        "非常に短い時間幅のレーザーを用いる機器です。色素を局所的に狙う照射と、肌質を目的とした照射では設定や経過が異なります。『ピコレーザー』という名前だけで施術内容は決まりません。公式では厚生労働省の薬事承認とFDA承認を受けた機器と記載されています。",
+        "Very short laser pulses are used with different settings for pigment and skin texture. The device name alone does not define the treatment. The official page notes the device has Japanese regulatory and FDA approval.",
+        "以极短脉冲进行激光治疗。局部色素与肤质治疗的设置不同，不能只凭设备名称判断治疗内容。官方注明该设备已获日本药事及美国FDA批准。",
       ),
       method: tr(
         "しみの種類、色、範囲を診察し、スポット照射などの方法を選びます。肝斑や炎症後の色素沈着を含む場合は、刺激による悪化の可能性も考慮します。",
@@ -204,9 +204,9 @@ export const careTopics: Record<FieldSlug, CareTopic[]> = {
         "效果因人而异。官方介绍约三个月间隔，但再次治疗需先评估上次反应和皮肤状况。",
       ),
       caution: tr(
-        "痛み・赤み・熱感などに加え、熱を使う治療としてやけどや神経への影響にも注意が必要です。公式ページでは当該機器の国内薬事未承認を明示しています。",
-        "Pain, redness and heat may occur; burns or nerve effects also require discussion. The clinic identifies the device as unapproved under Japanese pharmaceutical/device law.",
-        "除疼痛、泛红和热感外，也需了解灼伤或神经影响。官方注明该设备未获日本药事批准。",
+        "痛み・赤み・熱感などに加え、熱を使う治療としてやけどや神経への影響にも注意が必要です。公式ページでは当該機器の国内薬事未承認を明示しています。妊娠中・ケロイド体質・金属糸やプレート・ペースメーカー・心疾患のある方は対象外と案内されています。",
+        "Pain, redness and heat may occur; burns or nerve effects also require discussion. The clinic identifies the device as unapproved under Japanese pharmaceutical/device law, and excludes pregnancy, keloid tendency, metal implants, pacemakers and heart disease.",
+        "除疼痛、泛红和热感外，也需了解灼伤或神经影响。官方注明该设备未获日本药事批准，且孕期、疤痕疙瘩体质、体内金属植入物、心脏起搏器或心脏病患者不适用。",
       ),
       source: `${clinic}/hifu/`,
     },
@@ -229,9 +229,9 @@ export const careTopics: Record<FieldSlug, CareTopic[]> = {
         "问诊、洁面及表面麻醉后施术，先确认明显炎症或黄褐斑并决定治疗区域。",
       ),
       course: tr(
-        "公式案内では約3〜4週間の間隔が目安です。深いニキビ跡では複数回の計画が必要になる場合があります。赤み・皮むけ・ヒリつきは約1週間続くことがあります。",
-        "The clinic describes 3–4-week intervals. Deeper scars may require several sessions; redness, peeling or stinging may last around a week.",
-        "官方参考间隔约3～4周，较深痘疤可能需要多次。泛红、脱皮或刺痛可能持续约一周。",
+        "公式案内では約3〜4週間の間隔が目安で、平均5回目頃からの実感・深いニキビ跡は5〜10回と案内されています。赤み・皮むけ・ヒリつきは約1週間続くことがあり、施術当日は入浴ができずシャワーのみ、メイクは翌日から可能です。",
+        "The clinic describes 3–4-week intervals, clearer results around the fifth session on average and 5–10 sessions for deep scars. Redness, peeling or stinging may last around a week; bathing is showers-only on the day and makeup from the next day.",
+        "官方参考间隔约3～4周，平均第5次左右见效，较深痘疤以5～10次为参考。泛红、脱皮或刺痛可能持续约一周；当天只能淋浴，次日可化妆。",
       ),
       caution: tr(
         "内出血・腫れ・色素沈着などのリスクがあります。肝斑部分は悪化のおそれから施術対象外と案内されています。メイクやスキンケアの再開時期を施術時に確認します。",
@@ -259,9 +259,9 @@ export const careTopics: Record<FieldSlug, CareTopic[]> = {
         "沟通目标，评估左右差异和表情，确定注入量，并在施术后检查肿胀及形态。",
       ),
       course: tr(
-        "直後の見た目には腫れも影響します。持続期間は製剤や部位で変わり、永久的な治療ではありません。追加注入は落ち着いた状態を診て判断します。",
-        "Early appearance can include swelling. Duration varies by product and site; further injections should follow reassessment.",
-        "即刻外观会受肿胀影响。维持时间因产品和部位而异，并非永久；追加需复评。",
+        "直後の見た目には腫れも影響します。公式では効果の持続は約半年〜1年と案内され、維持には同程度の間隔での施術が目安です。永久的な治療ではないため、追加注入は落ち着いた状態を診て判断します。",
+        "Early appearance can include swelling. The official guidance describes effects lasting about six months to a year, with similar spacing for maintenance. Further injections should follow reassessment.",
+        "即刻外观会受肿胀影响。官方说明效果约维持半年至1年，可按相同间隔复诊维持，并非永久；追加需复评。",
       ),
       caution: tr(
         "内出血・腫れ・しこり・感染のほか、まれに血管閉塞による皮膚壊死や視力障害などが起こり得ます。強い痛み、皮膚色や見え方の異常は直ちに医療機関へ連絡します。",
@@ -289,9 +289,9 @@ export const careTopics: Record<FieldSlug, CareTopic[]> = {
         "评估并选择药剂，洁面和麻醉后注入。官方约20分钟的施术时间不包含问诊与准备。",
       ),
       course: tr(
-        "公式案内の回復目安は約3日〜1週間。内出血は約2週間かかる場合があります。大切な予定の直前は避け、通院間隔は薬剤と経過に合わせて相談します。",
-        "The clinic lists roughly 3–7 days of recovery; bruising may take two weeks. Allow time before important events.",
-        "官方恢复参考为3～7天，淤青可能需两周。重要活动前应预留时间，复诊间隔需个别商定。",
+        "公式案内の回復目安は約3日〜1週間。内出血は約2週間かかる場合があります。効果は3日〜1週間ほどで現れ約2ヶ月持続すると案内され、2〜3週間のペースで3〜4回、その後1〜2ヶ月ごとの継続が勧められています。",
+        "The clinic lists roughly 3–7 days of recovery; bruising may take two weeks. Effects are described as appearing in three days to a week and lasting about two months, with 3–4 sessions at 2–3 week intervals followed by visits every 1–2 months.",
+        "官方恢复参考为3～7天，淤青可能需两周。效果约3天至1周显现、维持约2个月，建议先以2～3周间隔进行3～4次，之后每1～2个月一次。",
       ),
       caution: tr(
         "赤み・腫れ・発疹・内出血、まれに感染や色素沈着が生じます。メイクは公式案内では翌日以降。採用薬剤の成分、承認状況、アレルギーを確認します。",
@@ -319,9 +319,9 @@ export const careTopics: Record<FieldSlug, CareTopic[]> = {
         "先检查后照射。官方要求提前剃毛，大面积代剃可能另收费，全身并非一次完成。",
       ),
       course: tr(
-        "部位により約10〜40分の案内です。毛の生え替わりを考慮して複数回通院します。希望部位・毛量・経過によって回数や間隔を決めます。",
-        "Listed treatment times vary around 10–40 minutes by area. Multiple visits are planned around hair growth and response.",
-        "不同部位约10～40分钟。需结合毛发生长与反应安排多次，次数和间隔个別决定。",
+        "部位により約10〜40分の案内です。毛の生え替わりを考慮して複数回通院します。希望部位・毛量・経過によって回数や間隔を決めます。公式では5回目以降30%・10回目以降50%の割引が案内されています。",
+        "Listed treatment times vary around 10–40 minutes by area. Multiple visits are planned around hair growth and response. The official fee list offers 30% off from the fifth session and 50% off from the tenth.",
+        "不同部位约10～40分钟。需结合毛发生长与反应安排多次，次数和间隔个别决定。官方价目为第5次起7折、第10次起5折。",
       ),
       caution: tr(
         "赤み・熱感・乾燥・毛嚢炎・色素沈着などの可能性があります。施術当日の入浴・激しい運動・過度な飲酒を避け、保湿と紫外線対策を行います。",
@@ -353,9 +353,9 @@ export const careTopics: Record<FieldSlug, CareTopic[]> = {
         "先评估头皮、脱发进程、病史和现用药物，再准备并注射。",
       ),
       course: tr(
-        "公式は約3〜4週間ごとに6回、約5〜6か月の通院を案内しています。発毛は直後に判断できず、反応や維持治療の必要性には個人差があります。",
-        "The clinic describes six sessions at 3–4-week intervals over about 5–6 months. Response and maintenance needs vary.",
-        "官方参考为每3～4周一次、共六次，约5～6个月。反应和维持治疗需求因人而异。",
+        "公式は約3〜4週間ごとに6回、約5〜6か月の通院を案内しています。その後は年1〜2回のメンテナンスが目安です。パーマ・染色は治療後1週間、ヘアカットは3日間控える案内があります。発毛は直後に判断できず、反応や維持治療の必要性には個人差があります。",
+        "The clinic describes six sessions at 3–4-week intervals over about 5–6 months, then maintenance once or twice a year. Perms and colouring are avoided for one week and haircuts for three days after treatment. Response and maintenance needs vary.",
+        "官方参考为每3～4周一次、共六次，约5～6个月，之后每年1～2次维持。治疗后一周内避免烫发染发、三天内避免理发。反应和维持治疗需求因人而异。",
       ),
       caution: tr(
         "注入時の痛み、発赤・かゆみ・発疹などが起こり得ます。製剤の成分・承認状況と、通院全体の費用を確認してから計画を立てます。",
@@ -379,14 +379,14 @@ export const careTopics: Record<FieldSlug, CareTopic[]> = {
         "皮肤变化与慢性疼痛咨询",
       ),
       description: tr(
-        "本人の脂肪組織から得た細胞を培養して投与する方法です。公式では皮膚への局所注射と慢性疼痛に対する点滴を案内しています。病名や症状ごとの適応を確認し、他の疾患への効果を一律に期待しないことが大切です。",
-        "Cells from the patient's fat are cultured for administration. The clinic describes skin injections and chronic-pain infusions; eligibility and evidence are indication-specific.",
-        "从本人脂肪获取细胞并培养后投与。官方介绍皮肤局部注射及慢性疼痛点滴，适应性与证据须按具体目的确认。",
+        "本人の脂肪組織から得た細胞を培養して投与する方法です。公式では皮膚への局所注射と慢性疼痛に対する点滴を案内しています。病名や症状ごとの適応を確認し、他の疾患への効果を一律に期待しないことが大切です。慢性疼痛の目安として「3ヶ月を超えて続く・再発する痛み」「原因が治った後も1ヶ月以上続く痛み」などが挙げられています。",
+        "Cells from the patient's fat are cultured for administration. The clinic describes skin injections and chronic-pain infusions; eligibility and evidence are indication-specific. Indicative targets include pain lasting or recurring beyond three months, or continuing more than a month after its cause has healed.",
+        "从本人脂肪获取细胞并培养后投与。官方介绍皮肤局部注射及慢性疼痛点滴，适应性与证据须按具体目的确认，适用参考包括「持续或反复超过3个月的疼痛」「病因治愈后仍持续1个月以上的疼痛」等。",
       ),
       method: tr(
-        "相談・採血 → 脂肪採取 → 分離・培養 → 品質確認 → 投与 → 定期診察。公式では培養に約1か月を要するとしています。採取当日に全工程が終わる治療ではありません。",
-        "Consultation and tests, fat collection, culture, quality checks, administration and follow-up. The clinic lists about one month for culture.",
-        "咨询检查、脂肪采集、培养、质量确认、投与及复诊。官方介绍培养约需一个月，并非采集当天完成全部治疗。",
+        "相談・採血 → 腹部から約1〜2gの脂肪採取 → 分離・培養 → 品質確認 → 投与 → 定期診察。公式では培養に約1か月を要するとしています。採取当日に全工程が終わる治療ではありません。",
+        "Consultation and tests, collection of about 1–2 g of abdominal fat, culture, quality checks, administration and follow-up. The clinic lists about one month for culture; it is not a same-day treatment.",
+        "咨询检查、从腹部采集约1～2克脂肪、培养、质量确认、投与及复诊。官方介绍培养约需一个月，并非采集当天完成全部治疗。",
       ),
       course: tr(
         "投与後は症状と経過を確認します。効果の有無、持続、追加投与の必要性を事前に保証することはできません。採取からフォローまで通える計画が必要です。",
@@ -423,9 +423,9 @@ export const careTopics: Record<FieldSlug, CareTopic[]> = {
         "确认适应性、采血、离心、麻醉注入及观察；官方也介绍水光注射方式。",
       ),
       course: tr(
-        "直後の腫れと治療による変化を分けて見ます。公式では徐々に変化をみる治療として案内されていますが、改善の程度や持続には個人差があります。",
-        "Distinguish immediate swelling from a treatment response. Changes may be gradual, with individual variation in benefit and duration.",
-        "需区分即刻肿胀与治疗反应。变化可能逐渐出现，程度和维持时间因人而异。",
+        "直後の腫れと治療による変化を分けて見ます。公式では効果が2週間〜2ヶ月ほどかけて現れ、約6ヶ月〜1年持続すると案内していますが、改善の程度や持続には個人差があります。",
+        "Distinguish immediate swelling from a treatment response. The clinic describes effects appearing over two weeks to two months and lasting about six months to a year, with individual variation.",
+        "需区分即刻肿胀与治疗反应。官方介绍效果在2周～2个月间逐渐显现、约维持6个月至1年，程度和维持时间因人而异。",
       ),
       caution: tr(
         "内出血・赤み・腫れ・色素沈着などがあり得ます。抗凝固薬、出血しやすい病気、妊娠、がんや免疫の病気などは必ず申告し、自己判断で服薬を中止しないでください。",
@@ -447,9 +447,9 @@ export const careTopics: Record<FieldSlug, CareTopic[]> = {
         "先了解制剂与证据",
       ),
       description: tr(
-        "培養上清液は細胞を培養した液に含まれる成分、エクソソームは細胞が放出する小胞を指します。両者は同じ意味ではなく、生きた幹細胞の投与とも異なります。",
-        "Supernatant contains substances released during cell culture; exosomes are small cell-released vesicles. These are not synonyms or living stem-cell treatment.",
-        "上清液含细胞培养时释放的成分，外泌体是细胞释放的小囊泡。两者并非同义，也不同于活干细胞投与。",
+        "培養上清液は細胞を培養した液に含まれる成分、エクソソームは細胞が放出する小胞を指します。両者は同じ意味ではなく、生きた幹細胞の投与とも異なります。公式ではEGF・IGF・TGF-β・PDGF・HGF・VEGF・KGFなどの成長因子を含む濃縮培養上清液を案内しています。",
+        "Supernatant contains substances released during cell culture; exosomes are small cell-released vesicles. These are not synonyms or living stem-cell treatment. The official page describes a concentrated culture supernatant containing growth factors such as EGF, IGF, TGF-β, PDGF, HGF, VEGF and KGF.",
+        "上清液含细胞培养时释放的成分，外泌体是细胞释放的小囊泡。两者并非同义，也不同于活干细胞投与。官方介绍含EGF、IGF、TGF-β、PDGF、HGF、VEGF、KGF等生长因子的浓缩培养上清液。",
       ),
       method: tr(
         "クリニックは点滴と水光注射を案内しています。原料の由来、製造・品質検査、使用量、投与経路を確認します。注射用製剤の詳細は診察時の説明が必要です。",
@@ -462,9 +462,9 @@ export const careTopics: Record<FieldSlug, CareTopic[]> = {
         "次数和间隔取决于制剂与目的，不应视为保证全身年轻化、治愈或预防疾病的方法，需比较替代方案与费用。",
       ),
       caution: tr(
-        "痛み・腫れ・内出血・アレルギーや感染などのリスクを確認します。厚労省の2024年7月通知は、薬事承認された医薬品がない旨と安全性への留意を示しています。未確立な点を理解した説明・同意が必要です。",
-        "Discuss pain, swelling, bruising, allergy and infection. A July 2024 MHLW notice reported no approved medicines of this kind and highlighted safety concerns and uncertainty.",
-        "需了解疼痛、红肿、淤青、过敏和感染。日本厚劳省2024年7月通知指出当时无此类获批药品，并强调安全性及不确定性。",
+        "痛み・腫れ・内出血・アレルギーや感染などのリスクを確認します。厚労省の2024年7月通知は、薬事承認された医薬品がない旨と安全性への留意を示しています。未確立な点を理解した説明・同意が必要です。公式では製品が無血清培地で培養され、皮内反応・毒性・抗原性などの安全性試験の実施が記載されています。",
+        "Discuss pain, swelling, bruising, allergy and infection. A July 2024 MHLW notice reported no approved medicines of this kind and highlighted safety concerns and uncertainty. The official page notes the products are cultured in serum-free media and have undergone safety tests including intradermal reaction, toxicity and antigenicity.",
+        "需了解疼痛、红肿、淤青、过敏和感染。日本厚劳省2024年7月通知指出当时无此类获批药品，并强调安全性及不确定性。官方记载产品在无血清培养基中培养，并经过皮内反应、毒性、抗原性等安全性试验。",
       ),
       source: `${clinic}/exosome/`,
     },
@@ -517,9 +517,9 @@ export const careTopics: Record<FieldSlug, CareTopic[]> = {
         "排尿困难、残尿感与夜尿",
       ),
       description: tr(
-        "前立腺の変化は尿の通り道に影響することがあります。肥大症・炎症・がんは同じ病気ではなく、症状だけで区別できません。",
-        "Prostate changes may affect urine flow. Enlargement, inflammation and cancer are distinct and cannot be separated by symptoms alone.",
-        "前列腺变化可能影响尿流，增生、炎症和癌症并非同一疾病，不能只靠症状区分。",
+        "前立腺の変化は尿の通り道に影響することがあります。肥大症・炎症・がんは同じ病気ではなく、症状だけで区別できません。公式では急性の前立腺炎は発熱と排尿時痛、慢性は長時間の座位が要因のひとつとされる多彩な不快感が数ヶ月単位で続くことがあると説明されています。",
+        "Prostate changes may affect urine flow. Enlargement, inflammation and cancer are distinct and cannot be separated by symptoms alone. The official page describes acute prostatitis with fever and painful urination, and chronic prostatitis causing months of varied discomfort—prolonged sitting being one factor.",
+        "前列腺变化可能影响尿流，增生、炎症和癌症并非同一疾病，不能只靠症状区分。官方说明急性前列腺炎常有发热与排尿痛，慢性期可有多种不适并持续数月，久坐是诱因之一。",
       ),
       method: tr(
         "尿検査、超音波、必要に応じたPSAなどで評価します。PSAは前立腺がんを調べる手がかりですが、数値だけでがんが確定する検査ではありません。",
@@ -619,9 +619,9 @@ export const careTopics: Record<FieldSlug, CareTopic[]> = {
         "尿道痛、分泌物或感染担忧",
       ),
       description: tr(
-        "公式ではクラミジア、淋菌、梅毒などを紹介しています。無症状の感染もあるため、症状が軽いことだけでは否定できません。",
-        "The clinic discusses chlamydia, gonorrhoea and syphilis. Some infections cause few or no symptoms.",
-        "官方介绍衣原体、淋病和梅毒等，部分感染可能无症状或症状轻微。",
+        "公式ではクラミジア、淋菌、梅毒などを紹介しています。無症状の感染もあるため、症状が軽いことだけでは否定できません。クラミジアは潜伏期が約1〜3週間で自覚症状が乏しく、淋菌は約2〜7日で排尿時の強い痛みや膿性分泌物が特徴です。淋菌の約30%にクラミジアの混合感染が認められると案内されています。",
+        "The clinic discusses chlamydia, gonorrhoea and syphilis. Some infections cause few or no symptoms: chlamydia incubates about one to three weeks, while gonorrhoea brings stronger pain and discharge after about two to seven days, with about 30% involving chlamydia co-infection.",
+        "官方介绍衣原体、淋病和梅毒等，部分感染可能无症状或症状轻微。衣原体潜伏期约1～3周，淋病约2～7天且疼痛与脓性分泌物较明显，约30%合并衣原体感染。",
       ),
       method: tr(
         "心配な接触の時期と症状を伺い、感染症に応じた尿・血液などの検査を相談します。検査時期によって再検査が必要になる場合があります。",
@@ -629,9 +629,9 @@ export const careTopics: Record<FieldSlug, CareTopic[]> = {
         "根据接触时间及症状选择尿液或血液检查，检测时间不同可能需复检。",
       ),
       course: tr(
-        "原因に合う治療を受け、必要に応じて治療後の確認を行います。パートナーの検査や治療が必要かも医師に相談します。",
-        "Use cause-specific treatment and follow-up. Ask whether partners need testing or treatment.",
-        "按病原接受治疗和复查，并咨询伴侣是否需检查或治疗。",
+        "原因に合う治療を受け、必要に応じて治療後の確認を行います。パートナーの検査や治療が必要かも医師に相談します。公式では治療開始後7日間は性行為を控え、2週間後の再検査が案内されています。",
+        "Use cause-specific treatment and follow-up. Ask whether partners need testing or treatment. The official guidance advises avoiding sexual activity for seven days after starting treatment and retesting after two weeks.",
+        "按病原接受治疗和复查，并咨询伴侣是否需检查或治疗。官方建议治疗开始后7天内避免性行为，2周后复查。",
       ),
       caution: tr(
         "症状が消えたことを治癒の判断にせず、再開してよい性行為の時期も確認します。検査内容・保険適用・費用は受診時に確認してください。",

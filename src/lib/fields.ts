@@ -44,7 +44,9 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
           { label: "ホルモン注射", url: `${clinicUrl}/hormone/` },
           { label: "美容点滴", url: `${clinicUrl}/beauty/` },
           { label: "いぼ・ほくろ・タトゥー除去", url: `${clinicUrl}/mole/` },
+          { label: "ピアス・その他", url: `${clinicUrl}/others/` },
           { label: "メンズメニュー", url: `${clinicUrl}/mens_menu/` },
+          { label: "料金一覧", url: `${clinicUrl}/fee/` },
         ],
       },
       sections: [
@@ -267,6 +269,14 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
       note: "血尿、急な強い痛み、発熱を伴う症状などは早めの医療機関への相談が必要な場合があります。緊急性は症状によって異なるため、自己判断せず医療機関にご相談ください。",
       official: "クリニック公式の泌尿器科案内",
       officialUrl: `${clinicUrl}/urology/`,
+      moreOfficial: {
+        intro:
+          "クリニック公式サイトには、このページで扱っていない男性向けメニューや料金の詳細も掲載されています。",
+        links: [
+          { label: "メンズメニュー", url: `${clinicUrl}/mens_menu/` },
+          { label: "料金一覧", url: `${clinicUrl}/fee/` },
+        ],
+      },
     },
   },
   en: {
@@ -284,7 +294,9 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
           { label: "Hormone injections", url: `${clinicUrl}/hormone/` },
           { label: "Beauty infusions", url: `${clinicUrl}/beauty/` },
           { label: "Wart, mole and tattoo removal", url: `${clinicUrl}/mole/` },
+          { label: "Piercing and other menus", url: `${clinicUrl}/others/` },
           { label: "Men’s menu", url: `${clinicUrl}/mens_menu/` },
+          { label: "Full price list", url: `${clinicUrl}/fee/` },
         ],
       },
       sections: [
@@ -426,6 +438,14 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
       note: "Sudden severe pain, fever or blood in the urine may require prompt medical attention. Seek professional advice rather than self-diagnosing.",
       official: "Official clinic guide to urology",
       officialUrl: `${clinicUrl}/urology/`,
+      moreOfficial: {
+        intro:
+          "The official site also lists a men’s menu and full price details not covered on this page (in Japanese).",
+        links: [
+          { label: "Men’s menu", url: `${clinicUrl}/mens_menu/` },
+          { label: "Full price list", url: `${clinicUrl}/fee/` },
+        ],
+      },
     },
   },
   zh: {
@@ -443,7 +463,9 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
           { label: "激素注射", url: `${clinicUrl}/hormone/` },
           { label: "美容点滴", url: `${clinicUrl}/beauty/` },
           { label: "疣、痣与纹身去除", url: `${clinicUrl}/mole/` },
+          { label: "穿环与其他项目", url: `${clinicUrl}/others/` },
           { label: "男士项目", url: `${clinicUrl}/mens_menu/` },
+          { label: "价目一览", url: `${clinicUrl}/fee/` },
         ],
       },
       sections: [
@@ -585,6 +607,13 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
       note: "突发剧烈疼痛、发热或血尿有时需要尽快就医。请寻求专业意见，不要自行诊断。",
       official: "诊所官方泌尿科介绍",
       officialUrl: `${clinicUrl}/urology/`,
+      moreOfficial: {
+        intro: "诊所官方网站还刊载了本页未涉及的男性项目与费用详情（日语）。",
+        links: [
+          { label: "男士项目", url: `${clinicUrl}/mens_menu/` },
+          { label: "价目一览", url: `${clinicUrl}/fee/` },
+        ],
+      },
     },
   },
 };

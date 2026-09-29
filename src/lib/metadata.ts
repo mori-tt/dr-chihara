@@ -29,7 +29,7 @@ const localeUrl = (locale: Locale, suffix = "") =>
 
 /** Keep this in sync with the most recent editorial change when publishing. */
 export const siteLastModified =
-  process.env.NEXT_PUBLIC_SITE_LAST_MODIFIED || "2026-09-27";
+  process.env.NEXT_PUBLIC_SITE_LAST_MODIFIED || "2026-09-28";
 
 /**
  * Set NEXT_PUBLIC_NOINDEX=1 for staging/preview builds (e.g. GitHub Pages)
