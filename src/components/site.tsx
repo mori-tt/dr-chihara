@@ -119,7 +119,7 @@ export function Site({ locale }: { locale: Locale }) {
             </div>
             <div className="photo-caption">
               <span>
-                {locale === "en" ? content.ja.name : content.en.name}
+                {c.name}
                 <small>NORRIS BEAUTY CLINIC / OSAKA</small>
               </span>
               <span className="photo-index">01 / PORTRAIT</span>

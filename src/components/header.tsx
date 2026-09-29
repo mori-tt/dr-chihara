@@ -69,7 +69,16 @@ export function Header({
     button.current?.focus();
   }
   const languages = (
-    <div className="languages" aria-label="Language">
+    <div
+      className="languages"
+      aria-label={
+        locale === "ja"
+          ? "言語の切り替え"
+          : locale === "zh"
+            ? "语言切换"
+            : "Language switcher"
+      }
+    >
       {(["ja", "en", "zh"] as const).map((l) => (
         <a
           key={l}

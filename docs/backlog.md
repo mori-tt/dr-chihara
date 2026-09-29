@@ -12,6 +12,7 @@
 - **`/favicon.ico` を生成** — `scripts/prepare-icons.mjs` で 32/48px PNG-in-ICO を出力し、metadata の icons にも `sizes:"any"` で登録済み。
 - **OG画像フォールバックの寸法** — 生成カードがない記事で `article.coverWidth/coverHeight` を og:image width/height に出力。
 - **`<title>` 区切り統一** — ja の `seoTitle` 内 `｜` を `：` に統一（en `:` / zh `：` と整合）。
+- **多言語対応の修正** — Hero写真キャプションの氏名をページ言語に統一（`c.name`）。言語切替の `aria-label` を3言語化。zhの日本語式中黒「・」を「·」に統一（title/role/guest.role）、zhの「大阪・上本町」を「大阪上本町」に修正。en/zh全ページでかな混入ゼロ・属性値まで翻訳済みであることを検証済み。
 
 ## A. 外部作業（ドメイン・アカウント系）
 

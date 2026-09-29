@@ -357,7 +357,7 @@ export const content = {
     consultAlt: "The clinic’s consultation room",
   },
   zh: {
-    title: "千原良友 | 医师・医学博士",
+    title: "千原良友 | 医师·医学博士",
     description:
       "诺里斯美容诊所院长千原良友的个人网站。从泌尿科临床、癌症研究到美容医疗，了解他的医疗理念、个人简介与职业历程。",
     nav: ["关于我", "医疗理念", "职业历程", "诊所介绍"],
@@ -365,7 +365,7 @@ export const content = {
     menu: "打开菜单",
     close: "关闭菜单",
     skip: "跳至正文",
-    role: "医师・医学博士 / 诺里斯美容诊所 院长",
+    role: "医师·医学博士 / 诺里斯美容诊所 院长",
     hero: ["用心倾听，", "守护独特的你。"],
     intro: "将临床与研究积累的视角，融入每一次面对面的诊疗。",
     discover: "了解千原良友",
