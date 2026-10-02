@@ -159,63 +159,67 @@ export function CareGuide({
           >
             <p className="eyebrow">02 / IN DETAIL</p>
             <h2 id="care-details-title">{title}</h2>
-            {topics.map((topic, index) => (
-              <article
-                className="care-topic"
-                id={topic.id}
-                key={topic.id}
-                aria-labelledby={`${topic.id}-title`}
-              >
-                <header className="care-topic-heading">
-                  <span className="care-index" aria-hidden="true">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <p className="care-topic-concern">
-                      {topic.concern[locale]}
-                    </p>
-                    <h3 id={`${topic.id}-title`}>{topic.title[locale]}</h3>
-                  </div>
-                </header>
-                <p className="care-topic-description">
-                  {topic.description[locale]}
-                </p>
-                <dl className="care-topic-facts">
-                  <div className="care-topic-caution">
-                    <dt>{ui.caution[locale]}</dt>
-                    <dd>{topic.caution[locale]}</dd>
-                  </div>
-                </dl>
-                <div className="care-topic-links">
-                  <a
-                    className="care-topic-detail"
-                    href={topicPath(locale, slug, topic.id)}
-                  >
-                    <span className="visually-hidden">
-                      {topic.title[locale]}
-                      {locale === "en" ? ": " : "："}
+            <div className="care-topic-list">
+              {topics.map((topic, index) => (
+                <article
+                  className="care-topic"
+                  id={topic.id}
+                  key={topic.id}
+                  aria-labelledby={`${topic.id}-title`}
+                >
+                  <header className="care-topic-heading">
+                    <span className="care-index" aria-hidden="true">
+                      {String(index + 1).padStart(2, "0")}
                     </span>
-                    {ui.detail[locale]} →
-                  </a>
-                  <a href={topic.source} target="_blank" rel="noopener">
-                    <span className="visually-hidden">
-                      {topic.title[locale]}
-                      {locale === "en" ? ": " : "："}
-                    </span>
-                    {ui.source[locale]}
-                    <span className="visually-hidden">{ui.newTab[locale]}</span>
-                    <span aria-hidden="true"> ↗</span>
-                  </a>
-                  {topic.related && (
-                    <a href={fieldPath(locale, topic.related)}>
-                      {ui.related[locale]}：
-                      {fieldCopy[locale][topic.related].title}
+                    <div>
+                      <p className="care-topic-concern">
+                        {topic.concern[locale]}
+                      </p>
+                      <h3 id={`${topic.id}-title`}>{topic.title[locale]}</h3>
+                    </div>
+                  </header>
+                  <p className="care-topic-description">
+                    {topic.description[locale]}
+                  </p>
+                  <p className="care-topic-caution">
+                    <strong>{ui.caution[locale]}</strong>
+                    {topic.caution[locale]}
+                  </p>
+                  <div className="care-topic-links">
+                    <a
+                      className="care-topic-detail"
+                      href={topicPath(locale, slug, topic.id)}
+                    >
+                      <span className="visually-hidden">
+                        {topic.title[locale]}
+                        {locale === "en" ? ": " : "："}
+                      </span>
+                      {ui.detail[locale]} →
                     </a>
-                  )}
-                  <a href="#care-explore">{ui.back[locale]} ↑</a>
-                </div>
-              </article>
-            ))}
+                    <div className="care-topic-sub">
+                      <a href={topic.source} target="_blank" rel="noopener">
+                        <span className="visually-hidden">
+                          {topic.title[locale]}
+                          {locale === "en" ? ": " : "："}
+                        </span>
+                        {ui.source[locale]}
+                        <span className="visually-hidden">
+                          {ui.newTab[locale]}
+                        </span>
+                        <span aria-hidden="true"> ↗</span>
+                      </a>
+                      {topic.related && (
+                        <a href={fieldPath(locale, topic.related)}>
+                          {ui.related[locale]}：
+                          {fieldCopy[locale][topic.related].title}
+                        </a>
+                      )}
+                      <a href="#care-explore">{ui.back[locale]} ↑</a>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
           </section>
           <section
             className="care-section"
