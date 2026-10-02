@@ -11,6 +11,8 @@ export const clinicPhone = "06-6772-3456";
 export const clinicPhoneHref = "tel:+81667723456";
 export const clinicMapUrl =
   "https://www.google.com/maps/search/?api=1&query=Norris+Beauty+Clinic+Osaka";
+// The clinic's official LINE account (@167qjgmu) as linked from its own site.
+export const clinicLineUrl = "https://line.me/R/ti/p/@167qjgmu";
 export const homeSectionNumbers = {
   about: "01",
   philosophy: "02",
@@ -157,6 +159,7 @@ export const content = {
     closedLabel: "休診",
     official: "クリニック公式サイト",
     map: "地図・アクセス",
+    line: "LINE公式アカウント",
     contactLabel: "ご相談・お問い合わせ",
     contactTitle: ["まずは、お話しする", "ことから。"],
     contactBody: "診療のご相談・ご予約は、ノリス美容クリニックへ。",
@@ -340,6 +343,7 @@ export const content = {
     closedLabel: "Closed",
     official: "Visit the clinic website",
     map: "Map & directions",
+    line: "Clinic LINE account (Japanese)",
     contactLabel: "Get in touch",
     contactTitle: ["It starts with", "a conversation."],
     contactBody:
@@ -476,6 +480,7 @@ export const content = {
     closedLabel: "休诊",
     official: "访问诊所官方网站",
     map: "地图与交通",
+    line: "诊所LINE官方账号（日语）",
     contactLabel: "咨询与联系",
     contactTitle: ["从一次交流，", "开始了解。"],
     contactBody: "有关诊疗咨询与预约，请联系诺里斯美容诊所。",

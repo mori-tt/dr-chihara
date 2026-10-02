@@ -6,6 +6,7 @@ import { JsonLd } from "./json-ld";
 import { Picture } from "./picture";
 import {
   clinicContactUrl,
+  clinicLineUrl,
   clinicMapUrl,
   clinicPhone,
   clinicPhoneHref,
@@ -16,6 +17,9 @@ import {
   type Locale,
 } from "@/lib/content";
 import { fieldPath, type FieldSlug } from "@/lib/fields";
+import { careTopics } from "@/lib/care-guide";
+import { careUi } from "@/lib/care-support";
+import { featuredTopics, topicPath } from "@/lib/care-topics";
 import { clinicSchema, personSchema, websiteSchema } from "@/lib/metadata";
 import { stockPhotos, stockLabel } from "@/lib/stock-photos";
 function Arrow() {
@@ -333,6 +337,25 @@ export function Site({ locale }: { locale: Locale }) {
               </a>
             ))}
           </div>
+          <nav
+            className="practice-topics"
+            aria-label={careUi.featuredTopics[locale]}
+          >
+            <span className="practice-topics-label">
+              {careUi.featuredTopics[locale]}
+            </span>
+            {featuredTopics.map(({ slug, id }) => {
+              const topic = careTopics[slug].find((t) => t.id === id)!;
+              return (
+                <a key={id} href={topicPath(locale, slug, id)}>
+                  {topic.title[locale]}
+                  <span className="arrow" aria-hidden="true">
+                    ↗
+                  </span>
+                </a>
+              );
+            })}
+          </nav>
           <p className="medical-note">{c.medicalNote}</p>
         </section>
         <section className="clinic" id="clinic">
@@ -429,6 +452,16 @@ export function Site({ locale }: { locale: Locale }) {
                 {c.map}
                 <span className="visually-hidden">{c.newTab}</span>
                 <span aria-hidden="true"> ↗</span>
+              </a>
+              <a
+                className="text-link"
+                href={clinicLineUrl}
+                target="_blank"
+                rel="noopener"
+              >
+                {c.line}
+                <span className="visually-hidden">{c.newTab}</span>
+                <Arrow />
               </a>
             </div>
           </div>

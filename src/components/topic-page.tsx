@@ -12,6 +12,7 @@ import {
 import { careCheckedAt, careTopics, tr } from "@/lib/care-guide";
 import { careUi as ui, costExtra } from "@/lib/care-support";
 import { feesForTopic, topicPath } from "@/lib/care-topics";
+import { topicFaqs } from "@/lib/care-topic-faq";
 import {
   fieldCopy,
   fieldPath,
@@ -19,7 +20,13 @@ import {
   fieldsHubPath,
   type FieldSlug,
 } from "@/lib/fields";
-import { breadcrumbSchema, entityNodes, topicSchema } from "@/lib/metadata";
+import {
+  breadcrumbSchema,
+  entityNodes,
+  topicFaqSchema,
+  topicSchema,
+} from "@/lib/metadata";
+import { CareByline } from "./care-byline";
 
 export function TopicPage({
   locale,
@@ -35,6 +42,8 @@ export function TopicPage({
   const topic = topics.find((item) => item.id === id)!;
   const others = topics.filter((item) => item.id !== id);
   const fees = feesForTopic(id);
+  const faq = topicFaqs[id];
+  const faqNode = topicFaqSchema(locale, slug, topic);
   const isUrology = slug === "urology";
   const newTab = <span className="visually-hidden">{ui.newTab[locale]}</span>;
   return (
@@ -49,6 +58,7 @@ export function TopicPage({
             { name: topic.title[locale], path: `fields/${slug}/${id}/` },
           ]),
           topicSchema(locale, slug, topic),
+          ...(faqNode ? [faqNode] : []),
         ]}
       />
       <Header locale={locale} section={`fields/${slug}/${id}/`} />
@@ -79,6 +89,7 @@ export function TopicPage({
             <h1>{topic.title[locale]}</h1>
             <p className="field-lead">{topic.concern[locale]}</p>
             <p className="care-hero-intro">{topic.description[locale]}</p>
+            <CareByline locale={locale} />
           </header>
           <div className="care-reading topic-reading">
             <section className="care-section" aria-labelledby="topic-method">
@@ -142,6 +153,25 @@ export function TopicPage({
                 </a>
               )}
             </section>
+            {faq && (
+              <section
+                className="care-section"
+                aria-labelledby="topic-faq-title"
+              >
+                <h2 id="topic-faq-title">{ui.faq[locale]}</h2>
+                <div className="care-faq-list">
+                  {faq.map((qa) => (
+                    <article key={qa.question.en}>
+                      <h3>
+                        <span aria-hidden="true">Q.</span>
+                        {qa.question[locale]}
+                      </h3>
+                      <p>{qa.answer[locale]}</p>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            )}
           </div>
           <aside className="field-note">
             <strong>
@@ -213,6 +243,17 @@ export function TopicPage({
               ))}
             </div>
           </section>
+          <nav
+            className="care-field-switch field-related-cross"
+            aria-label={ui.otherFields[locale]}
+          >
+            {topic.related && (
+              <a href={fieldPath(locale, topic.related)}>
+                {fieldCopy[locale][topic.related].title}
+              </a>
+            )}
+            <a href={fieldsHubPath(locale)}>{ui.allFields[locale]}</a>
+          </nav>
           <a className="field-back text-link" href={fieldPath(locale, slug)}>
             ← {field.title}
           </a>

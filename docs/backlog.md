@@ -24,7 +24,18 @@
 - タップ領域を拡大（言語切替 幅40px・高さ44px、メニューボタン、電話番号、参考資料リンク等）。
 - 人間交差点一覧のカードが1件のときは横長レイアウトに。個別ページの `<h1>` を診療分野ページより小さく調整。
 
-## A. 外部作業（ドメイン・アカウント系）
+## 2026-10-02 追加改善で対応済み
+
+- 診療系ページに「文責・監修：千原良友＋確認日」のバイラインを表示（`CareByline`、JSON-LD の reviewedBy/lastReviewed と一致）。
+- 個別ページにトピック別FAQ（`src/lib/care-topic-faq.ts`、各2問）を追加し `FAQPage` schema を出力。回答は確認済み本文からの派生。公開前に内容確認推奨。
+- トップの診療セクションに人気トピック10件への直リンク（`featuredTopics` in care-topics.ts）を追加。
+- 個別ページにトピック別OGカードを割当（`prepare-social-images.mjs` が `care-guide.ts` をパースして自動生成。未生成時は分野→プロフィールへフォールバック）。
+- `llms.txt`（AI検索向け索引）と `manifest.webmanifest` をルート出力に追加。
+- 404の英語・中国語文に `lang` 属性を付与。個別ページに他分野への横断リンク（`field-related-cross`）を追加。
+- フッターとトップのクリニック欄にLINE公式（@167qjgmu）リンクを追加。
+- `scripts/strip-preconnect.mjs` を復元し build/build:pages に組み込み（同一オリジンの preconnect を静的出力から除去）。
+- `scripts/link-check.mjs` を追加（`npm run test:links`。内部リンク・画像・アンカーの存在チェック、`--external` で外部URLの死活確認）。
+- **残りの手作業**: アクセス解析（GA4/Plausible 等）の導入判断は外部アカウント作業のため seo-manual-tasks.md に記載。
 
 ## 2026-09-27 リファクタリングで対応済み
 
@@ -59,7 +70,7 @@
 3. **日付の保守** — トップ更新時に `NEXT_PUBLIC_SITE_LAST_MODIFIED`(env)または `siteLastModified` を更新。診療情報を再確認したら `careCheckedAt`(src/lib/care-guide.ts) を更新。料金表・診療時間はクリニック公式と定期的に照合する。
 4. **クリニック情報の確認** — 構造化データの住所・電話(06-6772-3456)・診療時間(水〜日 10:30–19:00)・座標が公式と一致しているかクリニック側に確認。
    - **2026-09-28 照合済み**: 住所・TEL・診療時間・アクセス・院長経歴(11行)・資格・Instagram・予約/問合せURL・料金15項目・施術詳細(M22/re-Beau2/ボトックス/HIFU/水光/ダーマペン/脱毛/HARG/幹細胞/PRP/エクソソーム/泌尿器科)すべて公式サイトと一致を確認。
-   - 差分メモ: 公式の資格欄には「保険医」あり（当サイトは依頼者提供8項目に従い未掲載）。moreOfficialリンクは拡充済み（ホルモン注射・美容点滴・いぼほくろ除去・ピアス・メンズ・料金一覧）。公式側フッターの電話バナー表示は「00-000-0000」のまま（クリニック側の不備・報告候補）。公式にはLINE公式(@167qjgmu)があり当サイト未リンク。
+   - 差分メモ: 公式の資格欄には「保険医」あり（当サイトは依頼者提供8項目に従い未掲載）。moreOfficialリンクは拡充済み（ホルモン注射・美容点滴・いぼほくろ除去・ピアス・メンズ・料金一覧）。公式側フッターの電話バナー表示は「00-000-0000」のまま（クリニック側の不備・報告候補）。公式のLINE公式(@167qjgmu)は2026-10-02にフッター・クリニック欄へリンク済み。
 5. **Person `sameAs` の追加候補** — 現在はクリニック公式プロフィールのみ。researchmap・ORCID・学会ページ等、本人の実在する公開プロフィールがあれば `personSchema` の `sameAs` に追加するとE-E-A-T補強になる。実在確認が必要なため未追加。
 6. **診療ページ description の長さ** — en版は約150〜160字に圧縮済み。ja版は約110〜140字で重要語は前半配置済み。zh版は約90〜115字。さらに絞るかは編集判断。
 7. **写真の高解像度化** — `portrait/consultation/reception/lounge.webp` は最大767px。ヒーロー(約49vw)や retina 環境では1x程度の表示になるため、原画像を1200px以上で書き出せる場合は `scripts/prepare-responsive.mjs` の対象に追加して再生成する。元素材の解像度に依存するため手作業。
@@ -99,6 +110,7 @@ npm run build            # 本番向けビルド(NEXT_PUBLIC_SITE_URL必須)
 npm run test:browser     # 3言語×4幅のブラウザ検証
 node scripts/care-check.mjs    # 診療ページ検証
 node scripts/dialogue-check.mjs # 対談ページ検証
+npm run test:links       # out/内のリンク切れ検査（--external で外部URLも）
 npm run images:social    # OGカード再生成
 npm run images:icons     # アイコンPNG再生成
 npm run images:responsive # 画像のsrcset用変種を再生成

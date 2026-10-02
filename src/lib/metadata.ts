@@ -13,6 +13,7 @@ import { careCheckedAt, careTopics, type CareTopic } from "./care-guide";
 import { topicSeo } from "./care-topics";
 import { careFaq } from "./care-support";
 import { dialogueCopy, publishedDialogues, type Dialogue } from "./dialogues";
+import { topicFaqs } from "./care-topic-faq";
 export const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://mori-tt.github.io/dr-chihara";
 /**
@@ -73,13 +74,15 @@ export const ogLocales = (locale: Locale) => ({
         : ["ja_JP", "en_US"],
 });
 
+/** Pick the first image path that exists under public/ (plain path, no host). */
+export const ogPath = (preferred: string, fallback: string) =>
+  existsSync(path.join(process.cwd(), "public", preferred))
+    ? preferred
+    : fallback;
+
 /** Prefer a generated card when it exists; fall back to a plain image path. */
 export const ogImage = (preferred: string, fallback: string) =>
-  `${canonicalUrl}${
-    existsSync(path.join(process.cwd(), "public", preferred))
-      ? preferred
-      : fallback
-  }`;
+  `${canonicalUrl}${ogPath(preferred, fallback)}`;
 
 export function pageMetadata(locale: Locale): Metadata {
   const copy = content[locale];
@@ -431,6 +434,25 @@ export function topicSchema(locale: Locale, slug: FieldSlug, topic: CareTopic) {
     significantLink: topic.source,
     isAccessibleForFree: true,
     isPartOf: { "@id": `${canonicalUrl}/#website` },
+  };
+}
+
+/** FAQPage attached to a single topic page (returns null when no Q&A exists). */
+export function topicFaqSchema(locale: Locale, slug: FieldSlug, topic: CareTopic) {
+  const faq = topicFaqs[topic.id];
+  if (!faq?.length) return null;
+  const url = localeUrl(locale, `fields/${slug}/${topic.id}/`);
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${url}#faq`,
+    inLanguage: localeLanguage(locale),
+    isPartOf: { "@id": `${url}#webpage` },
+    mainEntity: faq.map((qa) => ({
+      "@type": "Question",
+      name: qa.question[locale],
+      acceptedAnswer: { "@type": "Answer", text: qa.answer[locale] },
+    })),
   };
 }
 

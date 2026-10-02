@@ -25,6 +25,7 @@ import {
   medicalWebPageSchema,
 } from "@/lib/metadata";
 import { CareGuide } from "./care-guide";
+import { CareByline } from "./care-byline";
 import { careUi } from "@/lib/care-support";
 
 const fieldPhoto = (locale: Locale, slug: FieldSlug) => {
@@ -111,6 +112,7 @@ export function FieldPage({
             <h1>{c.title}</h1>
             <p className="field-lead">{c.lead}</p>
             <p className="care-hero-intro">{c.sections[0].body}</p>
+            <CareByline locale={locale} />
           </header>
           <figure className="field-hero">
             <Picture

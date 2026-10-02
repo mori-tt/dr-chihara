@@ -1,5 +1,6 @@
 import {
   clinicContactUrl,
+  clinicLineUrl,
   clinicMapUrl,
   clinicPhone,
   clinicPhoneHref,
@@ -73,6 +74,10 @@ export function Footer({ locale }: { locale: Locale }) {
             </a>
             <a href={clinicContactUrl} target="_blank" rel="noopener">
               {c.contactButton}
+              {external}
+            </a>
+            <a href={clinicLineUrl} target="_blank" rel="noopener">
+              {c.line}
               {external}
             </a>
             <a href={clinicMapUrl} target="_blank" rel="noopener">

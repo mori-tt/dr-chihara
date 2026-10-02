@@ -41,9 +41,12 @@ export default function GlobalNotFound() {
           <p>
             URLが変更された、または削除された可能性があります。下のリンクから目的のページへお進みください。
             <br />
-            The page you are looking for does not exist or may have been moved.
+            <span lang="en">
+              The page you are looking for does not exist or may have been
+              moved.
+            </span>
             <br />
-            您访问的页面不存在，或已被移动。
+            <span lang="zh-Hans">您访问的页面不存在，或已被移动。</span>
           </p>
           <ul>
             {links.map((link) => (

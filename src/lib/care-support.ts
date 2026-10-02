@@ -83,6 +83,28 @@ export const careUi = {
     "Explore other areas of care",
     "了解其他诊疗领域",
   ),
+  byline: tr(
+    "文責・監修",
+    "Written & medically reviewed by",
+    "撰稿・审校",
+  ),
+  authorName: tr("千原良友", "Yoshitomo Chihara", "千原良友"),
+  authorRole: tr("医師・医学博士", "MD, PhD", "医师·医学博士"),
+  allFields: tr(
+    "すべての診療分野を見る",
+    "All areas of practice",
+    "查看全部诊疗领域",
+  ),
+  otherFields: tr(
+    "関連する診療分野",
+    "Related areas of practice",
+    "相关诊疗领域",
+  ),
+  featuredTopics: tr(
+    "よく見られる治療・症状",
+    "Frequently viewed treatments & symptoms",
+    "热门治疗与症状",
+  ),
 };
 
 export const feeRows: Record<

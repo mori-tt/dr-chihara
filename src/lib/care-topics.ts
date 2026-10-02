@@ -11,6 +11,20 @@ export const allTopics = () =>
     careTopics[slug].map((topic) => ({ slug, topic })),
   );
 
+/** Topics deep-linked from the home practice section (high-interest queries). */
+export const featuredTopics: { slug: FieldSlug; id: string }[] = [
+  { slug: "rejuvenation", id: "botox" },
+  { slug: "rejuvenation", id: "hifu" },
+  { slug: "rejuvenation", id: "photofacial" },
+  { slug: "rejuvenation", id: "epilation" },
+  { slug: "rejuvenation", id: "hyaluronic" },
+  { slug: "regenerate", id: "stem-cell" },
+  { slug: "regenerate", id: "prp" },
+  { slug: "urology", id: "sti" },
+  { slug: "urology", id: "overactive-bladder" },
+  { slug: "urology", id: "mens-health" },
+];
+
 export const findTopic = (slug: string, id: string): CareTopic | undefined =>
   careTopics[slug as FieldSlug]?.find((topic) => topic.id === id);
 

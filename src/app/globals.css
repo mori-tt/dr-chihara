@@ -995,6 +995,44 @@ a:hover .arrow {
 .practice-card:hover .practice-more {
   color: var(--accent);
 }
+.practice-topics {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  margin-top: 34px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+.practice-topics-label {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  margin-right: 8px;
+  padding: 10px 0;
+}
+.practice-topics a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  font-size: 14px;
+  color: var(--ink);
+  transition:
+    border-color 0.18s,
+    color 0.18s;
+}
+.practice-topics a .arrow {
+  font-size: 13px;
+}
+.practice-topics a:hover,
+.practice-topics a:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}
 .medical-note {
   line-height: 1.9;
   color: var(--muted);

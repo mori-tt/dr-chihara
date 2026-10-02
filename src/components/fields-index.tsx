@@ -5,6 +5,7 @@ import { JsonLd } from "./json-ld";
 import { localePath, type Locale } from "@/lib/content";
 import { fieldCopy, fieldPath, fieldSlugs, fieldsHub } from "@/lib/fields";
 import { careUi } from "@/lib/care-support";
+import { CareByline } from "./care-byline";
 import { breadcrumbSchema, entityNodes, fieldsHubSchema } from "@/lib/metadata";
 
 export function FieldsIndex({ locale }: { locale: Locale }) {
@@ -44,6 +45,7 @@ export function FieldsIndex({ locale }: { locale: Locale }) {
             </p>
             <h1>{c.title}</h1>
             <p className="field-lead">{c.lead}</p>
+            <CareByline locale={locale} />
           </header>
           <ul className="fields-hub-list">
             {fieldSlugs.map((slug) => {
