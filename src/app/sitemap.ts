@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { siteLastModified, siteUrl } from "@/lib/metadata";
 import { publishedDialogues } from "@/lib/dialogues";
 import { fieldSlugs, type FieldSlug } from "@/lib/fields";
+import { allTopics } from "@/lib/care-topics";
 import { careCheckedAt } from "@/lib/care-guide";
 export const dynamic = "force-static";
 const fieldImages: Record<FieldSlug, string> = {
@@ -22,14 +23,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
         "/images/lounge.webp",
       ],
     },
-    {
-      path: "dialogues/",
-      lastModified:
-        articles[0]?.updatedAt ?? articles[0]?.publishedAt ?? siteLastModified,
-      images: ["/images/stock/conversation.webp"],
-    },
+    ...(articles.length
+      ? [
+          {
+            path: "dialogues/",
+            lastModified:
+              articles[0].updatedAt ??
+              articles[0].publishedAt ??
+              siteLastModified,
+            images: ["/images/stock/conversation.webp"],
+          },
+        ]
+      : []),
+    { path: "fields/", lastModified: careCheckedAt, images: [] as string[] },
     ...fieldSlugs.map((slug) => ({
       path: `fields/${slug}/`,
+      lastModified: careCheckedAt,
+      images: [fieldImages[slug]],
+    })),
+    ...allTopics().map(({ slug, topic }) => ({
+      path: `fields/${slug}/${topic.id}/`,
       lastModified: careCheckedAt,
       images: [fieldImages[slug]],
     })),

@@ -22,9 +22,9 @@ export const homeSectionNumbers = {
 
 export const content = {
   ja: {
-    title: "千原良友 | 医師・医学博士 | Yoshitomo Chihara",
+    title: "千原良友 | ノリス美容クリニック院長（大阪・上本町）",
     description:
-      "ノリス美容クリニック院長、千原良友の個人サイト。泌尿器科、がん研究、そして美容医療へ。医療への想い、プロフィール、これまでの歩みをご紹介します。",
+      "千原良友（Yoshitomo Chihara）の個人サイト。大阪・上本町のノリス美容クリニック院長。泌尿器科、がん研究から美容医療・再生医療まで、医療への想いとこれまでの歩みをご紹介します。",
     nav: ["私について", "医療への想い", "これまでの歩み", "クリニック"],
     contact: "ご相談・お問い合わせ",
     menu: "メニューを開く",
@@ -177,9 +177,9 @@ export const content = {
     consultAlt: "クリニックのカウンセリングルーム",
   },
   en: {
-    title: "Yoshitomo Chihara | Physician & PhD",
+    title: "Yoshitomo Chihara | Physician, Norris Beauty Clinic Osaka",
     description:
-      "Meet Yoshitomo Chihara, director of Norris Beauty Clinic in Osaka. Discover his background in urology, cancer research and aesthetic medicine, his approach and professional journey.",
+      "Yoshitomo Chihara, physician (PhD) and director of Norris Beauty Clinic in Osaka. His background in urology, cancer research and aesthetic medicine.",
     nav: ["About", "Philosophy", "Journey", "Clinic"],
     contact: "Get in touch",
     menu: "Open menu",
@@ -361,9 +361,9 @@ export const content = {
     consultAlt: "The clinic’s consultation room",
   },
   zh: {
-    title: "千原良友 | 医师·医学博士",
+    title: "千原良友 | 诺里斯美容诊所院长（大阪上本町）",
     description:
-      "诺里斯美容诊所院长千原良友的个人网站。从泌尿科临床、癌症研究到美容医疗，了解他的医疗理念、个人简介与职业历程。",
+      "大阪上本町诺里斯美容诊所院长千原良友的个人网站。从泌尿科临床、癌症研究到美容医疗与再生医疗，了解他的医疗理念与职业历程。",
     nav: ["关于我", "医疗理念", "职业历程", "诊所介绍"],
     contact: "咨询与联系",
     menu: "打开菜单",

@@ -158,10 +158,10 @@ try {
   await page.goto(`${base}/dialogues/sample/`);
   assert.equal(await page.locator(".dialogue-chapter").count(), 3);
   const sitemap = await (await page.request.get(`${base}/sitemap.xml`)).text();
-  assert.ok(sitemap.includes("/en/dialogues/"));
   assert.ok(!sitemap.includes("/sample/"));
+  assert.ok(!sitemap.includes("/dialogues/"));
   console.log(
-    "PASS static article without JavaScript; sample excluded from sitemap",
+    "PASS static article without JavaScript; sample and empty hub excluded from sitemap",
   );
   assert.deepEqual(failures, []);
 } finally {

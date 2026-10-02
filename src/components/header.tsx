@@ -10,7 +10,7 @@ import {
   type Locale,
 } from "@/lib/content";
 import { dialogueCopy, dialoguePath } from "@/lib/dialogues";
-import { fieldPath, type FieldSlug } from "@/lib/fields";
+import { fieldPath, fieldsHubPath, type FieldSlug } from "@/lib/fields";
 const anchors = ["about", "philosophy", "journey"];
 const fieldSlugs: FieldSlug[] = ["rejuvenation", "regenerate", "urology"];
 export function Header({
@@ -125,7 +125,12 @@ export function Header({
               {n}
             </a>
           ))}
-          <a href={homeAnchor("practice")}>{c.practiceLabel}</a>
+          <a
+            href={section ? fieldsHubPath(locale) : homeAnchor("practice")}
+            aria-current={section.startsWith("fields/") ? "page" : undefined}
+          >
+            {c.practiceLabel}
+          </a>
           <a href={homeAnchor("clinic")}>{c.nav[3]}</a>
           <a
             href={dialoguePath(locale)}
@@ -140,7 +145,7 @@ export function Header({
             className="header-reserve"
             href={clinicReserveUrl}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
           >
             {c.reserve}
             <span className="visually-hidden">{c.newTab}</span>
@@ -219,7 +224,7 @@ export function Header({
               className="menu-reserve contact-button"
               href={clinicReserveUrl}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
             >
               {c.reserveLong}
               <span className="visually-hidden">{c.newTab}</span>

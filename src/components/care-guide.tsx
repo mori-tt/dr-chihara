@@ -19,6 +19,7 @@ import {
   urgent,
 } from "@/lib/care-support";
 import { fieldCopy, fieldPath, type FieldSlug } from "@/lib/fields";
+import { topicPath } from "@/lib/care-topics";
 import { CareContents } from "./care-contents";
 
 export function CareGuide({
@@ -180,14 +181,6 @@ export function CareGuide({
                   {topic.description[locale]}
                 </p>
                 <dl className="care-topic-facts">
-                  <div>
-                    <dt>{ui.method[locale]}</dt>
-                    <dd>{topic.method[locale]}</dd>
-                  </div>
-                  <div>
-                    <dt>{ui.course[locale]}</dt>
-                    <dd>{topic.course[locale]}</dd>
-                  </div>
                   <div className="care-topic-caution">
                     <dt>{ui.caution[locale]}</dt>
                     <dd>{topic.caution[locale]}</dd>
@@ -195,10 +188,20 @@ export function CareGuide({
                 </dl>
                 <div className="care-topic-links">
                   <a
-                    href={topic.source}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    className="care-topic-detail"
+                    href={topicPath(locale, slug, topic.id)}
                   >
+                    <span className="visually-hidden">
+                      {topic.title[locale]}
+                      {locale === "en" ? ": " : "："}
+                    </span>
+                    {ui.detail[locale]} →
+                  </a>
+                  <a href={topic.source} target="_blank" rel="noopener">
+                    <span className="visually-hidden">
+                      {topic.title[locale]}
+                      {locale === "en" ? ": " : "："}
+                    </span>
                     {ui.source[locale]}
                     <span className="visually-hidden">{ui.newTab[locale]}</span>
                     <span aria-hidden="true"> ↗</span>
@@ -295,7 +298,7 @@ export function CareGuide({
                 className="care-inline-link"
                 href={`${clinicUrl}/fee/`}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
               >
                 {ui.feeLink[locale]}
                 <span className="visually-hidden">{ui.newTab[locale]}</span>
@@ -342,7 +345,7 @@ export function CareGuide({
                   className="contact-button"
                   href={clinicReserveUrl}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener"
                 >
                   {content[locale].reserve}
                   <span className="visually-hidden">{ui.newTab[locale]}</span>
@@ -352,7 +355,7 @@ export function CareGuide({
                   className="contact-button contact-button-secondary"
                   href={clinicContactUrl}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener"
                 >
                   {
                     tr(
@@ -384,11 +387,7 @@ export function CareGuide({
                 .filter((item) => item.field === slug)
                 .map((item) => (
                   <li key={item.url}>
-                    <a
-                      href={item.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    <a href={item.url} target="_blank" rel="noopener">
                       {item.label[locale]}
                       <span className="visually-hidden">
                         {ui.newTab[locale]}

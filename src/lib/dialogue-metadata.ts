@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { type Locale } from "./content";
-import { dialogueCopy, type Dialogue } from "./dialogues";
+import { dialogueCopy, publishedDialogues, type Dialogue } from "./dialogues";
 import {
   canonicalUrl,
   ogImage,
@@ -36,7 +36,11 @@ export function dialogueMetadata(locale: Locale, article?: Dialogue): Metadata {
     title: pageTitle,
     description,
     robots: {
-      index: !siteNoindex && article?.status !== "template",
+      index:
+        !siteNoindex &&
+        (article
+          ? article.status !== "template"
+          : publishedDialogues().length > 0),
       follow: true,
       "max-image-preview": "large",
       "max-snippet": -1,

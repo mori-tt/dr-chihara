@@ -67,27 +67,19 @@ export function Footer({ locale }: { locale: Locale }) {
           <p>{c.hours}</p>
           <p className="footer-clinic-links">
             <a href={clinicPhoneHref}>{clinicPhone}</a>
-            <a
-              href={clinicReserveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href={clinicReserveUrl} target="_blank" rel="noopener">
               {c.reserve}
               {external}
             </a>
-            <a
-              href={clinicContactUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href={clinicContactUrl} target="_blank" rel="noopener">
               {c.contactButton}
               {external}
             </a>
-            <a href={clinicMapUrl} target="_blank" rel="noopener noreferrer">
+            <a href={clinicMapUrl} target="_blank" rel="noopener">
               {c.map}
               {external}
             </a>
-            <a href={clinicUrl} target="_blank" rel="noopener noreferrer">
+            <a href={clinicUrl} target="_blank" rel="noopener">
               {c.official}
               {external}
             </a>

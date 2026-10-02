@@ -31,6 +31,11 @@ export const careUi = {
     "Full clinic guide (Japanese)",
     "诊所详细说明（日语）",
   ),
+  detail: tr(
+    "流れ・経過・費用などの詳しい解説",
+    "Full guide: process, recovery and fees",
+    "流程、恢复与费用的详细介绍",
+  ),
   back: tr("項目一覧へ戻る", "Back to topics", "返回主题列表"),
   newTab: tr(
     "（新しいタブで開きます）",

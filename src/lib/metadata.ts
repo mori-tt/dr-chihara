@@ -8,10 +8,11 @@ import {
   clinicReserveUrl,
   clinicUrl,
 } from "./content";
-import { fieldCopy, type FieldSlug } from "./fields";
-import { careCheckedAt, careTopics } from "./care-guide";
+import { fieldCopy, fieldSlugs, fieldsHub, type FieldSlug } from "./fields";
+import { careCheckedAt, careTopics, type CareTopic } from "./care-guide";
+import { topicSeo } from "./care-topics";
 import { careFaq } from "./care-support";
-import { dialogueCopy, type Dialogue } from "./dialogues";
+import { dialogueCopy, publishedDialogues, type Dialogue } from "./dialogues";
 export const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://mori-tt.github.io/dr-chihara";
 /**
@@ -45,11 +46,19 @@ export const siteTitle = (locale: Locale) =>
 export const feedUrl = (locale: Locale) =>
   `${siteUrl}/${locale === "ja" ? "" : `${locale}/`}feed.xml`;
 
-export const rssLink = (locale: Locale) => ({
-  "application/rss+xml": [
-    { url: feedUrl(locale), title: `${dialogueCopy[locale].label} — RSS` },
-  ],
-});
+export const rssLink = (
+  locale: Locale,
+): Record<string, { url: string; title: string }[]> =>
+  publishedDialogues().length
+    ? {
+        "application/rss+xml": [
+          {
+            url: feedUrl(locale),
+            title: `${dialogueCopy[locale].label} — RSS`,
+          },
+        ],
+      }
+    : {};
 
 const localeLanguage = (locale: Locale) =>
   locale === "zh" ? "zh-Hans" : locale;
@@ -173,7 +182,7 @@ const clinicAddress = {
   addressCountry: "JP",
 };
 
-export function personSchema(locale: Locale) {
+export function personNode(locale: Locale) {
   const profileUrl = localeUrl(locale);
   const specialties =
     locale === "ja"
@@ -187,6 +196,48 @@ export function personSchema(locale: Locale) {
             "molecular pathology",
           ];
   return {
+    "@id": personId,
+    "@type": "Person",
+    name: "千原良友",
+    alternateName: ["Yoshitomo Chihara", "千原 良友"],
+    honorificPrefix: "Dr.",
+    givenName: locale === "en" ? "Yoshitomo" : "良友",
+    familyName: locale === "en" ? "Chihara" : "千原",
+    jobTitle: content[locale].role,
+    hasOccupation: {
+      "@type": "Occupation",
+      name: locale === "ja" ? "医師" : locale === "zh" ? "医师" : "Physician",
+    },
+    url: profileUrl,
+    image: [
+      `${canonicalUrl}/images/portrait.webp`,
+      `${canonicalUrl}/images/og/profile-${locale}.png`,
+    ],
+    description: content[locale].description,
+    knowsAbout: specialties,
+    alumniOf: {
+      "@type": "CollegeOrUniversity",
+      name: "奈良県立医科大学",
+      alternateName: "Nara Medical University",
+    },
+    hasCredential: content[locale].credentials.map((name) => ({
+      "@type": "EducationalOccupationalCredential",
+      name,
+    })),
+    memberOf: {
+      "@type": "Organization",
+      name: "日本再生医療学会",
+      alternateName: "Japanese Society for Regenerative Medicine",
+    },
+    worksFor: { "@id": clinicId },
+    workLocation: { "@type": "Place", address: clinicAddress },
+    sameAs: [`${clinicUrl}/doctor/`],
+  };
+}
+
+export function personSchema(locale: Locale) {
+  const profileUrl = localeUrl(locale);
+  return {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
     "@id": `${profileUrl}#profile`,
@@ -194,44 +245,7 @@ export function personSchema(locale: Locale) {
     inLanguage: localeLanguage(locale),
     dateModified: siteLastModified,
     isPartOf: { "@id": `${canonicalUrl}/#website` },
-    mainEntity: {
-      "@id": personId,
-      "@type": "Person",
-      name: "千原良友",
-      alternateName: ["Yoshitomo Chihara", "千原 良友"],
-      honorificPrefix: "Dr.",
-      givenName: locale === "en" ? "Yoshitomo" : "良友",
-      familyName: locale === "en" ? "Chihara" : "千原",
-      jobTitle: content[locale].role,
-      hasOccupation: {
-        "@type": "Occupation",
-        name: locale === "ja" ? "医師" : locale === "zh" ? "医师" : "Physician",
-      },
-      url: profileUrl,
-      image: [
-        `${canonicalUrl}/images/portrait.webp`,
-        `${canonicalUrl}/images/og/profile-${locale}.png`,
-      ],
-      description: content[locale].description,
-      knowsAbout: specialties,
-      alumniOf: {
-        "@type": "CollegeOrUniversity",
-        name: "奈良県立医科大学",
-        alternateName: "Nara Medical University",
-      },
-      hasCredential: content[locale].credentials.map((name) => ({
-        "@type": "EducationalOccupationalCredential",
-        name,
-      })),
-      memberOf: {
-        "@type": "Organization",
-        name: "日本再生医療学会",
-        alternateName: "Japanese Society for Regenerative Medicine",
-      },
-      worksFor: { "@id": clinicId },
-      workLocation: { "@type": "Place", address: clinicAddress },
-      sameAs: [`${clinicUrl}/doctor/`],
-    },
+    mainEntity: personNode(locale),
   };
 }
 
@@ -288,6 +302,13 @@ export function clinicSchema() {
     employee: { "@id": personId },
   };
 }
+
+/** Entity nodes that inner pages reference by `@id`, so each page's graph resolves on its own. */
+export const entityNodes = (locale: Locale) => [
+  websiteSchema(),
+  personNode(locale),
+  clinicSchema(),
+];
 
 export function articleSchema(locale: Locale, article: Dialogue) {
   const t = article.translations[locale];
@@ -359,12 +380,7 @@ export function medicalWebPageSchema(locale: Locale, slug: FieldSlug) {
     lastReviewed: careCheckedAt,
     dateModified: careCheckedAt,
     author: { "@id": personId },
-    reviewedBy: {
-      "@type": "Person",
-      "@id": personId,
-      name: "千原良友 / Yoshitomo Chihara",
-      url: localeUrl(locale),
-    },
+    reviewedBy: { "@id": personId },
     about: { "@type": "MedicalEntity", name: c.title },
     contentLocation: { "@id": clinicId },
     medicalAudience: { "@type": "MedicalAudience", audienceType: "Patient" },
@@ -376,14 +392,68 @@ export function medicalWebPageSchema(locale: Locale, slug: FieldSlug) {
       itemListElement: careTopics[slug].map((topic, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        url: `${url}#${topic.id}`,
+        url: localeUrl(locale, `fields/${slug}/${topic.id}/`),
         name: topic.title[locale],
         item: {
           "@type": slug === "urology" ? "MedicalCondition" : "MedicalProcedure",
           name: topic.title[locale],
           description: topic.description[locale],
-          url: `${url}#${topic.id}`,
+          url: localeUrl(locale, `fields/${slug}/${topic.id}/`),
         },
+      })),
+    },
+  };
+}
+
+export function topicSchema(locale: Locale, slug: FieldSlug, topic: CareTopic) {
+  const url = localeUrl(locale, `fields/${slug}/${topic.id}/`);
+  const seo = topicSeo(locale, slug, topic);
+  return {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "@id": `${url}#webpage`,
+    url,
+    name: `${seo.title} | ${siteTitle(locale)}`,
+    headline: topic.title[locale],
+    description: seo.description,
+    inLanguage: localeLanguage(locale),
+    lastReviewed: careCheckedAt,
+    dateModified: careCheckedAt,
+    author: { "@id": personId },
+    reviewedBy: { "@id": personId },
+    about: {
+      "@type": slug === "urology" ? "MedicalCondition" : "MedicalProcedure",
+      name: topic.title[locale],
+      description: topic.description[locale],
+    },
+    contentLocation: { "@id": clinicId },
+    medicalAudience: { "@type": "MedicalAudience", audienceType: "Patient" },
+    significantLink: topic.source,
+    isAccessibleForFree: true,
+    isPartOf: { "@id": `${canonicalUrl}/#website` },
+  };
+}
+
+export function fieldsHubSchema(locale: Locale) {
+  const url = localeUrl(locale, "fields/");
+  const c = fieldsHub[locale];
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${url}#collection`,
+    url,
+    name: c.title,
+    description: c.seoDescription,
+    inLanguage: localeLanguage(locale),
+    isPartOf: { "@id": `${canonicalUrl}/#website` },
+    about: { "@id": personId },
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: fieldSlugs.map((slug, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: localeUrl(locale, `fields/${slug}/`),
+        name: fieldCopy[locale][slug].title,
       })),
     },
   };

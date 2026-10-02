@@ -15,6 +15,7 @@ import {
   articleSchema,
   breadcrumbSchema,
   collectionSchema,
+  entityNodes,
 } from "@/lib/metadata";
 import { stockBySrc, variantWidths } from "@/lib/stock-photos";
 
@@ -112,6 +113,7 @@ export function DialogueIndex({ locale }: { locale: Locale }) {
     <div className={`site locale-${locale} dialogue-site`} id="top">
       <JsonLd
         nodes={[
+          ...entityNodes(locale),
           breadcrumbSchema(locale, [
             { name: c.home, path: "" },
             { name: c.label, path: "dialogues/" },
@@ -205,6 +207,7 @@ export function DialogueArticle({
     <div className={`site locale-${locale} dialogue-site`} id="top">
       <JsonLd
         nodes={[
+          ...entityNodes(locale),
           breadcrumbSchema(locale, [
             { name: c.home, path: "" },
             { name: c.label, path: "dialogues/" },
@@ -398,7 +401,7 @@ export function DialogueArticle({
                         <a
                           href="https://www.fda.gov/science-research/focus-areas-regulatory-science-report/focus-area-regenerative-medicine"
                           target="_blank"
-                          rel="noopener noreferrer"
+                          rel="noopener"
                         >
                           FDA — Focus Area: Regenerative Medicine
                           <span className="visually-hidden">
@@ -411,7 +414,7 @@ export function DialogueArticle({
                         <a
                           href="https://www.isscr.org/patients"
                           target="_blank"
-                          rel="noopener noreferrer"
+                          rel="noopener"
                         >
                           ISSCR — Patient Resources
                           <span className="visually-hidden">
@@ -424,7 +427,7 @@ export function DialogueArticle({
                         <a
                           href="https://www.isscr.org/resources/informed-consent-stemcell"
                           target="_blank"
-                          rel="noopener noreferrer"
+                          rel="noopener"
                         >
                           ISSCR — Informed Consent Standard
                           <span className="visually-hidden">

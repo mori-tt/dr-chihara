@@ -2373,3 +2373,6 @@ a:hover .arrow {
     padding: 24px 0;
   }
 }
+.hero-name .name-gap {
+  margin-left: 0.5em;
+}

@@ -74,7 +74,7 @@ export function CareContents({
         className="care-toc-contact"
         href={contactUrl}
         target="_blank"
-        rel="noopener noreferrer"
+        rel="noopener"
       >
         {contactLabel}
         <span className="visually-hidden">{newTabText}</span>

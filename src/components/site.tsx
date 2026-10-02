@@ -80,7 +80,18 @@ export function Site({ locale }: { locale: Locale }) {
             <div className="hero-bottom">
               <div>
                 <h1 id="hero-title">
-                  <span className="hero-name">{c.name}</span>
+                  <span className="hero-name">
+                    {locale === "en"
+                      ? c.name
+                      : c.name.split(" ").map((part, i) => (
+                          <span
+                            key={part}
+                            className={i ? "name-gap" : undefined}
+                          >
+                            {part}
+                          </span>
+                        ))}
+                  </span>
                   <span className="hero-role">{c.role}</span>
                 </h1>
                 <p className="hero-tagline">
@@ -198,7 +209,7 @@ export function Site({ locale }: { locale: Locale }) {
                 className="text-link"
                 href={`${clinicUrl}/doctor/`}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
               >
                 {c.profileLink}
                 <span className="visually-hidden">{c.newTab}</span>
@@ -369,9 +380,7 @@ export function Site({ locale }: { locale: Locale }) {
             </p>
             <div className="clinic-hours-scroll">
               <table className="clinic-hours">
-                <caption className="visually-hidden">
-                  {c.hours}
-                </caption>
+                <caption className="visually-hidden">{c.hours}</caption>
                 <thead>
                   <tr>
                     {c.clinicDays.map((day) => (
@@ -397,7 +406,7 @@ export function Site({ locale }: { locale: Locale }) {
                 className="text-link"
                 href={clinicUrl}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
               >
                 {c.official}
                 <span className="visually-hidden">{c.newTab}</span>
@@ -407,7 +416,7 @@ export function Site({ locale }: { locale: Locale }) {
                 className="map-link"
                 href={clinicMapUrl}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
               >
                 {c.map}
                 <span className="visually-hidden">{c.newTab}</span>
@@ -437,7 +446,7 @@ export function Site({ locale }: { locale: Locale }) {
                 className="contact-button"
                 href={clinicReserveUrl}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
               >
                 {c.reserve}
                 <span className="visually-hidden">{c.newTab}</span>
@@ -448,7 +457,7 @@ export function Site({ locale }: { locale: Locale }) {
                 className="contact-button contact-button-secondary"
                 href={clinicContactUrl}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
               >
                 {c.contactButton}
                 <span className="visually-hidden">{c.newTab}</span>
@@ -474,7 +483,7 @@ export function Site({ locale }: { locale: Locale }) {
                 className="text-link"
                 href={clinicContactUrl}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
               >
                 {c.editorialButton}
                 <span className="visually-hidden">{c.newTab}</span>

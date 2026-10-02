@@ -127,6 +127,98 @@ try {
       await page.close();
     }
   }
+  // Every topic has its own page in each language: title, breadcrumb, sibling links, no overflow.
+  const topicIds = {
+    rejuvenation: [
+      "skin-analysis",
+      "botox",
+      "thread-lift",
+      "photofacial",
+      "picolaser",
+      "hifu",
+      "dermapen",
+      "hyaluronic",
+      "vital",
+      "epilation",
+      "harg",
+    ],
+    regenerate: ["stem-cell", "prp", "exosome"],
+    urology: [
+      "infection",
+      "prostate",
+      "overactive-bladder",
+      "stones",
+      "sti",
+      "mens-health",
+    ],
+  };
+  const topicPage = await browser.newPage({
+    viewport: { width: 390, height: 900 },
+  });
+  topicPage.on("pageerror", (e) => errors.push(e.message));
+  const titles = new Set();
+  for (const locale of ["ja", "en", "zh"]) {
+    const prefix = locale === "ja" ? "" : `${locale}/`;
+    for (const [slug, ids] of Object.entries(topicIds)) {
+      for (const id of ids) {
+        const url = `${base}/${prefix}fields/${slug}/${id}/`;
+        assert.equal((await topicPage.goto(url)).status(), 200, url);
+        assert.equal(await topicPage.locator("h1").count(), 1);
+        assert.equal(await topicPage.locator(".field-breadcrumb a").count(), 3);
+        assert.equal(
+          await topicPage.locator(".field-related-link").count(),
+          ids.length - 1,
+        );
+        assert.ok(
+          await topicPage.evaluate(
+            () => document.documentElement.scrollWidth <= innerWidth + 1,
+          ),
+          `${url} overflow`,
+        );
+        titles.add(await topicPage.title());
+        assert.equal(
+          await topicPage.locator('link[rel="canonical"]').getAttribute("href"),
+          `https://mori-tt.github.io/dr-chihara/${prefix}fields/${slug}/${id}/`,
+        );
+        const graph = JSON.parse(
+          await topicPage
+            .locator('script[type="application/ld+json"]')
+            .first()
+            .textContent(),
+        )["@graph"];
+        assert.equal(
+          graph.find((n) => n["@type"] === "BreadcrumbList").itemListElement
+            .length,
+          4,
+        );
+        assert.ok(graph.some((n) => n["@type"] === "MedicalWebPage"));
+        if (
+          slug !== "urology" &&
+          id !== "skin-analysis" &&
+          id !== "botox" &&
+          id !== "thread-lift"
+        )
+          assert.ok(
+            (await topicPage.locator(".care-fee-table tbody tr").count()) >= 1,
+            `${url} fees`,
+          );
+      }
+    }
+  }
+  assert.equal(titles.size, 60, "topic titles must be unique");
+  // Parent pages link to each topic page.
+  await topicPage.goto(`${base}/fields/rejuvenation/`);
+  assert.equal(await topicPage.locator("a.care-topic-detail").count(), 11);
+  await topicPage.locator("a.care-topic-detail").first().click();
+  assert.ok(
+    new URL(topicPage.url()).pathname.endsWith(
+      "/fields/rejuvenation/skin-analysis/",
+    ),
+  );
+  await topicPage.close();
+  console.log(
+    "PASS 60 topic pages: metadata, breadcrumb, schema, siblings, fees, no overflow",
+  );
   const noJs = await browser.newPage({
     javaScriptEnabled: false,
     viewport: { width: 390, height: 900 },

@@ -9,10 +9,18 @@ import {
   localePath,
   type Locale,
 } from "@/lib/content";
-import { fieldCopy, fieldPath, fieldSlugs, type FieldSlug } from "@/lib/fields";
+import {
+  fieldCopy,
+  fieldPath,
+  fieldSlugs,
+  fieldsHub,
+  fieldsHubPath,
+  type FieldSlug,
+} from "@/lib/fields";
 import { stockPhotos, stockLabel, variantWidths } from "@/lib/stock-photos";
 import {
   breadcrumbSchema,
+  entityNodes,
   faqSchema,
   medicalWebPageSchema,
 } from "@/lib/metadata";
@@ -56,8 +64,10 @@ export function FieldPage({
     <div className={`site locale-${locale} field-site`} id="top">
       <JsonLd
         nodes={[
+          ...entityNodes(locale),
           breadcrumbSchema(locale, [
             { name: ui.home[locale], path: "" },
+            { name: fieldsHub[locale].title, path: "fields/" },
             { name: c.title, path: `fields/${slug}/` },
           ]),
           medicalWebPageSchema(locale, slug),
@@ -78,6 +88,8 @@ export function FieldPage({
             }
           >
             <a href={localePath(locale)}>{ui.home[locale]}</a>
+            <span aria-hidden="true">/</span>
+            <a href={fieldsHubPath(locale)}>{fieldsHub[locale].title}</a>
             <span aria-hidden="true">/</span>
             <span aria-current="page">{c.title}</span>
           </nav>
@@ -126,11 +138,7 @@ export function FieldPage({
               <ul>
                 {c.moreOfficial.links.map((link) => (
                   <li key={link.url}>
-                    <a
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    <a href={link.url} target="_blank" rel="noopener">
                       {link.label}
                       <span className="visually-hidden">
                         {content[locale].newTab}
@@ -157,7 +165,7 @@ export function FieldPage({
               className="contact-button"
               href={clinicReserveUrl}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
             >
               {content[locale].reserve}
               <span className="visually-hidden">{content[locale].newTab}</span>
@@ -167,7 +175,7 @@ export function FieldPage({
               className="text-link"
               href={c.officialUrl}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
             >
               {c.official}
               <span className="visually-hidden">{content[locale].newTab}</span>
