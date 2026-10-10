@@ -4,7 +4,10 @@ import { dialogues, getDialogue } from "@/lib/dialogues";
 import { dialogueMetadata } from "@/lib/dialogue-metadata";
 export const dynamicParams = false;
 export function generateStaticParams() {
-  return dialogues.map(({ slug }) => ({ slug }));
+  // "output: export" rejects an empty list; the placeholder 404s in the page.
+  return (dialogues.length ? dialogues.map(({ slug }) => slug) : ["_"]).map(
+    (slug) => ({ slug }),
+  );
 }
 type Props = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: Props) {

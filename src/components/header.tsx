@@ -9,7 +9,7 @@ import {
   localePath,
   type Locale,
 } from "@/lib/content";
-import { dialogueCopy, dialoguePath } from "@/lib/dialogues";
+import { dialogueCopy, dialoguePath, dialoguesEnabled } from "@/lib/dialogues";
 import { fieldPath, fieldsHubPath, type FieldSlug } from "@/lib/fields";
 const anchors = ["about", "philosophy", "journey"];
 const fieldSlugs: FieldSlug[] = ["rejuvenation", "regenerate", "urology"];
@@ -132,12 +132,16 @@ export function Header({
             {c.practiceLabel}
           </a>
           <a href={homeAnchor("clinic")}>{c.nav[3]}</a>
-          <a
-            href={dialoguePath(locale)}
-            aria-current={section.startsWith("dialogues/") ? "page" : undefined}
-          >
-            {dialogueCopy[locale].label}
-          </a>
+          {dialoguesEnabled && (
+            <a
+              href={dialoguePath(locale)}
+              aria-current={
+                section.startsWith("dialogues/") ? "page" : undefined
+              }
+            >
+              {dialogueCopy[locale].label}
+            </a>
+          )}
         </nav>
         <div className="header-actions">
           {languages}
@@ -215,11 +219,13 @@ export function Header({
               {c.contact}
               <span>↗</span>
             </a>
-            <a href={dialoguePath(locale)} onClick={close}>
-              <span>07</span>
-              {dialogueCopy[locale].label}
-              <span>↗</span>
-            </a>
+            {dialoguesEnabled && (
+              <a href={dialoguePath(locale)} onClick={close}>
+                <span>07</span>
+                {dialogueCopy[locale].label}
+                <span>↗</span>
+              </a>
+            )}
             <a
               className="menu-reserve contact-button"
               href={clinicReserveUrl}

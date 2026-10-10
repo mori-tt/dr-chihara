@@ -3,6 +3,7 @@ import { readFile, stat } from "node:fs/promises";
 import { resolve, extname, sep } from "node:path";
 const root = resolve("out");
 const base = process.env.TEST_BASE_PATH ?? "/dr-chihara";
+const port = Number(process.env.PORT) || 4173;
 const mime = {
   ".html": "text/html; charset=utf-8",
   ".css": "text/css",
@@ -43,6 +44,6 @@ createServer(async (req, res) => {
       ),
     );
   }
-}).listen(4173, "127.0.0.1", () =>
-  console.log(`Static preview: http://127.0.0.1:4173${base}/`),
+}).listen(port, "127.0.0.1", () =>
+  console.log(`Static preview: http://127.0.0.1:${port}${base}/`),
 );

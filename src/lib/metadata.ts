@@ -31,7 +31,7 @@ const localeUrl = (locale: Locale, suffix = "") =>
 
 /** Keep this in sync with the most recent editorial change when publishing. */
 export const siteLastModified =
-  process.env.NEXT_PUBLIC_SITE_LAST_MODIFIED || "2026-09-28";
+  process.env.NEXT_PUBLIC_SITE_LAST_MODIFIED || "2026-10-11";
 
 /**
  * Set NEXT_PUBLIC_NOINDEX=1 for staging/preview builds (e.g. GitHub Pages)
@@ -438,7 +438,11 @@ export function topicSchema(locale: Locale, slug: FieldSlug, topic: CareTopic) {
 }
 
 /** FAQPage attached to a single topic page (returns null when no Q&A exists). */
-export function topicFaqSchema(locale: Locale, slug: FieldSlug, topic: CareTopic) {
+export function topicFaqSchema(
+  locale: Locale,
+  slug: FieldSlug,
+  topic: CareTopic,
+) {
   const faq = topicFaqs[topic.id];
   if (!faq?.length) return null;
   const url = localeUrl(locale, `fields/${slug}/${topic.id}/`);

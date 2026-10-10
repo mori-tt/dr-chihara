@@ -1,7 +1,7 @@
 import { canonicalUrl } from "@/lib/metadata";
 import { fieldCopy, fieldSlugs } from "@/lib/fields";
 import { careCheckedAt, careTopics } from "@/lib/care-guide";
-import { publishedDialogues } from "@/lib/dialogues";
+import { dialoguesEnabled, publishedDialogues } from "@/lib/dialogues";
 
 export const dynamic = "force-static";
 
@@ -21,7 +21,11 @@ export function GET() {
     "",
     "## Profile",
     `- [千原良友 | Yoshitomo Chihara](${url("")}): biography, credentials and the clinic overview`,
-    `- [人間交差点 / Human Crossroads](${url("dialogues/")}): interview series index`,
+    ...(dialoguesEnabled
+      ? [
+          `- [人間交差点 / Human Crossroads](${url("dialogues/")}): interview series index`,
+        ]
+      : []),
     ...publishedDialogues().map(
       (article) =>
         `- [${article.translations.ja.title}](${url(`dialogues/${article.slug}/`)}): interview article`,

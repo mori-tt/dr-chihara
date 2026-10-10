@@ -1,6 +1,7 @@
 import { Header } from "./header";
 import { Footer } from "./footer";
 import { DialogueTeaser } from "./dialogue-teaser";
+import { dialoguesEnabled } from "@/lib/dialogues";
 import { Journey } from "./journey";
 import { JsonLd } from "./json-ld";
 import { Picture } from "./picture";
@@ -264,7 +265,7 @@ export function Site({ locale }: { locale: Locale }) {
           </figure>
           <div className="philosophy-type" aria-hidden="true" />
         </section>
-        <DialogueTeaser locale={locale} />
+        {dialoguesEnabled && <DialogueTeaser locale={locale} />}
         <section className="section journey" id="journey">
           <Label
             number={homeSectionNumbers.journey}

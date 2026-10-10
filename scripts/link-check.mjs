@@ -126,7 +126,11 @@ console.log(
 
 if (external) {
   console.log(`Probing ${externalLinks.size} external links…`);
-  const pending = [...externalLinks];
+  // These hosts answer 404 to non-browser clients even for live pages; verify them manually.
+  const botBlocked = ["www.fda.gov"];
+  const pending = [...externalLinks].filter(
+    (url) => !botBlocked.includes(new URL(url).hostname),
+  );
   const results = [];
   const probe = async (url) => {
     const response = await fetch(url, {

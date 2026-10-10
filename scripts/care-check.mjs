@@ -5,6 +5,10 @@ import { mkdir } from "node:fs/promises";
 const base = (
   process.env.TEST_URL || "http://127.0.0.1:4173/dr-chihara"
 ).replace(/\/$/, "");
+// Canonical URLs use NEXT_PUBLIC_CANONICAL_URL when the build set it (staging pointing at production).
+const canonicalBase = (
+  process.env.CANONICAL_URL || "https://mori-tt.github.io/dr-chihara"
+).replace(/\/$/, "");
 const engine = process.env.TEST_ENGINE === "webkit" ? webkit : chromium;
 const browser = await engine.launch();
 const errors = [];
@@ -178,7 +182,7 @@ try {
         titles.add(await topicPage.title());
         assert.equal(
           await topicPage.locator('link[rel="canonical"]').getAttribute("href"),
-          `https://mori-tt.github.io/dr-chihara/${prefix}fields/${slug}/${id}/`,
+          `${canonicalBase}/${prefix}fields/${slug}/${id}/`,
         );
         const graph = JSON.parse(
           await topicPage

@@ -412,11 +412,11 @@ export function DialogueArticle({
                       </li>
                       <li>
                         <a
-                          href="https://www.isscr.org/patients"
+                          href="https://www.aboutstemcells.org/patient-guide"
                           target="_blank"
                           rel="noopener"
                         >
-                          ISSCR — Patient Resources
+                          ISSCR — Guide to Stem Cell Treatments
                           <span className="visually-hidden">
                             {content[locale].newTab}
                           </span>

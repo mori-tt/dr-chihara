@@ -4,9 +4,9 @@ import { dialogues, getDialogue } from "@/lib/dialogues";
 import { dialogueMetadata } from "@/lib/dialogue-metadata";
 export const dynamicParams = false;
 export function generateStaticParams() {
-  return ["en", "zh"].flatMap((lang) =>
-    dialogues.map(({ slug }) => ({ lang, slug })),
-  );
+  // "output: export" rejects an empty list; the placeholder 404s in the page.
+  const slugs = dialogues.length ? dialogues.map(({ slug }) => slug) : ["_"];
+  return ["en", "zh"].flatMap((lang) => slugs.map((slug) => ({ lang, slug })));
 }
 type Props = { params: Promise<{ lang: string; slug: string }> };
 export async function generateMetadata({ params }: Props) {

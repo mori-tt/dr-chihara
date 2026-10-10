@@ -186,8 +186,18 @@ export type Dialogue = DialogueBase &
       }
   );
 
+// The fictional sample is only built for the staging deployment (GitHub Pages,
+// NEXT_PUBLIC_NOINDEX=1). Production shows the series only once a real interview exists.
+const includeSample = process.env.NEXT_PUBLIC_NOINDEX === "1";
+
 // Add real interviews here once their content is ready for publication.
-export const dialogues: Dialogue[] = [sampleDialogue];
+const realDialogues: Dialogue[] = [];
+
+export const dialogues: Dialogue[] = [
+  ...realDialogues,
+  ...(includeSample ? [sampleDialogue] : []),
+];
+export const dialoguesEnabled = dialogues.length > 0;
 
 export const getDialogue = (slug: string) =>
   dialogues.find((article) => article.slug === slug);

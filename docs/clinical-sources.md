@@ -14,7 +14,7 @@
 - https://www.norris-beauty-clinic.com/harg/
 - https://www.norris-beauty-clinic.com/beautiful_skin/
 - https://www.norris-beauty-clinic.com/botox/
-- https://www.norris-beauty-clinic.com/liftup/
+- https://www.norris-beauty-clinic.com/liftup/（2026-10-11時点で公式サイトが404。サイト内の参照先は /rejuvenation/ に変更済み。復旧したら戻す）
 - https://www.norris-beauty-clinic.com/picolaser/
 - https://www.norris-beauty-clinic.com/dermapen/
 - https://www.norris-beauty-clinic.com/hyaluronic/

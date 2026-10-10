@@ -77,11 +77,24 @@ for (const width of (process.env.TEST_WIDTHS || "1440,768,390,320")
       (await page.locator("#editorial-contact .external-note").innerText())
         .length > 20,
     );
-    assert.ok(
-      (
-        await page.locator(".dialogue-teaser-image img").getAttribute("src")
-      ).endsWith("/stock/conversation.webp"),
+    // The sample dialogue series is built for the noindex staging deployment only.
+    const staging = (
+      await page.locator('meta[name="robots"]').getAttribute("content")
+    ).includes("noindex");
+    assert.equal(
+      (await page.locator('a[href*="/dialogues/"]').count()) > 0,
+      staging,
     );
+    assert.equal(
+      await page.locator(".dialogue-teaser-image").count(),
+      staging ? 1 : 0,
+    );
+    if (staging)
+      assert.ok(
+        (
+          await page.locator(".dialogue-teaser-image img").getAttribute("src")
+        ).endsWith("/stock/conversation.webp"),
+      );
     assert.ok(
       (
         await page

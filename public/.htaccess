@@ -1,0 +1,66 @@
+# Apache settings for the static export (Lolipop). GitHub Pages ignores this file.
+# Assumes the site is served from the domain root. For a subdirectory install,
+# change the ErrorDocument path and RewriteBase (see docs/deploy.md).
+
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+# Deploy state file written by the FTP deploy action must not be public.
+<FilesMatch "^\.ftp-deploy-sync-state\.json$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Force HTTPS (also honours the proxy header in case TLS is terminated upstream).
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType application/manifest+json .webmanifest
+  AddType application/rss+xml .xml
+  AddType image/webp .webp
+  AddDefaultCharset UTF-8
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml application/javascript application/json application/manifest+json application/rss+xml application/xml image/svg+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # Hashed build assets never change.
+  <FilesMatch "\.(js|css|woff2)$">
+    ExpiresDefault "access plus 1 year"
+  </FilesMatch>
+  <FilesMatch "\.(webp|png|svg|ico)$">
+    ExpiresDefault "access plus 1 month"
+  </FilesMatch>
+  <FilesMatch "\.(html|txt|xml|webmanifest)$">
+    ExpiresDefault "access plus 0 seconds"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html|txt|xml|webmanifest)$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  # Enable only after HTTPS is confirmed on every host name (see docs/deploy.md):
+  # Header always set Strict-Transport-Security "max-age=31536000"
+</IfModule>

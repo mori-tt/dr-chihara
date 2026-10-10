@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { asset, clinicReserveUrl } from "@/lib/content";
+import { dialoguesEnabled } from "@/lib/dialogues";
 
 export const metadata: Metadata = {
   title: "ページが見つかりません / Page not found",
-  robots: { index: false, follow: true },
 };
 
 const links = [
@@ -11,7 +11,9 @@ const links = [
   { href: "/fields/rejuvenation/", label: "美容医療", lang: "ja" },
   { href: "/fields/regenerate/", label: "再生医療", lang: "ja" },
   { href: "/fields/urology/", label: "泌尿器科", lang: "ja" },
-  { href: "/dialogues/", label: "人間交差点", lang: "ja" },
+  ...(dialoguesEnabled
+    ? [{ href: "/dialogues/", label: "人間交差点", lang: "ja" }]
+    : []),
   { href: "/en/", label: "English", lang: "en" },
   { href: "/zh/", label: "中文", lang: "zh-Hans" },
 ];

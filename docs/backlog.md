@@ -3,6 +3,15 @@
 最終更新: 2026-09-28（SEOコードレビュー後の修正反映）。
 コード側でできることは概ね対応済み。残りは外部作業・コンテンツ・デザイン判断・継続運用に分類される。
 
+## 2026-10-11 公開前チェックで対応済み
+
+詳細と、公開前の手作業は [release-checklist.md](release-checklist.md)、自動デプロイの手順は [github-actions-deploy.md](github-actions-deploy.md)。
+
+- Next 16.3.8 / sharp / source-map-js へ更新（`npm audit` 0件）。
+- サンプル対談をテスト（`NEXT_PUBLIC_NOINDEX=1`）のみに出し分け。本番ビルドは対談ページ・ナビ・feed を出力しない（`scripts/prune-dialogues.mjs`）。
+- リンク切れ修正（公式 `/liftup/` は公式側で404のため参照先を `/rejuvenation/` に変更、ISSCRを差し替え）。リンク検査は `www.fda.gov`（bot対策で誤検知）を対象外に。
+- `public/.htaccess`（ロリポップ向け）を追加。`scripts/smoke-check.mjs`（デプロイ後確認）を追加。404の `robots` メタ重複を解消。
+
 ## 2026-09-28 SEOコードレビューで対応済み
 
 - **canonical基盤の分離** — `NEXT_PUBLIC_CANONICAL_URL`（新規env、`src/lib/metadata.ts`）を追加。canonical・hreflang・OG・JSON-LDのURL・`@id`はcanonical側、robots.txt・sitemap.xml・RSS feedは配信ホスト側の `siteUrl` を使う。未設定時は従来どおり `siteUrl` にフォールバックするため現行ビルドの挙動は変わらない。

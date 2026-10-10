@@ -16,7 +16,7 @@ GitHub Pagesでは各パスの先頭に `/dr-chihara` が付きます。
 
 ## 記事を追加する場所
 
-`src/lib/dialogues.ts` の `dialogues` 配列が記事の管理場所です。サンプル本文は `src/lib/sample-dialogue.ts` に分離しています。その `sampleDialogue` オブジェクトを参考に、新しい原稿を配列に追加してください。全言語で共通の英数字・ハイフンの `slug` を指定します。
+`src/lib/dialogues.ts` の `realDialogues` 配列が実記事の管理場所です（`dialogues` はこれにサンプルを足した出力用の配列で、直接編集しません）。サンプル本文は `src/lib/sample-dialogue.ts` に分離しています。その `sampleDialogue` オブジェクトを参考に、新しい原稿を `realDialogues` に追加してください。全言語で共通の英数字・ハイフンの `slug` を指定します。
 
 ```ts
 {
@@ -37,7 +37,7 @@ GitHub Pagesでは各パスの先頭に `/dr-chihara` が付きます。
 
 画像は `public/images/dialogues/guest-name/` などに保存します。パスに `/dr-chihara` を含める必要はありません。これはデプロイ先に合わせて自動的に付与されます。
 
-未公開の実原稿は `dialogues` 配列に入れないでください。`template` は非公開下書き機能ではなく、URLから誰でも見られる雛形用の状態です。原稿を準備し、公開できる段階で配列へ追加します。
+未公開の実原稿は `realDialogues` に入れないでください。`template` は非公開下書き機能ではなく、URLから誰でも見られる雛形用の状態です。原稿を準備し、公開できる段階で配列へ追加します。
 
 ## 各言語で用意する内容
 
@@ -57,7 +57,7 @@ GitHub Pagesでは各パスの先頭に `/dr-chihara` が付きます。
 
 ## 公開時に自動で変わる部分
 
-`status: "published"` の記事は、一覧に公開日の新しい順に表示されます。最初の公開記事を追加すると、一覧の「公開準備中」とサンプルカードは非表示になります。サンプルのURL自体を削除する場合は配列から `sample` オブジェクトを除きます。
+`status: "published"` の記事は、一覧に公開日の新しい順に表示されます。最初の公開記事を追加すると、一覧の「公開準備中」とサンプルカードは非表示になります。サンプルはテスト環境（GitHub Pages、`NEXT_PUBLIC_NOINDEX=1`）でのみビルドされ、本番ビルドには出力されません。実記事が1件もない本番ビルドでは、対談のページ・ナビ・トップのティーザー・feed がすべて出力されません。最初の実記事を `realDialogues` に追加すると、本番にも現れます。
 
 公開記事の詳細には公開日・号数・読了目安が表示され、サンプル案内が消えます。検索エンジン向けに3言語のcanonical・hreflang・OG情報（`article:published_time` 等を含む）・Article構造化データ・サイトマップが生成されます。
 

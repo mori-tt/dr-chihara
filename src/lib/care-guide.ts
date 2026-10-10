@@ -115,7 +115,8 @@ export const careTopics: Record<FieldSlug, CareTopic[]> = {
         "Pain, swelling, bruising, pulling and unevenness can occur. Contact the clinic for persistent or worsening symptoms.",
         "可能疼痛、肿胀、淤青、牵拉或凹凸，症状持续加重需联系诊所。",
       ),
-      source: `${clinic}/liftup/`,
+      // The clinic's /liftup/ page returns 404 (checked 2026-10-11); use the category page until it is restored.
+      source: `${clinic}/rejuvenation/`,
     },
     {
       id: "photofacial",

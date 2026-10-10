@@ -1,6 +1,6 @@
 # SEO — 手作業が必要なタスク（2026-10-02 監査より）
 
-コードで対応できる項目は実装済みです。以下は、ドメイン・アカウント・コンテンツ判断・クリニック側の確認が必要なものです。詳細な設定手順は [seo-next-steps.md](seo-next-steps.md) も参照してください。
+コードで対応できる項目は実装済みです。以下は、ドメイン・アカウント・コンテンツ判断・クリニック側の確認が必要なものです。詳細な設定手順は [seo-next-steps.md](seo-next-steps.md) も参照してください。公開作業全体のチェックリストは [release-checklist.md](release-checklist.md)、自動デプロイは [github-actions-deploy.md](github-actions-deploy.md) にまとめています。
 
 ## 実装済み（参考）
 

@@ -10,7 +10,7 @@ import {
   localePath,
   type Locale,
 } from "@/lib/content";
-import { dialogueCopy, dialoguePath } from "@/lib/dialogues";
+import { dialogueCopy, dialoguePath, dialoguesEnabled } from "@/lib/dialogues";
 import { fieldCopy, fieldPath, fieldSlugs } from "@/lib/fields";
 const anchors = ["about", "philosophy", "journey"];
 export function Footer({ locale }: { locale: Locale }) {
@@ -49,7 +49,9 @@ export function Footer({ locale }: { locale: Locale }) {
               {fieldCopy[locale][slug].title}
             </a>
           ))}
-          <a href={dialoguePath(locale)}>{dialogueCopy[locale].label}</a>
+          {dialoguesEnabled && (
+            <a href={dialoguePath(locale)}>{dialogueCopy[locale].label}</a>
+          )}
           <a href={`${localePath(locale)}#contact`}>{c.contact}</a>
         </nav>
         <section

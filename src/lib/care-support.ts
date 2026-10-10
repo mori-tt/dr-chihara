@@ -488,11 +488,6 @@ export const furtherReading = [
   },
   {
     field: "rejuvenation",
-    label: tr("糸リフトの診療案内", "Thread-lift guide", "线雕介绍"),
-    url: "https://www.norris-beauty-clinic.com/liftup/",
-  },
-  {
-    field: "rejuvenation",
     label: tr(
       "FDA：注入材のリスク（英語）",
       "FDA: dermal filler risks",

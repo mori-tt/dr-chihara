@@ -30,9 +30,16 @@ npm run dev
 
 翻訳とプロフィール: `src/lib/content.ts`。サイト構成: `src/components/site.tsx`。スタイル: `src/app/globals.css`。
 
-対談シリーズ「人間交差点」の一覧・詳細を `/dialogues/` に追加しています。3言語対応の架空の医師との再生医療対談サンプルと、今後の記事追加手順は [docs/dialogues.md](docs/dialogues.md) を参照してください。記事データは `src/lib/dialogues.ts`、サンプル本文は `src/lib/sample-dialogue.ts`、対談用スタイルは `src/app/dialogues.css` にまとめています。
+対談シリーズ「人間交差点」の一覧・詳細を `/dialogues/` に追加しています。3言語対応の架空の医師との再生医療対談サンプルと、今後の記事追加手順は [docs/dialogues.md](docs/dialogues.md) を参照してください。**サンプル記事は `NEXT_PUBLIC_NOINDEX=1`（GitHub Pages のテスト環境）でのみビルドされ、本番ビルドでは対談関連のページ・ナビ・トップのティーザー・feed がすべて出力されません**（`scripts/prune-dialogues.mjs` が不要な出力を削除）。実記事を `realDialogues` に追加すると本番にも現れます。記事データは `src/lib/dialogues.ts`、サンプル本文は `src/lib/sample-dialogue.ts`、対談用スタイルは `src/app/dialogues.css` にまとめています。
 
 診療分野の詳細ページを `/fields/rejuvenation/`（美容医療）、`/fields/regenerate/`（再生医療）、`/fields/urology/`（泌尿器科）に用意しています。英語 `/en/fields/`・中国語 `/zh/fields/` も静的生成し、クリニック公式の案内をもとに一般向けの概要、相談の流れ、注意事項、公式ページへのリンクを掲載しています。各分野の治療・症状ごとに個別ページ（例: `/fields/rejuvenation/hifu/`、計20項目×3言語）と、一覧ページ `/fields/` も用意しています。項目は `src/lib/care-guide.ts` の `careTopics` で管理し、追加すると個別ページ・sitemapに自動反映されます。
+
+## 公開・デプロイ
+
+- 公開前に人が行う作業（コンテンツ確認・ドメイン・SSL・FTP・Search Console など）: [docs/release-checklist.md](docs/release-checklist.md)
+- GitHub Actions でテスト（GitHub Pages）と本番（ロリポップ）へ同時デプロイする手順とワークフロー全文: [docs/github-actions-deploy.md](docs/github-actions-deploy.md)（資料のみ。現時点では未導入で、下記の `pages.yml` が動いています）
+- デプロイ後の確認: `npm run test:smoke -- https://本番ドメイン`（テスト環境は `-- <URL> --staging`）
+- ロリポップ用の `public/.htaccess`（404・HTTPS強制・キャッシュ・セキュリティヘッダー）はビルド時に `out/` へコピーされます。`out/` の中身は**隠しファイルを含めて**アップロードしてください。
 
 ## GitHub Pages
 
