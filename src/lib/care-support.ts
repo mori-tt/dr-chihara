@@ -74,9 +74,9 @@ export const careUi = {
   ),
   booking: tr("クリニックへ相談する", "Contact the clinic", "联系诊所"),
   bookingNote: tr(
-    "診療のご相談・ご予約はノリス美容クリニックへ。WEB予約・お問い合わせフォームは日本語です。",
-    "Appointments and medical inquiries go to Norris Beauty Clinic. Online booking and the contact form are in Japanese.",
-    "诊疗咨询与预约请联系诺里斯美容诊所。在线预约与咨询表为日语。",
+    "診療のご相談・ご予約はノリスクリニックへ。WEB予約・お問い合わせフォームは日本語です。",
+    "Appointments and medical inquiries go to Norris Clinic. Online booking and the contact form are in Japanese.",
+    "诊疗咨询与预约请联系诺里斯诊所。在线预约与咨询表为日语。",
   ),
   related: tr(
     "ほかの診療を見る",

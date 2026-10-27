@@ -23,6 +23,27 @@
     "Yu Gothic Medium", "Yu Gothic", Meiryo, "Noto Sans JP", "Noto Sans CJK JP",
     sans-serif;
 }
+
+/* ===== Color Themes ===== */
+/* default = original dr-chihara (red accent) - uses :root values above */
+
+html.theme-green {
+  --paper: #fcfcf8;
+  --ink: #263e35;
+  --muted: #627065;
+  --line: #e4e8df;
+  --accent: #285b48;
+  --accent-dark: #2b5846;
+}
+
+html.theme-orange {
+  --paper: #fdf8f3;
+  --ink: #3d2b1f;
+  --muted: #8b7355;
+  --line: #e8ddd0;
+  --accent: #e88d2a;
+  --accent-dark: #c4681a;
+}
 * {
   box-sizing: border-box;
 }

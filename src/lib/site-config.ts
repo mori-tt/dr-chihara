@@ -1,0 +1,1 @@
+export const colorTheme = (process.env.NEXT_PUBLIC_COLOR_THEME || "default").trim();

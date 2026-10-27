@@ -41,7 +41,7 @@ export const dialogueCopy = {
     related: "次の対話へ",
     relatedBody: "新しい対談は、このページで順次ご紹介します。",
     hostBio:
-      "医師・医学博士。ノリス美容クリニック院長。泌尿器科の臨床、米国でのがん研究、分子病理学を経て美容医療へ。",
+      "医師・医学博士。ノリスクリニック院長。泌尿器科の臨床、米国でのがん研究、分子病理学を経て美容医療へ。",
     hostProfile: "千原良友のプロフィール",
     draftDate: "FICTION / SAMPLE",
     references: "一般的な医学情報の参考資料",
@@ -84,7 +84,7 @@ export const dialogueCopy = {
     related: "The next conversation",
     relatedBody: "New conversations will appear here as they are published.",
     hostBio:
-      "Physician, PhD and director of Norris Beauty Clinic. His background spans urology, cancer research in the United States, molecular pathology and aesthetic medicine.",
+      "Physician, PhD and director of Norris Clinic. His background spans urology, cancer research in the United States, molecular pathology and aesthetic medicine.",
     hostProfile: "About Yoshitomo Chihara",
     draftDate: "FICTION / SAMPLE",
     references: "References for general medical information",
@@ -126,7 +126,7 @@ export const dialogueCopy = {
     related: "下一场对话",
     relatedBody: "新的对谈将在此陆续发布。",
     hostBio:
-      "医师、医学博士，诺里斯美容诊所院长。从泌尿科临床、美国癌症研究和分子病理学，走向美容医疗。",
+      "医师、医学博士，诺里斯诊所院长。从泌尿科临床、美国癌症研究和分子病理学，走向美容医疗。",
     hostProfile: "了解千原良友",
     draftDate: "FICTION / SAMPLE",
     references: "一般医学信息参考资料",

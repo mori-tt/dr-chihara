@@ -36,7 +36,7 @@ const fieldPhoto = (locale: Locale, slug: FieldSlug) => {
       height: 511,
       widths: [480],
       alt: content[locale].consultAlt,
-      caption: "Norris Beauty Clinic / Osaka",
+      caption: "Norris Clinic / Osaka",
     };
   const photo =
     slug === "regenerate" ? stockPhotos.laboratory : stockPhotos.stethoscope;

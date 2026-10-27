@@ -44,7 +44,7 @@ export const fieldsHub: Record<
     lead: "美容医療・再生医療・泌尿器科。それぞれの診療を、一般向けに整理しました。",
     seoTitle: "診療のフィールド：美容医療・再生医療・泌尿器科",
     seoDescription:
-      "大阪・上本町のノリス美容クリニック院長 千原良友の診療分野。美容医療、再生医療、泌尿器科それぞれの治療の選び方・症状・料金の目安・注意点を、一般向けに案内します。",
+      "大阪・上本町のノリスクリニック院長 千原良友の診療分野。美容医療、再生医療、泌尿器科それぞれの治療の選び方・症状・料金の目安・注意点を、一般向けに案内します。",
     view: "詳しく見る",
   },
   en: {
@@ -53,7 +53,7 @@ export const fieldsHub: Record<
     lead: "Aesthetic medicine, regenerative medicine and urology, each explained in plain language.",
     seoTitle: "Areas of practice: aesthetic, regenerative, urology",
     seoDescription:
-      "Areas of practice of Dr. Yoshitomo Chihara, Norris Beauty Clinic, Osaka: aesthetic medicine, regenerative medicine and urology, with fees, risks and what to consider.",
+      "Areas of practice of Dr. Yoshitomo Chihara, Norris Clinic, Osaka: aesthetic medicine, regenerative medicine and urology, with fees, risks and what to consider.",
     view: "Read more",
   },
   zh: {
@@ -62,7 +62,7 @@ export const fieldsHub: Record<
     lead: "美容医疗、再生医疗与泌尿科，以通俗的方式分别介绍。",
     seoTitle: "诊疗领域：美容医疗、再生医疗、泌尿科",
     seoDescription:
-      "大阪上本町诺里斯美容诊所院长千原良友的诊疗领域：美容医疗、再生医疗与泌尿科，提供治疗选择、症状、费用参考与注意事项的一般性介绍。",
+      "大阪上本町诺里斯诊所院长千原良友的诊疗领域：美容医疗、再生医疗与泌尿科，提供治疗选择、症状、费用参考与注意事项的一般性介绍。",
     view: "查看详情",
   },
 };
@@ -77,7 +77,7 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
       lead: "変化を急がず、その人らしい表情と毎日に寄り添う医療。",
       seoTitle: "美容医療の診療案内：治療の選び方・料金の目安",
       seoDescription:
-        "フォトフェイシャルM22、HIFU、ボトックス、ヒアルロン酸、ダーマペン、医療脱毛、HARG療法など、美容医療の選び方・通院の目安・リスクと公式料金の目安を、ノリス美容クリニック（大阪・上本町）院長 千原良友が一般向けに整理しました。",
+        "フォトフェイシャルM22、HIFU、ボトックス、ヒアルロン酸、ダーマペン、医療脱毛、HARG療法など、美容医療の選び方・通院の目安・リスクと公式料金の目安を、ノリスクリニック（大阪・上本町）院長 千原良友が一般向けに整理しました。",
       moreOfficial: {
         intro:
           "クリニック公式サイトでは、このページで扱っていない次のメニューも案内しています。内容・適応・料金は公式ページと診察でご確認ください。",
@@ -112,7 +112,7 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
       lead: "期待だけでなく、根拠・限界・リスクを丁寧に確認する再生医療。",
       seoTitle: "再生医療の基礎知識：幹細胞・PRP・エクソソーム",
       seoDescription:
-        "幹細胞治療・PRP療法・培養上清液（エクソソーム）の違い、治療の流れ、再生医療等安全性確保法に基づく制度と安全性、公式料金の目安を、ノリス美容クリニック院長・日本再生医療学会会員の千原良友が一般向けに整理。期待と根拠を分けて理解するための案内です。",
+        "幹細胞治療・PRP療法・培養上清液（エクソソーム）の違い、治療の流れ、再生医療等安全性確保法に基づく制度と安全性、公式料金の目安を、ノリスクリニック院長・日本再生医療学会会員の千原良友が一般向けに整理。期待と根拠を分けて理解するための案内です。",
       sections: [
         {
           heading: "再生医療をどう考えるか",
@@ -135,7 +135,7 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
       lead: "相談しづらい排尿の悩みを、腎臓から尿道までの仕組みから考える。",
       seoTitle: "泌尿器科の診療案内：頻尿・血尿・前立腺・尿漏れ",
       seoDescription:
-        "頻尿・夜間頻尿、血尿、排尿時の痛み、尿漏れ、前立腺の症状、性感染症、ED・男性更年期など泌尿器科で相談できる症状と、検査・治療の進め方、受診の目安を、泌尿器科での臨床経験をもつ千原良友（大阪・上本町 ノリス美容クリニック院長）が解説します。",
+        "頻尿・夜間頻尿、血尿、排尿時の痛み、尿漏れ、前立腺の症状、性感染症、ED・男性更年期など泌尿器科で相談できる症状と、検査・治療の進め方、受診の目安を、泌尿器科での臨床経験をもつ千原良友（大阪・上本町 ノリスクリニック院長）が解説します。",
       sections: [
         {
           heading: "泌尿器科とは",
@@ -168,7 +168,7 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
       lead: "Care for the way you look, feel and move through everyday life.",
       seoTitle: "Aesthetic medicine: treatments and fees",
       seoDescription:
-        "Aesthetic treatments—M22 photofacial, HIFU, injectables, hair removal, HARG—with fees and risks, by Dr. Yoshitomo Chihara, Norris Beauty Clinic, Osaka.",
+        "Aesthetic treatments—M22 photofacial, HIFU, injectables, hair removal, HARG—with fees and risks, by Dr. Yoshitomo Chihara, Norris Clinic, Osaka.",
       moreOfficial: {
         intro:
           "The clinic’s official site also lists the following menus, which this page does not cover. Details, eligibility and fees are on the official pages (Japanese) and confirmed in consultation.",
@@ -203,7 +203,7 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
       lead: "Hope matters. So do evidence, uncertainty and informed consent.",
       seoTitle: "Regenerative medicine: stem cells and PRP",
       seoDescription:
-        "Stem-cell therapy, PRP and exosome supernatant: differences, regulation, safety and fees, by Dr. Yoshitomo Chihara, Norris Beauty Clinic, Osaka.",
+        "Stem-cell therapy, PRP and exosome supernatant: differences, regulation, safety and fees, by Dr. Yoshitomo Chihara, Norris Clinic, Osaka.",
       sections: [
         {
           heading: "A field with different levels of evidence",
@@ -226,7 +226,7 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
       lead: "A straightforward place to discuss urinary symptoms and men’s health.",
       seoTitle: "Urology: urinary symptoms and men’s health",
       seoDescription:
-        "Urinary symptoms, prostate issues, STIs and ED—how a urology visit works, explained by urologist Dr. Yoshitomo Chihara at Norris Beauty Clinic, Osaka.",
+        "Urinary symptoms, prostate issues, STIs and ED—how a urology visit works, explained by urologist Dr. Yoshitomo Chihara at Norris Clinic, Osaka.",
       sections: [
         {
           heading: "What urology covers",
@@ -259,7 +259,7 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
       lead: "从容面对变化，让医疗贴近每个人的日常与表情。",
       seoTitle: "美容医疗：治疗选择、费用参考与注意事项",
       seoDescription:
-        "由大阪上本町诺里斯美容诊所院长千原良友介绍M22光子嫩肤、HIFU、肉毒素、玻尿酸、微针、医疗脱毛、HARG育发等美容医疗的选择方法、就诊与恢复参考、风险以及官方费用参考。",
+        "由大阪上本町诺里斯诊所院长千原良友介绍M22光子嫩肤、HIFU、肉毒素、玻尿酸、微针、医疗脱毛、HARG育发等美容医疗的选择方法、就诊与恢复参考、风险以及官方费用参考。",
       moreOfficial: {
         intro:
           "诊所官方网站还介绍了本页未涉及的以下项目。具体内容、适应范围与费用请查看官方页面（日语）并在就诊时确认。",
@@ -294,7 +294,7 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
       lead: "关注期待，也同样关注证据、不确定性与知情同意。",
       seoTitle: "再生医疗：干细胞、PRP与外泌体的区别",
       seoDescription:
-        "干细胞治疗、PRP疗法与培养上清液（外泌体）的区别、治疗流程、日本的制度与安全性、官方费用参考，由诺里斯美容诊所院长、日本再生医疗学会会员千原良友以一般信息形式整理，帮助区分期待与依据。",
+        "干细胞治疗、PRP疗法与培养上清液（外泌体）的区别、治疗流程、日本的制度与安全性、官方费用参考，由诺里斯诊所院长、日本再生医疗学会会员千原良友以一般信息形式整理，帮助区分期待与依据。",
       sections: [
         {
           heading: "证据程度各不相同的领域",
@@ -317,7 +317,7 @@ export const fieldCopy: Record<Locale, Record<FieldSlug, FieldCopy>> = {
       lead: "从肾脏到尿道，坦然讨论难以启齿的排尿困扰。",
       seoTitle: "泌尿科：尿频、血尿、前列腺与男性健康",
       seoDescription:
-        "尿频与夜尿、血尿、排尿疼痛、漏尿、前列腺症状、性传播感染及ED等可在泌尿科咨询的症状，以及检查与治疗的流程，由具有泌尿科临床经验的千原良友（大阪上本町 诺里斯美容诊所院长）说明。",
+        "尿频与夜尿、血尿、排尿疼痛、漏尿、前列腺症状、性传播感染及ED等可在泌尿科咨询的症状，以及检查与治疗的流程，由具有泌尿科临床经验的千原良友（大阪上本町 诺里斯诊所院长）说明。",
       sections: [
         {
           heading: "泌尿科诊疗什么",

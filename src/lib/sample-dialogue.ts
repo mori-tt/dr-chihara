@@ -23,7 +23,7 @@ export const sampleDialogue: Dialogue = {
       coverAlt:
         "青い手袋でフラスコを持つ研究者と実験器具。Pexelsの研究イメージ写真。",
       coverCaption:
-        "研究のイメージ写真：Chokniti Khongchum / Pexels。実際の対談、出演者、ノリス美容クリニックの研究設備を撮影したものではありません。",
+        "研究のイメージ写真：Chokniti Khongchum / Pexels。実際の対談、出演者、ノリスクリニックの研究設備を撮影したものではありません。",
       sections: [
         {
           id: "origins",
@@ -124,7 +124,7 @@ export const sampleDialogue: Dialogue = {
       coverAlt:
         "A gloved researcher holding a flask beside laboratory equipment. Illustrative stock photograph from Pexels.",
       coverCaption:
-        "Illustrative research photograph: Chokniti Khongchum / Pexels. This does not depict an actual interview, the speakers or Norris Beauty Clinic’s research facilities.",
+        "Illustrative research photograph: Chokniti Khongchum / Pexels. This does not depict an actual interview, the speakers or Norris Clinic’s research facilities.",
       sections: [
         {
           id: "origins",
@@ -227,7 +227,7 @@ export const sampleDialogue: Dialogue = {
       coverAlt:
         "戴手套的研究人员在实验器材旁手持烧瓶。来自Pexels的科研示意照片。",
       coverCaption:
-        "科研示意照片：Chokniti Khongchum / Pexels。并非实际对谈、对谈人物或诺里斯美容诊所研究设施的照片。",
+        "科研示意照片：Chokniti Khongchum / Pexels。并非实际对谈、对谈人物或诺里斯诊所研究设施的照片。",
       sections: [
         {
           id: "origins",

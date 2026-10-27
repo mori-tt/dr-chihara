@@ -58,15 +58,15 @@ export function topicSeo(locale: Locale, slug: FieldSlug, topic: CareTopic) {
   if (locale === "ja")
     return {
       title: `${title}｜${urology ? "検査・治療・受診の目安" : "流れ・経過・リスク"}（大阪・上本町）`,
-      description: `${title}（${concern}）の考え方、進め方、${urology ? "受診の目安" : "通院・経過の目安"}、リスクと注意点${hasFees ? "、公式料金の目安" : ""}を、大阪・上本町のノリス美容クリニック院長 千原良友が一般向けに整理しました。`,
+      description: `${title}（${concern}）の考え方、進め方、${urology ? "受診の目安" : "通院・経過の目安"}、リスクと注意点${hasFees ? "、公式料金の目安" : ""}を、大阪・上本町のノリスクリニック院長 千原良友が一般向けに整理しました。`,
     };
   if (locale === "zh")
     return {
       title: `${title}：${urology ? "检查、治疗与就诊参考" : "流程、恢复与风险"}（大阪上本町）`,
-      description: `${title}（${concern}）的基本思路、流程、${urology ? "就诊参考" : "就诊与恢复参考"}、风险与注意事项${hasFees ? "及官方费用参考" : ""}，由大阪上本町诺里斯美容诊所院长千原良友以一般信息形式整理。`,
+      description: `${title}（${concern}）的基本思路、流程、${urology ? "就诊参考" : "就诊与恢复参考"}、风险与注意事项${hasFees ? "及官方费用参考" : ""}，由大阪上本町诺里斯诊所院长千原良友以一般信息形式整理。`,
     };
   return {
     title: `${title}: ${urology ? "tests and care" : "process and risks"}`,
-    description: `${title}: ${urology ? "tests, treatment and when to seek care" : `process, recovery and risks${hasFees ? ", plus fees" : ""}`}. Explained by Dr. Yoshitomo Chihara, Norris Beauty Clinic, Osaka.`,
+    description: `${title}: ${urology ? "tests, treatment and when to seek care" : `process, recovery and risks${hasFees ? ", plus fees" : ""}`}. Explained by Dr. Yoshitomo Chihara, Norris Clinic, Osaka.`,
   };
 }

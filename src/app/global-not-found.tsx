@@ -69,7 +69,7 @@ export default function GlobalNotFound() {
             target="_blank"
             rel="noopener"
           >
-            診療のご予約はノリス美容クリニックへ（WEB予約） ↗
+            診療のご予約はノリスクリニックへ（WEB予約） ↗
           </a>
         </main>
       </body>

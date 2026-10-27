@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { content, type Locale } from "@/lib/content";
+import { colorTheme } from "@/lib/site-config";
 import "../globals.css";
 export async function generateMetadata({
   params,
@@ -27,8 +28,9 @@ export default async function Layout({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
+  const themeClass = colorTheme === "green" ? "theme-green" : colorTheme === "orange" ? "theme-orange" : "";
   return (
-    <html lang={lang === "zh" ? "zh-Hans" : "en"}>
+    <html lang={lang === "zh" ? "zh-Hans" : "en"} className={themeClass}>
       <body>{children}</body>
     </html>
   );

@@ -24,15 +24,15 @@ export const homeSectionNumbers = {
 
 export const content = {
   ja: {
-    title: "千原良友 | ノリス美容クリニック院長（大阪・上本町）",
+    title: "千原良友 | ノリスクリニック院長（大阪・上本町）",
     description:
-      "千原良友（Yoshitomo Chihara）の個人サイト。大阪・上本町のノリス美容クリニック院長。泌尿器科、がん研究から美容医療・再生医療まで、医療への想いとこれまでの歩みをご紹介します。",
+      "千原良友（Yoshitomo Chihara）の個人サイト。大阪・上本町のノリスクリニック院長。泌尿器科、がん研究から美容医療・再生医療まで、医療への想いとこれまでの歩みをご紹介します。",
     nav: ["私について", "医療への想い", "これまでの歩み", "クリニック"],
     contact: "ご相談・お問い合わせ",
     menu: "メニューを開く",
     close: "メニューを閉じる",
     skip: "本文へ移動",
-    role: "医師・医学博士 / ノリス美容クリニック 院長",
+    role: "医師・医学博士 / ノリスクリニック 院長",
     hero: ["その人らしさに、", "医療で寄り添う。"],
     intro: "臨床と研究で培った視点を、一人ひとりの笑顔へ。",
     discover: "千原良友について",
@@ -44,7 +44,7 @@ export const content = {
     aboutBody:
       "泌尿器科の臨床を出発点に、米国でのがん研究、分子病理学、そして美容医療へ。異なる領域で積み重ねてきた経験が、いまの診療につながっています。",
     aboutBody2:
-      "2022年、大阪・上本町にノリス美容クリニックを開院。患者様のご希望を丁寧に伺い、医師の視点を交えながら、納得できる選択を一緒に考えています。",
+      "2022年、大阪・上本町にノリスクリニックを開院。患者様のご希望を丁寧に伺い、医師の視点を交えながら、納得できる選択を一緒に考えています。",
     qualifications: "専門医・資格・所属学会",
     credentialGroups: ["学位", "専門医・資格", "所属学会"],
     medicalContact: "診療のご相談・ご予約",
@@ -116,7 +116,7 @@ export const content = {
       ],
       [
         "2022",
-        "ノリス美容クリニック開院",
+        "ノリスクリニック開院",
         "1月、大阪・上本町に開院。院長に就任。",
       ],
     ],
@@ -149,7 +149,7 @@ export const content = {
       "治療の適応・効果・リスク・費用は治療法や個人の状態によって異なります。詳細はクリニック公式サイトをご確認のうえ、診察時にご相談ください。",
     clinicLabel: "クリニック",
     clinicTitle: ["気軽に相談できる、", "あなたの身近な場所に。"],
-    clinicName: "ノリス美容クリニック",
+    clinicName: "ノリスクリニック",
     clinicBody:
       "大阪・上本町駅から徒歩1分。落ち着いた空間で、一人ひとりのお悩みに向き合います。",
     address: "〒543-0031 大阪府大阪市天王寺区石ケ辻町18−21 上六ときビル4階",
@@ -162,7 +162,7 @@ export const content = {
     line: "LINE公式アカウント",
     contactLabel: "ご相談・お問い合わせ",
     contactTitle: ["まずは、お話しする", "ことから。"],
-    contactBody: "診療のご相談・ご予約は、ノリス美容クリニックへ。",
+    contactBody: "診療のご相談・ご予約は、ノリスクリニックへ。",
     contactButton: "クリニックへお問い合わせ",
     reserve: "WEB予約",
     reserveLong: "WEB予約（クリニック公式）",
@@ -171,24 +171,24 @@ export const content = {
     externalNote: "クリニック公式サイト（日本語）へ移動します。",
     footerClinicLabel: "診療・ご予約",
     footerNote:
-      "本サイトは千原良友の個人サイトです。診療のご相談・ご予約はノリス美容クリニックで承ります。",
+      "本サイトは千原良友の個人サイトです。診療のご相談・ご予約はノリスクリニックで承ります。",
     backTop: "ページの先頭へ",
     newTab: "（新しいタブで開きます）",
-    portraitAlt: "ノリス美容クリニック院長 千原良友",
-    clinicAlt: "ノリス美容クリニックの受付",
+    portraitAlt: "ノリスクリニック院長 千原良友",
+    clinicAlt: "ノリスクリニックの受付",
     roomAlt: "落ち着いたクリニックの待合室",
     consultAlt: "クリニックのカウンセリングルーム",
   },
   en: {
-    title: "Yoshitomo Chihara | Physician, Norris Beauty Clinic Osaka",
+    title: "Yoshitomo Chihara | Physician, Norris Clinic Osaka",
     description:
-      "Yoshitomo Chihara, physician (PhD) and director of Norris Beauty Clinic in Osaka. His background in urology, cancer research and aesthetic medicine.",
+      "Yoshitomo Chihara, physician (PhD) and director of Norris Clinic in Osaka. His background in urology, cancer research and aesthetic medicine.",
     nav: ["About", "Philosophy", "Journey", "Clinic"],
     contact: "Get in touch",
     menu: "Open menu",
     close: "Close menu",
     skip: "Skip to content",
-    role: "Physician, PhD / Director, Norris Beauty Clinic",
+    role: "Physician, PhD / Director, Norris Clinic",
     hero: ["Care that sees", "the person in you."],
     intro:
       "Bringing a perspective shaped by clinical practice and research to every consultation.",
@@ -202,7 +202,7 @@ export const content = {
     aboutBody:
       "From urology in Japan to cancer research in the United States, molecular pathology and aesthetic medicine: each chapter informs the way Dr. Chihara approaches patient care today.",
     aboutBody2:
-      "In January 2022, he opened Norris Beauty Clinic in Uehommachi, Osaka. His consultations bring patients’ wishes and a physician’s perspective together to help them make informed choices.",
+      "In January 2022, he opened Norris Clinic in Uehommachi, Osaka. His consultations bring patients’ wishes and a physician’s perspective together to help them make informed choices.",
     qualifications: "Specialist credentials, qualifications & affiliation",
     credentialGroups: [
       "Academic degree",
@@ -298,7 +298,7 @@ export const content = {
       ],
       [
         "2022",
-        "Norris Beauty Clinic opens",
+        "Norris Clinic opens",
         "Founded in Uehommachi, Osaka in January; appointed director.",
       ],
     ],
@@ -331,7 +331,7 @@ export const content = {
       "Suitability, results, risks and costs vary by treatment and individual circumstances. Please consult the clinic’s official information and discuss your options with a physician.",
     clinicLabel: "The clinic",
     clinicTitle: ["A place to talk.", "A space for you."],
-    clinicName: "Norris Beauty Clinic",
+    clinicName: "Norris Clinic",
     clinicBody:
       "A one-minute walk from Osaka-Uehommachi Station. A calm setting for personal conversations about your concerns.",
     address:
@@ -347,7 +347,7 @@ export const content = {
     contactLabel: "Get in touch",
     contactTitle: ["It starts with", "a conversation."],
     contactBody:
-      "For appointments and medical inquiries, please contact Norris Beauty Clinic.",
+      "For appointments and medical inquiries, please contact Norris Clinic.",
     contactButton: "Contact the clinic",
     reserve: "Book online",
     reserveLong: "Book online (official clinic page)",
@@ -356,24 +356,24 @@ export const content = {
     externalNote: "Opens the clinic’s official website in Japanese.",
     footerClinicLabel: "Appointments & inquiries",
     footerNote:
-      "This is the personal website of Yoshitomo Chihara. Medical inquiries and appointments are handled by Norris Beauty Clinic.",
+      "This is the personal website of Yoshitomo Chihara. Medical inquiries and appointments are handled by Norris Clinic.",
     backTop: "Back to top",
     newTab: " (opens in a new tab)",
-    portraitAlt: "Dr. Yoshitomo Chihara, director of Norris Beauty Clinic",
-    clinicAlt: "Reception at Norris Beauty Clinic",
+    portraitAlt: "Dr. Yoshitomo Chihara, director of Norris Clinic",
+    clinicAlt: "Reception at Norris Clinic",
     roomAlt: "The clinic’s waiting lounge",
     consultAlt: "The clinic’s consultation room",
   },
   zh: {
-    title: "千原良友 | 诺里斯美容诊所院长（大阪上本町）",
+    title: "千原良友 | 诺里斯诊所院长（大阪上本町）",
     description:
-      "大阪上本町诺里斯美容诊所院长千原良友的个人网站。从泌尿科临床、癌症研究到美容医疗与再生医疗，了解他的医疗理念与职业历程。",
+      "大阪上本町诺里斯诊所院长千原良友的个人网站。从泌尿科临床、癌症研究到美容医疗与再生医疗，了解他的医疗理念与职业历程。",
     nav: ["关于我", "医疗理念", "职业历程", "诊所介绍"],
     contact: "咨询与联系",
     menu: "打开菜单",
     close: "关闭菜单",
     skip: "跳至正文",
-    role: "医师·医学博士 / 诺里斯美容诊所 院长",
+    role: "医师·医学博士 / 诺里斯诊所 院长",
     hero: ["用心倾听，", "守护独特的你。"],
     intro: "将临床与研究积累的视角，融入每一次面对面的诊疗。",
     discover: "了解千原良友",
@@ -385,7 +385,7 @@ export const content = {
     aboutBody:
       "从日本的泌尿科临床工作，到美国的癌症研究、分子病理学，再到美容医疗。不同领域的经历，共同构成了千原医师今天的诊疗视角。",
     aboutBody2:
-      "2022年1月，千原医师在大阪上本町创立诺里斯美容诊所。通过充分了解患者的意愿，结合专业意见，一起探讨适合的选择。",
+      "2022年1月，千原医师在大阪上本町创立诺里斯诊所。通过充分了解患者的意愿，结合专业意见，一起探讨适合的选择。",
     qualifications: "专科资质、资格与所属学会",
     credentialGroups: ["学位", "专科资质与资格", "所属学会"],
     medicalContact: "诊疗咨询与预约",
@@ -439,7 +439,7 @@ export const content = {
       ["2010", "分子病理学研究与教学", "奈良县立医科大学 分子病理学讲座 讲师"],
       ["2015", "负责泌尿科诊疗", "恩赐财团济生会中和医院 泌尿科 部长"],
       ["2019", "走向美容医疗", "荣Central诊所 院长（现Amore诊所）"],
-      ["2022", "诺里斯美容诊所开院", "1月于大阪上本町开院，担任院长。"],
+      ["2022", "诺里斯诊所开院", "1月于大阪上本町开院，担任院长。"],
     ],
     allJourney: "查看完整经历",
     hideJourney: "收起完整经历",
@@ -470,7 +470,7 @@ export const content = {
       "治疗的适用性、效果、风险与费用因治疗方式及个人情况而异。请查阅诊所官方网站，并在就诊时与医师充分沟通。",
     clinicLabel: "诊所介绍",
     clinicTitle: ["在您身边，", "安心交流的空间。"],
-    clinicName: "诺里斯美容诊所",
+    clinicName: "诺里斯诊所",
     clinicBody:
       "距大阪上本町站步行1分钟。在安静舒适的空间里，认真倾听每一位患者的困扰。",
     address: "日本〒543-0031 大阪府大阪市天王寺区石辻町18−21 上六Toki大楼4层",
@@ -483,7 +483,7 @@ export const content = {
     line: "诊所LINE官方账号（日语）",
     contactLabel: "咨询与联系",
     contactTitle: ["从一次交流，", "开始了解。"],
-    contactBody: "有关诊疗咨询与预约，请联系诺里斯美容诊所。",
+    contactBody: "有关诊疗咨询与预约，请联系诺里斯诊所。",
     contactButton: "联系诊所",
     reserve: "在线预约",
     reserveLong: "在线预约（诊所官方页面）",
@@ -492,11 +492,11 @@ export const content = {
     externalNote: "将前往诊所的日语官方网站。",
     footerClinicLabel: "诊疗与预约",
     footerNote:
-      "本网站为千原良友的个人网站。诊疗咨询与预约由诺里斯美容诊所受理。",
+      "本网站为千原良友的个人网站。诊疗咨询与预约由诺里斯诊所受理。",
     backTop: "返回顶部",
     newTab: "（在新标签页中打开）",
-    portraitAlt: "诺里斯美容诊所院长 千原良友",
-    clinicAlt: "诺里斯美容诊所接待处",
+    portraitAlt: "诺里斯诊所院长 千原良友",
+    clinicAlt: "诺里斯诊所接待处",
     roomAlt: "诊所舒适的候诊室",
     consultAlt: "诊所咨询室",
   },

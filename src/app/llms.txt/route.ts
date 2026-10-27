@@ -15,7 +15,7 @@ export function GET() {
   const lines: string[] = [
     "# Yoshitomo Chihara — 千原良友",
     "",
-    `> Personal website of Dr. Yoshitomo Chihara, physician & PhD, director of Norris Beauty Clinic (Uehommachi, Osaka, Japan). Trilingual guides to aesthetic medicine, regenerative medicine and urology, written for patients and reviewed against the clinic's official information (checked ${careCheckedAt}).`,
+    `> Personal website of Dr. Yoshitomo Chihara, physician & PhD, director of Norris Clinic (Uehommachi, Osaka, Japan). Trilingual guides to aesthetic medicine, regenerative medicine and urology, written for patients and reviewed against the clinic's official information (checked ${careCheckedAt}).`,
     "",
     "Every page exists in three languages: Japanese (paths below), English (`/en/` prefix) and Simplified Chinese (`/zh/` prefix).",
     "",
@@ -48,7 +48,7 @@ export function GET() {
   lines.push(
     "",
     "## Clinic",
-    "- Norris Beauty Clinic: https://www.norris-beauty-clinic.com/ (Japanese)",
+    "- Norris Clinic: https://www.norris-beauty-clinic.com/ (Japanese)",
     "- Booking: https://www.norris-beauty-clinic.com/reserve/ (Japanese)",
     "- Address: 4F Ueroku-Toki Bldg, 18-21 Ishigatsuji-cho, Tennoji-ku, Osaka 543-0031, Japan",
     "- Hours: Wed–Sun 10:30–19:00 JST, closed Mon & Tue — Tel +81-6-6772-3456",
