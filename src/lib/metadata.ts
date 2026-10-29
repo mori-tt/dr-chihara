@@ -15,7 +15,7 @@ import { careFaq } from "./care-support";
 import { dialogueCopy, publishedDialogues, type Dialogue } from "./dialogues";
 import { topicFaqs } from "./care-topic-faq";
 export const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://mori-tt.github.io/dr-chihara";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://yoshitomo-chihara.com";
 /**
  * Canonical (public identity) base URL for canonical/hreflang/OG/schema URLs.
  * Defaults to siteUrl. Set NEXT_PUBLIC_CANONICAL_URL so staging deployments
@@ -326,7 +326,11 @@ export function articleSchema(locale: Locale, article: Dialogue) {
     dateModified: article.updatedAt ?? article.publishedAt,
     inLanguage: localeLanguage(locale),
     image: `${canonicalUrl}${article.cover}`,
-    author: { "@id": personId, "@type": "Person", name: "千原良友" },
+    author: {
+      "@id": personId,
+      "@type": "Person",
+      name: locale === "ja" ? "千原良友" : "Yoshitomo Chihara",
+    },
     publisher: {
       "@type": "Organization",
       name: "Yoshitomo Chihara",
@@ -342,11 +346,24 @@ export function articleSchema(locale: Locale, article: Dialogue) {
     mainEntityOfPage: url,
     isPartOf: { "@id": `${canonicalUrl}/#website` },
     isAccessibleForFree: true,
+    // ja/zh count characters (no word separators); en counts words.
     wordCount:
-      t.introduction.length +
-      t.sections
-        .flatMap((s) => s.exchanges.flatMap((e) => [e.question, ...e.answer]))
-        .join("").length,
+      locale === "en"
+        ? [
+            t.introduction,
+            ...t.sections.flatMap((s) =>
+              s.exchanges.flatMap((e) => [e.question, ...e.answer]),
+            ),
+          ]
+            .join(" ")
+            .split(/\s+/)
+            .filter(Boolean).length
+        : t.introduction.length +
+          t.sections
+            .flatMap((s) =>
+              s.exchanges.flatMap((e) => [e.question, ...e.answer]),
+            )
+            .join("").length,
   };
 }
 

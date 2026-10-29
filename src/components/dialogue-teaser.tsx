@@ -1,6 +1,6 @@
 import type { Locale } from "@/lib/content";
 import { dialogueCopy, dialoguePath } from "@/lib/dialogues";
-import { stockPhotos, stockLabel } from "@/lib/stock-photos";
+import { stockPhotos } from "@/lib/stock-photos";
 import { Picture } from "./picture";
 
 export function DialogueTeaser({ locale }: { locale: Locale }) {
@@ -48,9 +48,7 @@ export function DialogueTeaser({ locale }: { locale: Locale }) {
             ))}
           </h2>
           <p>{c.homeIntro}</p>
-          <small className="stock-credit">
-            {stockLabel[locale]} · {photo.credit}
-          </small>
+          <small className="stock-credit">{photo.credit}</small>
           <a className="text-link" href={dialoguePath(locale)}>
             {c.explore}
             <span className="arrow" aria-hidden="true">

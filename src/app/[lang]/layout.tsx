@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { content, type Locale } from "@/lib/content";
-import { colorTheme } from "@/lib/site-config";
+import { colorTheme, themeColor } from "@/lib/site-config";
 import "../globals.css";
 export async function generateMetadata({
   params,
@@ -17,7 +17,7 @@ export async function generateMetadata({
   };
 }
 export const viewport: Viewport = {
-  themeColor: "#f3f2ed",
+  themeColor,
   colorScheme: "light",
 };
 export default async function Layout({

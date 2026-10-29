@@ -22,7 +22,7 @@ import { careTopics } from "@/lib/care-guide";
 import { careUi } from "@/lib/care-support";
 import { featuredTopics, topicPath } from "@/lib/care-topics";
 import { clinicSchema, personSchema, websiteSchema } from "@/lib/metadata";
-import { stockPhotos, stockLabel } from "@/lib/stock-photos";
+import { stockPhotos } from "@/lib/stock-photos";
 function Arrow() {
   return (
     <span aria-hidden="true" className="arrow">
@@ -259,9 +259,7 @@ export function Site({ locale }: { locale: Locale }) {
               widths={[480, 800, 1200]}
               sizes="(max-width: 600px) 86vw, 84vw"
             />
-            <figcaption>
-              {stockLabel[locale]} · {stockPhotos.wellbeing.credit}
-            </figcaption>
+            <figcaption>{stockPhotos.wellbeing.credit}</figcaption>
           </figure>
           <div className="philosophy-type" aria-hidden="true" />
         </section>
@@ -322,11 +320,6 @@ export function Site({ locale }: { locale: Locale }) {
                     widths={practicePhotos[i].widths}
                     sizes="(max-width: 600px) 86vw, 28vw"
                   />
-                  {i > 0 && (
-                    <span className="stock-image-label">
-                      {stockLabel[locale]}
-                    </span>
-                  )}
                 </div>
                 <div className="practice-card-heading">
                   <h3>{p.title}</h3>

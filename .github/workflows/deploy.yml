@@ -8,6 +8,16 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+    paths:
+      - "src/**"
+      - "public/**"
+      - "scripts/**"
+      - "deploy/**"
+      - ".github/workflows/deploy.yml"
+      - "package.json"
+      - "package-lock.json"
+      - "next.config.ts"
+      - "tsconfig.json"
   workflow_dispatch:
 
 permissions:
@@ -100,6 +110,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+
+      # smoke-check.mjs は runner の node で動く。hosted/self-hosted とも同じ
+      # バージョンで実行するため明示的にセットアップする。
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: ${{ env.NODE_VERSION }}
 
       # CDN反映待ちのため数回リトライする。noindex + サンプル対談ありを検査。
       - name: Smoke test the live staging site

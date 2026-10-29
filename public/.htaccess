@@ -6,8 +6,9 @@ Options -Indexes
 DirectoryIndex index.html
 ErrorDocument 404 /404.html
 
-# Deploy state file written by the FTP deploy action must not be public.
-<FilesMatch "^\.ftp-deploy-sync-state\.json$">
+# The SSH deploy keeps its state files (.deploy-*) outside the public directory,
+# but deny them here too in case one ever lands inside the web root.
+<FilesMatch "^\.(deploy-|ftp-deploy-sync-state\.json)">
   <IfModule mod_authz_core.c>
     Require all denied
   </IfModule>
@@ -27,9 +28,12 @@ ErrorDocument 404 /404.html
 
 <IfModule mod_mime.c>
   AddType application/manifest+json .webmanifest
-  AddType application/rss+xml .xml
   AddType image/webp .webp
   AddDefaultCharset UTF-8
+  # Only the RSS feed is rss+xml; a blanket ".xml" type would mislabel sitemap.xml.
+  <FilesMatch "^feed\.xml$">
+    ForceType application/rss+xml
+  </FilesMatch>
 </IfModule>
 
 <IfModule mod_deflate.c>

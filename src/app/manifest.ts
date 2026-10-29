@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { asset } from "@/lib/content";
+import { themeColor } from "@/lib/site-config";
 
 export const dynamic = "force-static";
 
@@ -12,8 +13,8 @@ export default function manifest(): MetadataRoute.Manifest {
     lang: "ja",
     start_url: asset("/"),
     display: "browser",
-    background_color: "#f3f2ed",
-    theme_color: "#f3f2ed",
+    background_color: themeColor,
+    theme_color: themeColor,
     icons: [
       { src: asset("/icon.svg"), sizes: "any", type: "image/svg+xml" },
       { src: asset("/icon.png"), sizes: "512x512", type: "image/png" },

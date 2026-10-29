@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import { content } from "@/lib/content";
-import { colorTheme } from "@/lib/site-config";
+import { colorTheme, themeColor } from "@/lib/site-config";
 import "../globals.css";
 export const metadata: Metadata = {
   title: { default: content.ja.title, template: "%s | 千原良友" },
 };
 export const viewport: Viewport = {
-  themeColor: "#f3f2ed",
+  themeColor,
   colorScheme: "light",
 };
 export default function Layout({ children }: { children: React.ReactNode }) {

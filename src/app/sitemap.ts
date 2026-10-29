@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { siteLastModified, siteUrl } from "@/lib/metadata";
+import { canonicalUrl, siteLastModified, siteUrl } from "@/lib/metadata";
 import { publishedDialogues } from "@/lib/dialogues";
 import { fieldSlugs, type FieldSlug } from "@/lib/fields";
 import { allTopics } from "@/lib/care-topics";
@@ -57,12 +57,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${siteUrl}/${prefix}${path}`,
       lastModified,
       images: images.map((image) => `${siteUrl}${image}`),
+      // Alternates mirror the page-level hreflang, which points at canonicalUrl
+      // (staging sitemaps therefore consolidate language signals to production).
       alternates: {
         languages: {
-          ja: `${siteUrl}/${path}`,
-          en: `${siteUrl}/en/${path}`,
-          "zh-Hans": `${siteUrl}/zh/${path}`,
-          "x-default": `${siteUrl}/${path}`,
+          ja: `${canonicalUrl}/${path}`,
+          en: `${canonicalUrl}/en/${path}`,
+          "zh-Hans": `${canonicalUrl}/zh/${path}`,
+          "x-default": `${canonicalUrl}/${path}`,
         },
       },
     })),

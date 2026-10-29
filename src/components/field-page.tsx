@@ -17,7 +17,7 @@ import {
   fieldsHubPath,
   type FieldSlug,
 } from "@/lib/fields";
-import { stockPhotos, stockLabel, variantWidths } from "@/lib/stock-photos";
+import { stockPhotos, variantWidths } from "@/lib/stock-photos";
 import {
   breadcrumbSchema,
   entityNodes,
@@ -44,7 +44,7 @@ const fieldPhoto = (locale: Locale, slug: FieldSlug) => {
     ...photo,
     widths: variantWidths(photo.width),
     alt: photo.alt[locale],
-    caption: `${stockLabel[locale]} · ${photo.credit}`,
+    caption: photo.credit,
   };
 };
 

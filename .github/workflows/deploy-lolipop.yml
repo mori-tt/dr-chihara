@@ -15,6 +15,7 @@ on:
       - "public/**"
       - "scripts/**"
       - "deploy/**"
+      - ".github/workflows/deploy-lolipop.yml"
       - "package.json"
       - "package-lock.json"
       - "next.config.ts"
@@ -74,6 +75,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Typecheck
+        run: npm run typecheck
+
       - name: Build production output
         run: |
           test -n "${NEXT_PUBLIC_SITE_URL}" || { echo "::error::LOLIPOP_SITE_URL is not configured"; exit 1; }
@@ -83,8 +87,13 @@ jobs:
           test -f out/.htaccess
           test -f out/sitemap.xml
           test -f out/robots.txt
-          # 本番に架空サンプル対談が混入していないことを確認
-          test ! -e out/dialogues/sample/index.html
+          # 本番にサンプル（template）対談が混入していないことを確認。
+          # slug 名ではなく、template記事だけが出力するサンプル注記のクラスで判定する。
+          # 同名クラスはコンパイル済みCSSにも残るため、対象は .html のみ。
+          if grep -rqs --include="*.html" "dialogue-sample-notice" out/; then
+            echo "::error::A template (sample) dialogue was found in the production build."
+            exit 1
+          fi
 
       # COPYFILE_DISABLE=1: macOS の tar が ._ (AppleDouble) ファイルを混入させないようにする（self-hosted Mac 対策）
       - name: Archive build output

@@ -10,9 +10,8 @@ import {
   type Locale,
 } from "@/lib/content";
 import { dialogueCopy, dialoguePath, dialoguesEnabled } from "@/lib/dialogues";
-import { fieldPath, fieldsHubPath, type FieldSlug } from "@/lib/fields";
+import { fieldPath, fieldSlugs, fieldsHubPath } from "@/lib/fields";
 const anchors = ["about", "philosophy", "journey"];
-const fieldSlugs: FieldSlug[] = ["rejuvenation", "regenerate", "urology"];
 export function Header({
   locale,
   section = "",
@@ -71,7 +70,7 @@ export function Header({
     button.current?.focus();
   }
   const languages = (
-    <div
+    <nav
       className="languages"
       aria-label={
         locale === "ja"
@@ -92,7 +91,7 @@ export function Header({
           {l === "ja" ? "JP" : l === "en" ? "EN" : "中文"}
         </a>
       ))}
-    </div>
+    </nav>
   );
   return (
     <>
@@ -175,7 +174,7 @@ export function Header({
           ref={panel}
           role="dialog"
           aria-modal="true"
-          aria-label={c.menu}
+          aria-label={c.menuLabel}
           onClick={close}
         >
           <div className="menu-inner" onClick={(e) => e.stopPropagation()}>
@@ -193,12 +192,20 @@ export function Header({
                 <span>↗</span>
               </a>
             ))}
-            <a href={homeAnchor("practice")} onClick={close}>
+            <a
+              href={
+                section ? fieldsHubPath(locale) : homeAnchor("practice")
+              }
+              onClick={close}
+            >
               <span>{homeSectionNumbers.practice}</span>
               {c.practiceLabel}
               <span>↗</span>
             </a>
-            <div className="menu-field-links" aria-label={c.practiceLabel}>
+            <nav
+              className="menu-field-links"
+              aria-label={c.practiceLabel}
+            >
               {fieldSlugs.map((slug, index) => (
                 <a key={slug} href={fieldPath(locale, slug)} onClick={close}>
                   <span>
@@ -208,7 +215,7 @@ export function Header({
                   <span>↗</span>
                 </a>
               ))}
-            </div>
+            </nav>
             <a href={homeAnchor("clinic")} onClick={close}>
               <span>{homeSectionNumbers.clinic}</span>
               {c.nav[3]}

@@ -84,7 +84,7 @@ TEST_BASE_PATH= node scripts/serve.mjs
 TEST_URL=http://127.0.0.1:4173 npm run test:browser
 ```
 
-公開ドメインが未指定の場合、canonical等はGitHub PagesのURLを使用します。本番移設時には必ず `NEXT_PUBLIC_SITE_URL` を設定してください。本番向けは `npm run build`（`NEXT_PUBLIC_NOINDEX` なし）なので、全ページが `index, follow` で出力されます。
+公開ドメインが未指定の場合、canonical等は本番ドメイン（`yoshitomo-chihara.com`）を使用します。本番向けは `npm run build`（`NEXT_PUBLIC_NOINDEX` なし）なので、全ページが `index, follow` で出力されます。
 
 ## コンテンツと画像の出典
 

@@ -20,10 +20,8 @@ export const sampleDialogue: Dialogue = {
         biography:
           "研究と患者さんの生活をつなぐことに関心を持つ医師、という設定の架空のゲスト。実在する人物・医療機関とは関係がなく、学歴・所属・専門資格・診療実績を示すものではありません。",
       },
-      coverAlt:
-        "青い手袋でフラスコを持つ研究者と実験器具。Pexelsの研究イメージ写真。",
-      coverCaption:
-        "研究のイメージ写真：Chokniti Khongchum / Pexels。実際の対談、出演者、ノリスクリニックの研究設備を撮影したものではありません。",
+      coverAlt: "青い手袋でフラスコを持つ研究者と実験器具。",
+      coverCaption: "Chokniti Khongchum / Pexels",
       sections: [
         {
           id: "origins",
@@ -47,10 +45,8 @@ export const sampleDialogue: Dialogue = {
             },
           ],
           image: "/images/stock/microscope.webp",
-          imageAlt:
-            "顕微鏡で試料を観察する研究者。出演者とは無関係のイメージ写真。",
-          caption:
-            "研究のイメージ写真：Edward Jenner / Pexels。特定の治療の効果や臨床実績を示す写真ではありません。",
+          imageAlt: "顕微鏡で試料を観察する研究者。",
+          caption: "Edward Jenner / Pexels",
         },
         {
           id: "values",
@@ -95,9 +91,8 @@ export const sampleDialogue: Dialogue = {
             },
           ],
           image: "/images/stock/stethoscope.webp",
-          imageAlt: "書類の上に置かれた聴診器。診療を表すイメージ写真。",
-          caption:
-            "医療のイメージ写真：Pixabay / Pexels。実際の診療記録ではありません。",
+          imageAlt: "書類の上に置かれた聴診器。",
+          caption: "Pixabay / Pexels",
         },
       ],
       quote:
@@ -107,7 +102,7 @@ export const sampleDialogue: Dialogue = {
         "「人間交差点」では、異なる経験を持つ人同士が出会い、問いを交わす場をつくっていきます。今回はその読み心地を伝えるための創作サンプルであり、千原先生ご本人の発言や対談後記ではありません。",
       ],
       credits:
-        "創作サンプル：登場するゲスト、質問・回答、引用、後記はすべて編集上の創作です。千原先生の実際の発言・見解や診療内容を示すものではありません。\n写真：Chokniti Khongchum、Edward Jenner、Pixabay / Pexels。写真の人物は登場人物ではありません。\n医学的な記述は一般的な情報です。個別の治療を推奨したり、効果を保証したりする記事ではありません。",
+        "創作サンプル：登場するゲスト、質問・回答、引用、後記はすべて編集上の創作です。千原先生の実際の発言・見解や診療内容を示すものではありません。\n写真：Chokniti Khongchum、Edward Jenner、Pixabay / Pexels。\n医学的な記述は一般的な情報です。個別の治療を推奨したり、効果を保証したりする記事ではありません。",
     },
     en: {
       title: "Regenerative medicine: between hope and evidence.",
@@ -121,10 +116,8 @@ export const sampleDialogue: Dialogue = {
         biography:
           "An invented guest whose interests connect laboratory research with patients’ everyday lives. This character is not associated with a real individual or institution; no real qualifications, appointments or clinical achievements are being claimed.",
       },
-      coverAlt:
-        "A gloved researcher holding a flask beside laboratory equipment. Illustrative stock photograph from Pexels.",
-      coverCaption:
-        "Illustrative research photograph: Chokniti Khongchum / Pexels. This does not depict an actual interview, the speakers or Norris Clinic’s research facilities.",
+      coverAlt: "A gloved researcher holding a flask beside laboratory equipment.",
+      coverCaption: "Chokniti Khongchum / Pexels",
       sections: [
         {
           id: "origins",
@@ -148,10 +141,8 @@ export const sampleDialogue: Dialogue = {
             },
           ],
           image: "/images/stock/microscope.webp",
-          imageAlt:
-            "A researcher examining samples with a microscope; not one of the fictional speakers.",
-          caption:
-            "Illustrative research photograph: Edward Jenner / Pexels. It does not demonstrate a treatment outcome or clinical achievement.",
+          imageAlt: "A researcher examining samples with a microscope.",
+          caption: "Edward Jenner / Pexels",
         },
         {
           id: "values",
@@ -197,10 +188,8 @@ export const sampleDialogue: Dialogue = {
             },
           ],
           image: "/images/stock/stethoscope.webp",
-          imageAlt:
-            "A stethoscope on paperwork, used as an illustrative medical photograph.",
-          caption:
-            "Illustrative medical photograph: Pixabay / Pexels. This is not a record of an actual consultation.",
+          imageAlt: "A stethoscope on paperwork.",
+          caption: "Pixabay / Pexels",
         },
       ],
       quote:
@@ -210,7 +199,7 @@ export const sampleDialogue: Dialogue = {
         "Human Crossroads is a space for perspectives to meet. This sample demonstrates the series’ reading experience; neither the interview nor this afterword records Dr. Chihara’s actual statements or opinions.",
       ],
       credits:
-        "Fictional editorial sample: the guest, questions, answers, quotation and afterword are invented. They do not represent Dr. Chihara’s actual statements, views or clinical practice.\nPhotography: Chokniti Khongchum, Edward Jenner and Pixabay / Pexels. People in stock photographs are not the speakers.\nMedical passages provide general information, not a recommendation for individual treatment or a promise of results.",
+        "Fictional editorial sample: the guest, questions, answers, quotation and afterword are invented. They do not represent Dr. Chihara’s actual statements, views or clinical practice.\nPhotography: Chokniti Khongchum, Edward Jenner and Pixabay / Pexels.\nMedical passages provide general information, not a recommendation for individual treatment or a promise of results.",
     },
     zh: {
       title: "再生医疗的未来：在期待与证据之间。",
@@ -224,10 +213,8 @@ export const sampleDialogue: Dialogue = {
         biography:
           "以连接实验室研究与患者日常生活为兴趣方向的虚构医师。与现实中的个人或医疗机构无关，不代表任何真实学历、职务、专业资质或诊疗成果。",
       },
-      coverAlt:
-        "戴手套的研究人员在实验器材旁手持烧瓶。来自Pexels的科研示意照片。",
-      coverCaption:
-        "科研示意照片：Chokniti Khongchum / Pexels。并非实际对谈、对谈人物或诺里斯诊所研究设施的照片。",
+      coverAlt: "戴手套的研究人员在实验器材旁手持烧瓶。",
+      coverCaption: "Chokniti Khongchum / Pexels",
       sections: [
         {
           id: "origins",
@@ -250,9 +237,8 @@ export const sampleDialogue: Dialogue = {
             },
           ],
           image: "/images/stock/microscope.webp",
-          imageAlt: "研究人员使用显微镜观察样本，与对谈人物无关的示意照片。",
-          caption:
-            "科研示意照片：Edward Jenner / Pexels。不用于展示特定治疗的效果或临床成果。",
+          imageAlt: "研究人员使用显微镜观察样本。",
+          caption: "Edward Jenner / Pexels",
         },
         {
           id: "values",
@@ -294,8 +280,8 @@ export const sampleDialogue: Dialogue = {
             },
           ],
           image: "/images/stock/stethoscope.webp",
-          imageAlt: "放在文件上的听诊器，医疗示意照片。",
-          caption: "医疗示意照片：Pixabay / Pexels。并非实际诊疗记录。",
+          imageAlt: "放在文件上的听诊器。",
+          caption: "Pixabay / Pexels",
         },
       ],
       quote: "把期待与证据，一起放在对话的中心。",
@@ -304,7 +290,7 @@ export const sampleDialogue: Dialogue = {
         "「人生交汇点」希望成为不同经历相遇、问题彼此交汇的空间。本篇用于展示系列的阅读体验，对谈与后记均非千原医师本人的真实发言或观点。",
       ],
       credits:
-        "虚构对谈示例：嘉宾、提问、回答、引语及后记均为创作，不代表千原医师的真实发言、观点或诊疗内容。\n摄影：Chokniti Khongchum、Edward Jenner、Pixabay / Pexels。图库照片中的人物并非对谈人物。\n医学部分仅为一般信息，不构成个别治疗建议或疗效保证。",
+        "虚构对谈示例：嘉宾、提问、回答、引语及后记均为创作，不代表千原医师的真实发言、观点或诊疗内容。\n摄影：Chokniti Khongchum、Edward Jenner、Pixabay / Pexels。\n医学部分仅为一般信息，不构成个别治疗建议或疗效保证。",
     },
   },
 };
