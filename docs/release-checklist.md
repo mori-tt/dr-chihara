@@ -1,6 +1,6 @@
 # 公開前チェックリスト（手作業が必要な項目）
 
-コードで対応できる項目は完了しています。以下は、アカウント・ドメイン・クリニック側の確認・本人の判断が必要な項目です。上から順に進めてください。自動デプロイの手順は [github-actions-deploy.md](github-actions-deploy.md) を参照してください。
+コードで対応できる項目は完了しています。以下は、アカウント・ドメイン・クリニック側の確認・本人の判断が必要な項目です。上から順に進めてください。自動デプロイの手順は [DEPLOYMENT.md](DEPLOYMENT.md) を参照してください。
 
 最終更新: 2026-10-11
 
@@ -42,13 +42,13 @@
 3. **無料独自SSLを有効化し、HTTPSで表示されることを確認する**。`.htaccess` がHTTPSへ強制リダイレクトするため、**SSLの有効化より先にデプロイしない**。
 4. DNS（ネームサーバー）の反映を待つ。
 
-### B-2. FTP情報
+### B-2. SSH情報
 
-ロリポップ管理画面でFTPサーバー名・アカウント・パスワードを確認し、公開フォルダのパスを控える。可能ならデプロイ専用のFTPアカウントを作る。値は GitHub の Secrets / Variables にのみ保存し、チャットやリポジトリに書かない。
+ロリポップ管理画面でSSHを有効化し、ホスト（`ssh.lolipop.jp`）・ポート（`2222`）・ユーザー名・パスワード・公開フォルダのパスを控える。値は GitHub の Secrets にのみ保存し、チャットやリポジトリに書かない。
 
 ### B-3. GitHub の設定
 
-[github-actions-deploy.md](github-actions-deploy.md) の「2-2」に従い、Environment `production`（承認者設定）、Secrets、`PRODUCTION_URL`・`LOLIPOP_SERVER_DIR` を登録する。
+[DEPLOYMENT.md](DEPLOYMENT.md) の Step 2〜3 に従い、Environment `production`（承認者設定）、Secrets（`LOLIPOP_SSH_*` 4件）、Variables（`LOLIPOP_SITE_URL`・`DEPLOY_TARGET`）を登録する。
 
 ### B-4. 初回デプロイ
 
@@ -59,7 +59,7 @@
    ```
 
    `out/` の**中身**（`.htaccess` を含む隠しファイルも）をFTPクライアントで公開フォルダへアップロードする。隠しファイルを表示する設定にしておくこと。
-2. 自動化後は、ワークフローを `dry_run: true` で実行し、続けて本番を実行する。
+2. 自動化後は、**Actions → Deploy to Lolipop → Run workflow** で実行する（`production` の承認を設定していれば承認する）。
 3. 公開直後に確認する。
 
    ```sh
@@ -75,12 +75,12 @@ HTTPSが全ホスト名（`www` あり・なし）で正常に動くことを確
 ## 3. テスト環境（GitHub Pages）
 
 1. Settings → Pages → Source が `GitHub Actions` であることを確認する。
-2. 本番ドメインが決まったら、リポジトリ変数 `PRODUCTION_URL` を設定する（設定すると、テスト環境の canonical が本番URLに統合される。テスト環境は常に `noindex`）。
+2. 本番ドメインが決まったら、リポジトリ変数 `LOLIPOP_SITE_URL` を設定する（設定すると、テスト環境の canonical が本番URLに統合される。テスト環境は常に `noindex`）。
 3. テスト環境は検索エンジンに載せない運用のままにする。`NEXT_PUBLIC_NOINDEX=1` を外さない。
 
 ## 4. 検索エンジン・計測
 
-1. **Google Search Console / Bing Webmaster Tools** にプロパティを追加する（ドメインプロパティ推奨）。所有確認にメタタグを使う場合は、Variables にコードを登録して `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` / `NEXT_PUBLIC_BING_SITE_VERIFICATION` を `build-production` に渡す（手順は github-actions-deploy.md の 2-2 の 4）。DNS認証ならコード変更は不要。
+1. **Google Search Console / Bing Webmaster Tools** にプロパティを追加する（ドメインプロパティ推奨）。所有確認にメタタグを使う場合は、リポジトリ Variables に `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` / `NEXT_PUBLIC_BING_SITE_VERIFICATION` を登録する（本番ビルドへ自動で渡される。手順は [DEPLOYMENT.md](DEPLOYMENT.md) Step 3）。DNS認証ならコード変更は不要。
 2. `https://本番ドメイン/sitemap.xml` を送信する。
 3. 公開後1〜2週間で、カバレッジ・canonical・hreflang・構造化データ（リッチリザルト）にエラーがないか確認する。
 4. アクセス解析（GA4 / Plausible 等）を入れるか決める。個人サイトなので任意。導入する場合は、プライバシーポリシーの掲載・同意の要否を先に判断する。
@@ -107,5 +107,5 @@ HTTPSが全ホスト名（`www` あり・なし）で正常に動くことを確
 - `experimental.globalNotFound` は実験的機能。Next の更新時は 404 ページの出力（`out/404.html` の `lang="ja"`、`noindex`）を確認する。
 - `output: export` は「生成ルートが0件」を許さないため、対談が1件もない本番ビルドでは `/dialogues/_` を一度ビルドし、`scripts/prune-dialogues.mjs` が削除している。ビルドコマンドを変えるときは、`strip-preconnect` → `prune-dialogues` の順で実行すること。
 - `scripts/care-check.mjs` と `scripts/dialogue-check.mjs` は `/dr-chihara` 配置前提（テスト環境用）。本番ビルドではルート配置の `browser-check` と `smoke-check` を使う。
-- FTPアップロードはアトミックではない。デプロイの途中で数十秒〜数分、新旧ファイルが混在し得る。アクセスの少ない時間帯に行う。
+- 自動デプロイはSSHで公開フォルダを原子的に入れ替える（`.deploy-staging` で検証後にリネーム交換、直前版は `~/.deploy-previous` に保持）。手動FTP転送（[DEPLOYMENT.md](DEPLOYMENT.md) §6）だけはアトミックではないため、アクセスの少ない時間帯に行う。
 - 本番は静的ファイルのみで、サーバー側で `npm` や `next start` を実行する必要はない。

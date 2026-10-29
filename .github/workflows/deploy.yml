@@ -1,0 +1,111 @@
+name: Deploy to GitHub Pages
+
+# デプロイ先はリポジトリ Variable DEPLOY_TARGET で切り替える:
+#   github-pages（未設定時の既定）= Pagesのみ / both = 両方 / lolipop = Lolipopのみ / none = どちらも止める
+# Lolipop側のデプロイは deploy-lolipop.yml が担当。
+# 手順は docs/DEPLOYMENT.md を参照。
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+env:
+  NODE_VERSION: "24"
+  PAGES_URL: https://mori-tt.github.io/dr-chihara
+
+jobs:
+  build:
+    # DEPLOY_TARGET が 'lolipop' または 'none' のときスキップ。
+    # 未設定・'github-pages'・'both' なら実行する（未設定時は従来どおりPagesのみデプロイ）。
+    if: ${{ vars.DEPLOY_TARGET != 'lolipop' && vars.DEPLOY_TARGET != 'none' }}
+    # 既定は GitHub hosted。repo 変数 CI_RUNNER=self-hosted で自分の Mac の runner で実行する（未設定に戻せば hosted に戻る）
+    runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
+    permissions:
+      contents: read
+    steps:
+      - name: Validate DEPLOY_TARGET
+        env:
+          DEPLOY_TARGET: ${{ vars.DEPLOY_TARGET }}
+        run: |
+          case "${DEPLOY_TARGET:-github-pages}" in
+            github-pages|lolipop|both|none)
+              echo "DEPLOY_TARGET='${DEPLOY_TARGET:-<unset:github-pages>}'"
+              ;;
+            *)
+              echo "::error::Unknown DEPLOY_TARGET='${DEPLOY_TARGET}'. Expected: github-pages | lolipop | both | none"
+              exit 1
+              ;;
+          esac
+
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build staging output
+        run: |
+          npm run build:pages
+          test -f out/index.html
+          test -f out/404.html
+          test -f out/sitemap.xml
+          test -f out/robots.txt
+        env:
+          # 本番ドメイン（LOLIPOP_SITE_URL）を設定すると、テスト環境の
+          # canonical・hreflang・OGPが本番ドメインへ統合される。未設定の間は
+          # PagesのURLのまま（NEXT_PUBLIC_SITE_URL は build:pages が設定済み）。
+          NEXT_PUBLIC_CANONICAL_URL: ${{ vars.LOLIPOP_SITE_URL }}
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./out
+
+  deploy:
+    needs: build
+    # 既定は GitHub hosted。repo 変数 CI_RUNNER=self-hosted で自分の Mac の runner で実行する（未設定に戻せば hosted に戻る）
+    runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
+    permissions:
+      pages: write
+      id-token: write
+      actions: read
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  smoke:
+    needs: deploy
+    runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      # CDN反映待ちのため数回リトライする。noindex + サンプル対談ありを検査。
+      - name: Smoke test the live staging site
+        run: |
+          for _ in 1 2 3 4 5; do
+            node scripts/smoke-check.mjs "${PAGES_URL}" --staging && exit 0
+            sleep 20
+          done
+          exit 1

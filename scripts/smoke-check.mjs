@@ -66,7 +66,13 @@ await check(
     : "sample dialogue is not exposed in production",
   async () => {
     assert.equal((await get("/dialogues/sample/")).status, staging ? 200 : 404);
-    if (!staging) assert.equal((await get("/dialogues/")).status, 404);
+    if (!staging) {
+      // Until real dialogues exist the index is 404; once published it must not expose the sample.
+      const index = await get("/dialogues/");
+      if (index.status === 200) {
+        assert.doesNotMatch(await index.text(), /dialogues\/sample/);
+      }
+    }
   },
 );
 if (!staging && base.startsWith("https://")) {

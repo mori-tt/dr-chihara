@@ -5,7 +5,7 @@
 
 ## 2026-10-11 公開前チェックで対応済み
 
-詳細と、公開前の手作業は [release-checklist.md](release-checklist.md)、自動デプロイの手順は [github-actions-deploy.md](github-actions-deploy.md)。
+詳細と、公開前の手作業は [release-checklist.md](release-checklist.md)、自動デプロイの手順は [DEPLOYMENT.md](DEPLOYMENT.md)。
 
 - Next 16.3.8 / sharp / source-map-js へ更新（`npm audit` 0件）。
 - サンプル対談をテスト（`NEXT_PUBLIC_NOINDEX=1`）のみに出し分け。本番ビルドは対談ページ・ナビ・feed を出力しない（`scripts/prune-dialogues.mjs`）。
@@ -65,7 +65,7 @@
 3. **Bing Webmaster Tools** — 同様に `NEXT_PUBLIC_BING_SITE_VERIFICATION`。
 4. **GoogleビジネスプロフィールのNAP整合** — サイトの `MedicalClinic` 構造化データ（住所・電話・診療時間・座標）と同一情報にすること。
 5. **GitHub Pages旧URLの扱い** — noindex適用済み。既にインデックス済みなら自然脱落を待つか、GSCの削除ツールを利用。
-6. **Pagesビルドへの `NEXT_PUBLIC_CANONICAL_URL` 設定** — 本番ドメイン確定後、`build:pages` に追加してPages側canonicalを本番へ向ける（仕組みは実装済み、詳細は seo-next-steps.md）。
+6. **Pages側canonicalを本番へ向ける** — `deploy.yml` が変数 `LOLIPOP_SITE_URL` を `NEXT_PUBLIC_CANONICAL_URL` に渡すため、本番ドメイン確定後に Variables へ登録するだけでよい（仕組みは実装済み、詳細は seo-next-steps.md）。
 7. **サイトマップは手動送信** — Pagesプロジェクトサイトでは robots.txt の `Sitemap:` 行が読まれないため、GSC/Bingから `sitemap.xml` を直接送信すること（独自ドメイン移行後は robots.txt 経由でも発見される）。
 
 ## B. コンテンツ・編集作業

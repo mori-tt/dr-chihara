@@ -1,6 +1,6 @@
 # Apache settings for the static export (Lolipop). GitHub Pages ignores this file.
 # Assumes the site is served from the domain root. For a subdirectory install,
-# change the ErrorDocument path and RewriteBase (see docs/deploy.md).
+# change the ErrorDocument path and RewriteBase (see docs/DEPLOYMENT.md).
 
 Options -Indexes
 DirectoryIndex index.html
@@ -61,6 +61,6 @@ ErrorDocument 404 /404.html
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
-  # Enable only after HTTPS is confirmed on every host name (see docs/deploy.md):
+  # Enable only after HTTPS is confirmed on every host name (see docs/DEPLOYMENT.md):
   # Header always set Strict-Transport-Security "max-age=31536000"
 </IfModule>

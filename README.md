@@ -36,14 +36,14 @@ npm run dev
 
 ## 公開・デプロイ
 
-- 公開前に人が行う作業（コンテンツ確認・ドメイン・SSL・FTP・Search Console など）: [docs/release-checklist.md](docs/release-checklist.md)
-- GitHub Actions でテスト（GitHub Pages）と本番（ロリポップ）へ同時デプロイする手順とワークフロー全文: [docs/github-actions-deploy.md](docs/github-actions-deploy.md)（資料のみ。現時点では未導入で、下記の `pages.yml` が動いています）
+- 公開前に人が行う作業（コンテンツ確認・ドメイン・SSL・SSH・Search Console など）: [docs/release-checklist.md](docs/release-checklist.md)
+- デプロイ手順（GitHub Pages テスト + ロリポップ本番への自動デプロイ）: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)
 - デプロイ後の確認: `npm run test:smoke -- https://本番ドメイン`（テスト環境は `-- <URL> --staging`）
 - ロリポップ用の `public/.htaccess`（404・HTTPS強制・キャッシュ・セキュリティヘッダー）はビルド時に `out/` へコピーされます。`out/` の中身は**隠しファイルを含めて**アップロードしてください。
 
 ## GitHub Pages
 
-`main` へのpushで `.github/workflows/pages.yml` がビルド・型チェック・デプロイを行います。Pagesの公開元は **GitHub Actions**。
+`main` へのpushで `.github/workflows/deploy.yml` がビルド・型チェック・デプロイ・スモークテストを行います。Pagesの公開元は **GitHub Actions**。デプロイ先の切り替えはリポジトリ変数 `DEPLOY_TARGET`（`docs/DEPLOYMENT.md` 参照）。
 
 `build:pages` では `NEXT_PUBLIC_NOINDEX=1` が付き、GitHub Pages側の全ページに `noindex` を出力します（本番ドメインとの重複コンテンツ防止）。本番ビルドではこの変数を付けないでください。
 
@@ -63,7 +63,7 @@ npm run test:browser
 
 ## ロリポップへの移設
 
-本番ドメインに合わせて**ビルドし直し**、`out/` **の中身**をロリポップの公開ディレクトリにFTPでアップロードします。GitHub Pages向けの出力をそのまま移すと `/dr-chihara` が残るため、下記の本番ビルドを使用してください。
+自動デプロイ（SSH・GitHub Actions）の手順は [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) を参照してください。手動で行う場合は、本番ドメインに合わせて**ビルドし直し**、`out/` **の中身**をロリポップの公開ディレクトリにFTPでアップロードします。GitHub Pages向けの出力をそのまま移すと `/dr-chihara` が残るため、下記の本番ビルドを使用してください。
 
 ```sh
 NEXT_PUBLIC_SITE_URL=https://YOUR-DOMAIN.example npm run build

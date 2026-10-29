@@ -1,0 +1,265 @@
+name: Deploy to Lolipop
+
+# 本番（ロリポップ）。GitHub Pagesのテストサイトとは別系統で並行公開する。
+# デプロイ先はリポジトリ Variable DEPLOY_TARGET で切り替える:
+#   both / lolipop = このワークフローが動く / github-pages（未設定時の既定）/ none = スキップ
+# Secrets（LOLIPOP_SSH_USER / LOLIPOP_SSH_PASSWORD / LOLIPOP_SSH_REMOTE_DIR / LOLIPOP_SSH_KNOWN_HOSTS）
+# が未登録の場合は、実行時にエラーで止まる。
+# 手順は docs/DEPLOYMENT.md を参照。
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "public/**"
+      - "scripts/**"
+      - "deploy/**"
+      - "package.json"
+      - "package-lock.json"
+      - "next.config.ts"
+      - "tsconfig.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lolipop-deploy
+  cancel-in-progress: false
+
+env:
+  NODE_VERSION: "24"
+  SSH_HOST: ssh.lolipop.jp
+  SSH_PORT: "2222"
+  NEXT_PUBLIC_SITE_URL: ${{ vars.LOLIPOP_SITE_URL }}
+  NEXT_PUBLIC_BASE_PATH: ""
+  # Search Console / Bing の所有確認メタ。必要なときだけリポジトリ Variables に登録する。
+  NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION: ${{ vars.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }}
+  NEXT_PUBLIC_BING_SITE_VERIFICATION: ${{ vars.NEXT_PUBLIC_BING_SITE_VERIFICATION }}
+
+jobs:
+  build-and-deploy:
+    # DEPLOY_TARGET=lolipop|both で実行。未設定（github-pages 相当）では動かない。
+    if: ${{ vars.DEPLOY_TARGET == 'lolipop' || vars.DEPLOY_TARGET == 'both' }}
+    # 既定は GitHub hosted。repo 変数 CI_RUNNER=self-hosted で自分の Mac の runner で実行する（未設定に戻せば hosted に戻る）
+    # self-hosted（Mac）で使う場合は Homebrew で sshpass を入れておくこと（Install sshpass ステップは hosted 限定）。
+    runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
+    # 承認ゲートが不要なら次の environment を削除する。
+    environment:
+      name: production
+      url: ${{ vars.LOLIPOP_SITE_URL }}
+    steps:
+      - name: Validate DEPLOY_TARGET
+        env:
+          DEPLOY_TARGET: ${{ vars.DEPLOY_TARGET }}
+        run: |
+          case "${DEPLOY_TARGET:-github-pages}" in
+            github-pages|lolipop|both|none)
+              echo "DEPLOY_TARGET='${DEPLOY_TARGET:-<unset:github-pages>}'"
+              ;;
+            *)
+              echo "::error::Unknown DEPLOY_TARGET='${DEPLOY_TARGET}'. Expected: github-pages | lolipop | both | none"
+              exit 1
+              ;;
+          esac
+
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build production output
+        run: |
+          test -n "${NEXT_PUBLIC_SITE_URL}" || { echo "::error::LOLIPOP_SITE_URL is not configured"; exit 1; }
+          npm run build
+          test -f out/index.html
+          test -f out/404.html
+          test -f out/.htaccess
+          test -f out/sitemap.xml
+          test -f out/robots.txt
+          # 本番に架空サンプル対談が混入していないことを確認
+          test ! -e out/dialogues/sample/index.html
+
+      # COPYFILE_DISABLE=1: macOS の tar が ._ (AppleDouble) ファイルを混入させないようにする（self-hosted Mac 対策）
+      - name: Archive build output
+        run: COPYFILE_DISABLE=1 tar czf dr-chihara-out.tar.gz -C out .
+
+      # self-hosted（Mac）は Homebrew で導入済みの sshpass を使う
+      - name: Install sshpass
+        if: runner.environment == 'github-hosted'
+        run: sudo apt-get update && sudo apt-get install -y sshpass
+
+      - name: Trust Lolipop SSH host key
+        env:
+          KNOWN_HOSTS: ${{ secrets.LOLIPOP_SSH_KNOWN_HOSTS }}
+        run: |
+          test -n "${KNOWN_HOSTS}" || { echo "::error::LOLIPOP_SSH_KNOWN_HOSTS is not configured"; exit 1; }
+          mkdir -p ~/.ssh
+          # 既定の ~/.ssh/known_hosts は上書きしない（self-hosted runner で
+          # ユーザー既存のホスト鍵を消さないため）。専用ファイルに分離する。
+          printf '%s\n' "${KNOWN_HOSTS}" > ~/.ssh/lolipop_known_hosts
+          # Secret の中身が対象ホストの鍵行か事前検証する。指紋の貼り付け・
+          # ポート指定なし・改行混入などの形式ミスをデプロイ開始前に検出する。
+          # 表示するのはホスト部のみ（鍵本体は出さない。内容は Secret 由来の
+          # ため GitHub のマスキング対象でもある）。
+          if ! ssh-keygen -F "[${SSH_HOST}]:${SSH_PORT}" -f ~/.ssh/lolipop_known_hosts > /dev/null; then
+            echo "::error::LOLIPOP_SSH_KNOWN_HOSTS の形式が不正です。"
+            echo "ssh-keyscan -p ${SSH_PORT} ${SSH_HOST} の出力のうち、[${SSH_HOST}]:${SSH_PORT} で始まる行をそのまま貼ってください（例: [${SSH_HOST}]:${SSH_PORT} ssh-rsa AAAA...）。"
+            echo "登録されている内容の行頭（ホスト部）:"
+            grep -v '^#' ~/.ssh/lolipop_known_hosts | cut -d' ' -f1 | sed 's/^/  /'
+            exit 1
+          fi
+
+      # ロリポップは SSH パスワード認証（2222番ポート）。
+      # SSH_PRIVATE_KEY ではなく SSH_PASSWORD を使う。
+      # SSH_REMOTE_DIR 例: ~/web/example.jp または /home/<user>/web/example.jp
+      - name: Deploy via SSH
+        env:
+          SSHPASS: ${{ secrets.LOLIPOP_SSH_PASSWORD }}
+          SSH_USER: ${{ secrets.LOLIPOP_SSH_USER }}
+          SSH_REMOTE_DIR: ${{ secrets.LOLIPOP_SSH_REMOTE_DIR }}
+          SSH_ARCHIVE: dr-chihara-out.tar.gz
+        run: |
+          set -euo pipefail
+          if [ -z "${SSHPASS}" ] || [ -z "${SSH_USER}" ] || [ -z "${SSH_REMOTE_DIR}" ]; then
+            echo "::error::Required secrets are missing: LOLIPOP_SSH_PASSWORD, LOLIPOP_SSH_USER, LOLIPOP_SSH_REMOTE_DIR"
+            exit 1
+          fi
+
+          # ロリポップの sshd が稀にセッションを即切断する
+          # （"Connection closed by remote host" + exit 255）ことがあるため、
+          # 一時的な切断に備えて各 ssh/scp 操作にリトライを挟む。
+          # リトライ中のメッセージは >&2 に出す（コマンド置換で標準出力を取る呼び出しを汚さないため）。
+          retry_ssh() {
+            local n=0
+            until "$@"; do
+              n=$((n+1))
+              if [ "$n" -ge 4 ]; then
+                echo "::error::Failed after $n attempts: $*" >&2
+                return 1
+              fi
+              echo "Attempt $n failed; retrying in 20s..." >&2
+              sleep 20
+            done
+          }
+
+          SSH_TARGET="${SSH_USER}@${SSH_HOST}"
+          # ServerAlive*: Lolipop がアイドル中のセッションを切る対策。
+          SSH_OPTS=(-o StrictHostKeyChecking=yes -o "UserKnownHostsFile=${HOME}/.ssh/lolipop_known_hosts" -p "${SSH_PORT}" -o ServerAliveInterval=15 -o ServerAliveCountMax=4)
+          SCP_OPTS=(-o StrictHostKeyChecking=yes -o "UserKnownHostsFile=${HOME}/.ssh/lolipop_known_hosts" -P "${SSH_PORT}" -o ServerAliveInterval=15 -o ServerAliveCountMax=4)
+
+          # シングルクォートは意図的: $HOME はローカルではなくリモート側で展開させる
+          # shellcheck disable=SC2016
+          REMOTE_HOME=$(retry_ssh sshpass -e ssh "${SSH_OPTS[@]}" "${SSH_TARGET}" 'printf "%s" "$HOME"')
+          if [ -z "${REMOTE_HOME}" ] || [ "${REMOTE_HOME}" = "/" ]; then
+            echo "::error::Unable to determine remote HOME. Deployment aborted."
+            exit 1
+          fi
+
+          # パストラバーサル防止: '..' を含むパスは受け付けない（~/web/.. がHOMEを指す事故を防ぐ）
+          if [[ "${SSH_REMOTE_DIR}" == *..* ]]; then
+            echo "::error::SSH_REMOTE_DIR must not contain '..'."
+            exit 1
+          fi
+
+          REMOTE_ROOT="${SSH_REMOTE_DIR%/}"
+          # "~/"はチルダ展開ではなくSecret値のリテラル接頭辞の照合（意図的）
+          # shellcheck disable=SC2088
+          if [[ "${REMOTE_ROOT}" == "~" ]]; then
+            REMOTE_ROOT="${REMOTE_HOME}"
+          elif [[ "${REMOTE_ROOT}" == "~/"* ]]; then
+            # "~/": クォート必須。クォートしないと ~ がローカルの HOME にチルダ展開され、剥がせず "~/web/..." が残る
+            REMOTE_ROOT="${REMOTE_HOME}/${REMOTE_ROOT#"~/"}"
+          fi
+          if [ -z "${REMOTE_ROOT}" ] || [ "${REMOTE_ROOT}" = "/" ] || [ "${REMOTE_ROOT}" = "${REMOTE_HOME}" ]; then
+            echo "::error::SSH_REMOTE_DIR must be the site's public directory, not / or HOME."
+            exit 1
+          fi
+          # 他サイトが同居するサーバーでの誤爆防止: 解決後パスは必ず HOME 配下のサブディレクトリに限定する
+          if [[ "${REMOTE_ROOT}" != "${REMOTE_HOME}/"* ]]; then
+            echo "::error::SSH_REMOTE_DIR must resolve to a directory under HOME (e.g. ~/web/example.jp)."
+            exit 1
+          fi
+
+          REMOTE_ARCHIVE="${REMOTE_HOME}/${SSH_ARCHIVE}"
+          STAGE="${REMOTE_HOME}/.deploy-staging"
+
+          PREVIOUS="${REMOTE_HOME}/.deploy-previous"
+          REMOTE_PARENT="${REMOTE_ROOT%/*}"
+
+          # リモート作業を1本のスクリプトにまとめ、接続を scp1回＋実行1回に集約する。
+          # Lolipop の sshd は短時間の連続接続やセッションを切断することがあり、
+          # 手順が細かい接続だと切断率が上がるため（"Connection closed by remote host"）。
+          # スクリプトは再実行しても冪等（ステージング再展開→再スワップで同じ結果）。
+          UPLOAD_DIR="$(mktemp -d)"
+          cp "${SSH_ARCHIVE}" "${UPLOAD_DIR}/"
+
+          # パスをリテラルとして安全にクォートする（値由来のスペース等で壊れないように）
+          sq() { printf "'%s'" "$(printf "%s" "$1" | sed "s/'/'\\\\''/g")"; }
+          {
+            printf 'set -e\n'
+            printf 'REMOTE_HOME=%s\nREMOTE_ROOT=%s\nREMOTE_ARCHIVE=%s\nSTAGE=%s\nPREVIOUS=%s\nREMOTE_PARENT=%s\n' \
+              "$(sq "${REMOTE_HOME}")" "$(sq "${REMOTE_ROOT}")" "$(sq "${REMOTE_ARCHIVE}")" \
+              "$(sq "${STAGE}")" "$(sq "${PREVIOUS}")" "$(sq "${REMOTE_PARENT}")"
+            cat <<'EOS'
+          if [ ! -f "${REMOTE_ARCHIVE}" ]; then
+            # 前回の実行がスワップ後に切断された場合: アーカイブは消費済みでサイトは公開済み
+            if [ -f "${REMOTE_ROOT}/index.html" ]; then
+              echo "Already deployed; nothing to do."
+              rm -f "${REMOTE_HOME}/dr-chihara-deploy.sh"
+              exit 0
+            fi
+            echo "Deploy archive is missing on the server." >&2
+            exit 1
+          fi
+
+          # ステージングに展開・検査する（ここで失敗しても公開中のサイトは無傷）
+          rm -rf "${STAGE}"
+          mkdir -p "${STAGE}"
+          tar xzf "${REMOTE_ARCHIVE}" -C "${STAGE}"
+          test -f "${STAGE}/index.html"
+          test -f "${STAGE}/404.html"
+          test -f "${STAGE}/.htaccess"
+
+          # 公開フォルダをリネームで入れ替える
+          # 中身削除→コピー方式だと、SSH切断やコマンド中断で公開フォルダが空のまま残る。
+          # 同一ファイルシステム上の mv 2回で切り替えるため中断窓がほぼ無く、
+          # 失敗時は旧フォルダをそのまま戻す。直前版は .deploy-previous に残る（公開フォルダ外）。
+          rm -rf "${PREVIOUS}"
+          mkdir -p "${REMOTE_PARENT}"
+          if [ -d "${REMOTE_ROOT}" ]; then mv "${REMOTE_ROOT}" "${PREVIOUS}"; fi
+          if ! mv "${STAGE}" "${REMOTE_ROOT}"; then
+            if [ -d "${PREVIOUS}" ]; then mv "${PREVIOUS}" "${REMOTE_ROOT}"; fi
+            echo 'Swap failed; previous version restored' >&2
+            exit 1
+          fi
+          rm -f "${REMOTE_ARCHIVE}" "${REMOTE_HOME}/dr-chihara-deploy.sh"
+          echo "Deploy finished."
+          EOS
+          } > "${UPLOAD_DIR}/dr-chihara-deploy.sh"
+
+          # アップロードは1回の scp でまとめて送る
+          retry_ssh sshpass -e scp "${SCP_OPTS[@]}" "${UPLOAD_DIR}/${SSH_ARCHIVE}" "${UPLOAD_DIR}/dr-chihara-deploy.sh" "${SSH_TARGET}:${REMOTE_HOME}/"
+          rm -rf "${UPLOAD_DIR}"
+
+          # 実行も1回の SSH で完結させる（失敗してもリトライで冪等にやり直せる）
+          retry_ssh sshpass -e ssh "${SSH_OPTS[@]}" "${SSH_TARGET}" "sh '${REMOTE_HOME}/dr-chihara-deploy.sh'"
+
+      # 公開URLに対するスモークテスト（200系・robots=index・canonical・sitemap・
+      # 本番にサンプル対談が出ないこと・404・HTTP→HTTPS）をリポジトリの検査で確認。
+      - name: Smoke test
+        env:
+          SITE_URL: ${{ vars.LOLIPOP_SITE_URL }}
+        run: |
+          set -euo pipefail
+          for _ in 1 2 3; do
+            node scripts/smoke-check.mjs "${SITE_URL%/}" && exit 0
+            sleep 10
+          done
+          exit 1
