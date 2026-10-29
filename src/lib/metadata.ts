@@ -265,7 +265,15 @@ export function clinicSchema() {
     address: clinicAddress,
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
       opens: "10:30",
       closes: "19:00",
     },

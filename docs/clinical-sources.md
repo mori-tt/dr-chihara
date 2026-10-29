@@ -45,7 +45,7 @@
 
 - WEB予約: https://www.norris-beauty-clinic.com/reserve/
 - お問い合わせフォーム: https://www.norris-beauty-clinic.com/contact/
-- 電話: 06-6772-3456 / 診療時間 水〜日 10:30–19:00（月・火休診）
+- 電話: 06-6772-3456 / 診療時間 10:30–19:00（不定休）
 - 座標: 公式アクセスページの Google Maps 埋め込み（34.664259, 135.520492）を `MedicalClinic.geo` に使用
 
 ## 料金と補足の一次資料

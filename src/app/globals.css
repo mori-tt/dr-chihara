@@ -1174,8 +1174,11 @@ a:hover .arrow {
     color: var(--muted);
   }
 }
-.clinic-hours td.is-closed {
-  color: var(--accent);
+.hours-note {
+  margin-top: 14px;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--muted);
 }
 .clinic-links {
   margin-top: 25px;

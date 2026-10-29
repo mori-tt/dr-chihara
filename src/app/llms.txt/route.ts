@@ -51,7 +51,7 @@ export function GET() {
     "- Norris Clinic: https://www.norris-beauty-clinic.com/ (Japanese)",
     "- Booking: https://www.norris-beauty-clinic.com/reserve/ (Japanese)",
     "- Address: 4F Ueroku-Toki Bldg, 18-21 Ishigatsuji-cho, Tennoji-ku, Osaka 543-0031, Japan",
-    "- Hours: Wed–Sun 10:30–19:00 JST, closed Mon & Tue — Tel +81-6-6772-3456",
+    "- Hours: 10:30–19:00 JST, irregular days off — Tel +81-6-6772-3456",
     "",
   );
   return new Response(lines.join("\n"), {
