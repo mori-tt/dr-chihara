@@ -6,6 +6,6 @@ const images = [
   ["/tmp/chihara-consultation.jpg", "consultation"],
 ];
 for (const [input, name] of images) {
-  await sharp(input).webp({ quality: 88 }).toFile(`public/images/${name}.webp`);
+  await sharp(input).webp({ quality: 76 }).toFile(`public/images/${name}.webp`);
 }
 console.log("Four clinic photographs optimized as WebP.");

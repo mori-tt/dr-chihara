@@ -237,3 +237,17 @@ mv ~/web/example.jp ~/web/example.jp.bak && mv ~/.deploy-previous ~/web/example.
 1. `deploy-lolipop.yml` の `env:` に `NEXT_PUBLIC_BASE_PATH: /profile` を追加し、`LOLIPOP_SITE_URL` を `https://example.jp/profile` にする。
 2. `LOLIPOP_SSH_REMOTE_DIR` を公開フォルダ内の `profile/` 相当のパスにする。
 3. `public/.htaccess` の `ErrorDocument 404 /404.html` を `/profile/404.html` に変える。
+
+## 12. Cloudflare の設定(PageSpeed / TTFB 対策)
+
+本番は Cloudflare プロキシ経由(`server: cloudflare`)。静的アセットはエッジキャッシュされていますが、**HTML は既定でキャッシュ対象外**(レスポンスに `cf-cache-status` が出ない = DYNAMIC)のため、毎回ロリポップのオリジンまで往復し TTFB が約 0.9 秒かかっています。PageSpeed の performance を上げるには、この HTML をエッジキャッシュするのが最も効きます。
+
+1. Cloudflare ダッシュボード → 対象ゾーン → **Caching → Cache Rules → Create rule**。
+2. Rule name: 例 `cache-html` / When incoming requests match: `(http.request.full_uri contains "yoshitomo-chihara.com")` など全リクエスト。
+3. **Cache eligibility: Eligible for cache** にし、**Edge TTL**: 例 1時間(`Respect origin` でもよいが HTML は `max-age=0` を返すので固定値推奨)。
+4. デプロイ後は古い HTML がエッジに残るため、**Caching → Purge Cache → Purge Everything** で削除するか、CI から `POST /zones/{zone_id}/purge_cache` を API Token で呼んで自動パージするのが安全です(Edge TTL を数分〜1時間と短めにして手動運用でも可)。
+
+補足:
+
+- `beacon.min.js`(Cloudflare Web Analytics / RUM)はゾーン側で自動挿入されています。不要ならダッシュボードの **Web Analytics / Speed → Observed(RUM)** で無効化すると約10KBの外部JSが消えます。
+- HTML のブラウザ側キャッシュは `max-age=0, must-revalidate` のままなので、エッジTTLを伸ばしすぎなければ更新遅延の実害はありません。
