@@ -245,7 +245,15 @@ mv ~/web/example.jp ~/web/example.jp.bak && mv ~/.deploy-previous ~/web/example.
 1. Cloudflare ダッシュボード → 対象ゾーン → **Caching → Cache Rules → Create rule**。
 2. Rule name: 例 `cache-html` / When incoming requests match: `(http.request.full_uri contains "yoshitomo-chihara.com")` など全リクエスト。
 3. **Cache eligibility: Eligible for cache** にし、**Edge TTL**: 例 1時間(`Respect origin` でもよいが HTML は `max-age=0` を返すので固定値推奨)。
-4. デプロイ後は古い HTML がエッジに残るため、**Caching → Purge Cache → Purge Everything** で削除するか、CI から `POST /zones/{zone_id}/purge_cache` を API Token で呼んで自動パージするのが安全です(Edge TTL を数分〜1時間と短めにして手動運用でも可)。
+4. デプロイ後は古い HTML がエッジに残るため、**Caching → Purge Cache → Purge Everything** で削除するか、下記の自動パージを有効化してください(Edge TTL を数分〜1時間と短めにして手動運用でも可)。
+
+### デプロイ後のパージは自動化できます
+
+`deploy-lolipop.yml` 末尾の `Purge Cloudflare cache` ステップが `purge_everything` を実行します。次の Secrets を GitHub に登録するだけで有効になります(未登録ならスキップされ、デプロイ自体は成功扱い)。
+
+1. Cloudflare ダッシュボード右上 → **My Profile → API Tokens → Create Token**。「Purge Cache」テンプレート、またはカスタムで Permissions: `Zone → Cache Purge → Purge`、Zone Resources: 対象ゾーンのみ。
+2. ゾーンIDは Overview 右側「API」欄の **Zone ID**。
+3. GitHub → Settings → Secrets and variables → Actions に `CLOUDFLARE_API_TOKEN` と `CLOUDFLARE_ZONE_ID` を登録。
 
 補足:
 
